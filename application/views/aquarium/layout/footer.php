@@ -32,7 +32,6 @@
 <script src="<?= base_url() ?>assets/js/animation/wow/wow.min.js"></script>
 <script src="<?= base_url() ?>assets/toast/jquery.toast.js"></script>
 <script src="<?= base_url() ?>assets/js/datatable/datatables/jquery.dataTables.min.js"></script>
-<script src="<?= base_url() ?>assets/js/datatable/datatables/datatable.custom.js"></script>
 <script src="<?= base_url() ?>assets/js/select2/select2.full.min.js"></script>
 <!-- Plugins JS Ends-->
 <!-- Theme js-->

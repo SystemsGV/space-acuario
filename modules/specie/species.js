@@ -1,6 +1,7 @@
 $(($) => {
 	"use strict";
 	const t = $("#data-species").DataTable({
+		processing: true,
 		language: {
 			url: "../assets/json/Spanish.json",
 		},
@@ -22,17 +23,34 @@ $(($) => {
 			},
 			{
 				data: "status",
+				render: function (data, type, row) {
+					return checkStatus(row.status);
+				},
 			},
 			{
 				data: "id_specie",
+				render: function (data, type, row) {
+					return addActions(row.id_specie);
+				},
 			},
 		],
 	});
 	$("#type_water, #status").select2({
 		dropdownParent: $("#mdl_add .modal-body"),
 	});
+
+	$("#data-species tbody").on("mouseenter", "td", function () {
+		var colIdx = t.cell(this).index().column;
+		$(t.cells().nodes()).removeClass("highlight");
+		$(t.column(colIdx).nodes()).addClass("highlight");
+	});
+
 	$("#btn_add").on("click", (e) => {
 		e.preventDefault();
+		clearForm();
+		$("#btn_send").removeClass("hidden");
+		$("#btn_update").addClass("hidden");
+		$("#title_modal").html("Agregar Especie");
 		$("#mdl_add").modal("show");
 		$("#process").val("save");
 	});
@@ -64,12 +82,17 @@ $(($) => {
 			},
 		})
 			.done((r) => {
-				console.log(r.data);
 				alert_type("Especie añadido correctamente", "Vista Especie", "success");
+				clearForm();
 				t.row
-					.add([
-					
-					])
+					.add({
+						common_specie: r.data["common_specie"],
+						scientific_specie: r.data["scientific_specie"],
+						type_water: r.data["type_water"],
+						amount_fish: r.data["amount_fish"],
+						status: r.data["status"],
+						id_specie: r.id,
+					})
 					.draw(false);
 			})
 			.fail((e) => {
@@ -82,12 +105,75 @@ $(($) => {
 				);
 			})
 			.always(() => {
+				e;
 				btn.innerHTML = "<i class='fa fa-save'></i> Guardar Especie";
 				btn.disabled = false;
 				btn.form.firstElementChild.disabled = false;
 			});
 	});
+
+	//EDIT SPECIES
+	$("#btn_update").on("click", (e) => {
+		let btn = document.querySelector("#btn_update");
+		e.preventDefault();
+		$.ajax({
+			url: "edit-specie",
+			type: "post",
+			data: $("#frm_specie").serialize(),
+			dataType: "json",
+			beforeSend: () => {
+				btn.innerHTML =
+					"<i class='fa fa-spin fa-spinner'></i> Editando Especie";
+				btn.disabled = true;
+				btn.form.firstElementChild.disabled = true;
+			},
+		});
+	});
 });
+
+const clearForm = () => {
+	$("#frm_specie")[0].reset();
+	$("#type_water").val("0").trigger("change");
+	$("#status").val("0").trigger("change");
+};
+const addActions = (i) => {
+	return (
+		'<button class="btn btn-pill btn-warning btn-air-warning" type="submit" title="Editar especie" OnClick="tbl_edit(' +
+		i +
+		')">Editar</button> ' +
+		'<button class="btn btn-pill btn-danger btn-air-danger" type="button" title="Eliminar especie">Eliminar</button>'
+	);
+};
+const tbl_edit = (i) => {
+	$("#title_modal").html("Editar Especie");
+	$("#btn_send").addClass("hidden");
+	$("#btn_update").removeClass("hidden");
+
+	$.ajax({
+		url: "API-SPECIE",
+		type: "post",
+		data: { i: i },
+		dataType: "json",
+		beforeSend: () => {
+			$("#js-busy-loader").removeClass("hidden");
+		},
+	}).done((data) => {
+		let array = data.r;
+		array.forEach((item) => {
+			$("#common_n").val(item.common_specie);
+			$("#scientific_n").val(item.scientific_specie);
+			$("#type_water").val(item.type_water).trigger("change");
+			$("#status").val(item.status).trigger("change");
+			$("#amount_s").val(item.amount_fish);
+		});
+		$("#mdl_add").modal("show");
+	});
+};
+const checkStatus = (i) => {
+	return i == 1
+		? '<span class="badge rounded-pill badge-success">ACTIVO</span>'
+		: '<span class="badge rounded-pill badge-danger">INACTIVO</span>';
+};
 const checkCampos = (obj) => {
 	var camposRellenados = true;
 	obj.each(function () {

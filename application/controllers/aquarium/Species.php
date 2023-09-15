@@ -30,6 +30,24 @@ class Species extends CI_Controller
         );
         $r = $this->SpeciesModel->insert($data, 'tbl_species');
         $jsonData["data"] = $data;
+        $jsonData["id"] = $r;
+        header('Content-type: application/json; charset=utf-8');
+        echo json_encode($jsonData);
+    }
+
+    public function update()
+    {
+        $id = "";
+        $data = array(
+            "common_specie" => $this->input->post('common_n'),
+            "scientific_specie" => $this->input->post('scientific_n'),
+            "type_water" => $this->input->post('type_water'),
+            "amount_fish" => $this->input->post('amount_s'),
+            "status" => $this->input->post('status')
+        );
+        $r = $this->SpeciesModel->update($data, $id, 'tbl_species');
+        $jsonData["data"] = $data;
+        $jsonData["id"] = $r;
         header('Content-type: application/json; charset=utf-8');
         echo json_encode($jsonData);
     }
@@ -47,5 +65,13 @@ class Species extends CI_Controller
             $array['data'] = array();
         }
         echo json_encode($array);
+    }
+
+    public function getSpecie()
+    {
+        $id = $this->input->post('i');
+        $jsonData["r"] = $this->SpeciesModel->get_species(array('id_specie' => $id));
+        header('Content-type: application/json; charset=utf-8');
+        echo json_encode($jsonData);
     }
 }
