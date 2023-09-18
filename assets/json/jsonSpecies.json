@@ -1,1 +1,40 @@
-{"data":[]}
+{
+    "data": [
+        {
+            "id_specie": "1",
+            "common_specie": "Pez Payaso",
+            "scientific_specie": "Amphiprion oceallaris",
+            "type_water": "Salada",
+            "amount_fish": "2",
+            "date_admission": "",
+            "reason_admission": "",
+            "date_exit": "",
+            "reason_exit": "",
+            "status": "1"
+        },
+        {
+            "id_specie": "46",
+            "common_specie": "Pez Payaso Fuego",
+            "scientific_specie": "Amphiprion ephippium",
+            "type_water": "Salada",
+            "amount_fish": "1",
+            "date_admission": "",
+            "reason_admission": "",
+            "date_exit": "",
+            "reason_exit": "",
+            "status": "1"
+        },
+        {
+            "id_specie": "47",
+            "common_specie": "Pez Payaso",
+            "scientific_specie": "Amphiprion oceallaris",
+            "type_water": "Salada",
+            "amount_fish": "2",
+            "date_admission": "",
+            "reason_admission": "",
+            "date_exit": "",
+            "reason_exit": "",
+            "status": "1"
+        }
+    ]
+}

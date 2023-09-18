@@ -42924,3 +42924,8 @@ html[dir=rtl] body.dark-only .page-wrapper .page-body-wrapper .page-body .card:n
 .hidden {
   display: none;
 }
+/* Class for animating the background color change when adding */
+.edited-row {
+  transition: background-color 0.5s ease-in-out; /* Define the animation */
+  background-color: green; /* Light green */
+}

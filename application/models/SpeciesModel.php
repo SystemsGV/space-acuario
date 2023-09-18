@@ -30,4 +30,20 @@ class SpeciesModel extends CI_Model
         $this->db->update($table, $action);
         return $this->db->insert_id();
     }
+    public function delete($where,$table)
+    {
+        $this->db->select('*');
+        $this->db->from($table);
+        $this->db->where($where);
+        $this->db->limit(1);
+        $query = $this->db->get();
+        if ($query->num_rows() == 1) {
+
+            $this->db->where($where);
+            $this->db->delete($table);
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

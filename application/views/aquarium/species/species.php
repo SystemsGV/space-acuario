@@ -122,8 +122,7 @@
                                                           </select>
                                                       </div>
                                                   </div>
-                                                  <input type="hidden" id="process">
-                                                  <input type="hidden" id="id_specie">
+                                                  <input type="hidden" id="id_specie" name="id_specie">
                                               </div>
                                           </div>
                                           <div class="card-footer text-end">

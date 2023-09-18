@@ -97,15 +97,13 @@ $(($) => {
 			})
 			.fail((e) => {
 				console.log(e.responseText);
-
 				alert_type(
-					"Error del servidor, Comunicarse con SISTEMAS",
+					"Error del sistema, Comunicarse con SISTEMAS",
 					"Vista Especie",
 					"error"
 				);
 			})
 			.always(() => {
-				e;
 				btn.innerHTML = "<i class='fa fa-save'></i> Guardar Especie";
 				btn.disabled = false;
 				btn.form.firstElementChild.disabled = false;
@@ -122,11 +120,85 @@ $(($) => {
 			data: $("#frm_specie").serialize(),
 			dataType: "json",
 			beforeSend: () => {
-				btn.innerHTML =
-					"<i class='fa fa-spin fa-spinner'></i> Editando Especie";
+				btn.innerHTML = "<i class='fa fa-spin'></i> Actualizando Especie";
 				btn.disabled = true;
 				btn.form.firstElementChild.disabled = true;
 			},
+		})
+			.done((r) => {
+				alert_type(
+					"Especie editado Correctamente",
+					"Vista Especies",
+					"success"
+				);
+				var row = t.row((idx, data, node) => {
+					return data.id_specie === r.id;
+				});
+				const node = row
+					.data({
+						common_specie: r.data["common_specie"],
+						scientific_specie: r.data["scientific_specie"],
+						type_water: r.data["type_water"],
+						amount_fish: r.data["amount_fish"],
+						status: r.data["status"],
+						id_specie: r.id,
+					})
+					.draw(false);
+			})
+			.fail((e) => {
+				console.log(e.responseText);
+				alert_type(
+					"Error del sistema, Comunicarse con SISTEMAS",
+					"Vista Especie",
+					"error"
+				);
+			})
+			.always(() => {
+				btn.innerHTML = "<i class='fa fa-edit'></i> Actualizar Especie";
+				btn.disabled = false;
+				btn.form.firstElementChild.disabled = false;
+			});
+	});
+
+	t.on("click", ".btn_delete", function () {
+		var row = $(this).closest("tr"); // Encuentra la fila padre del botón
+		var id_specie = t.row(row).data().id_specie; // Encuentra la fila padre del botón
+		swal({
+			title: "Estas Seguro?",
+			text: "¡Una vez eliminado, no podrás recuperar este registro!",
+			icon: "warning",
+			buttons: true,
+			dangerMode: true,
+			buttons: ["Cancelar", "Eliminar"],
+		}).then((willDelete) => {
+			if (willDelete) {
+				fetch("delete-specie", {
+					method: "DELETE",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify({ id_specie: id_specie }),
+				})
+					.then((response) => response.json())
+					.then((data) => {
+						if (data.success) {
+							alert(data.valor);
+							// Si la eliminación fue exitosa
+							swal("El registro ha sido eliminado!", {
+								icon: "success",
+							});
+							t.row(row).remove().draw(); // Elimina la fila en la tabla
+						} else {
+							// Si hubo un error en la eliminación
+							swal("Hubo un error al eliminar el registro.", {
+								icon: "error",
+							});
+						}
+					})
+					.catch((error) => {
+						console.error("Error:", error);
+					});
+			}
 		});
 	});
 });
@@ -137,12 +209,8 @@ const clearForm = () => {
 	$("#status").val("0").trigger("change");
 };
 const addActions = (i) => {
-	return (
-		'<button class="btn btn-pill btn-warning btn-air-warning" type="submit" title="Editar especie" OnClick="tbl_edit(' +
-		i +
-		')">Editar</button> ' +
-		'<button class="btn btn-pill btn-danger btn-air-danger" type="button" title="Eliminar especie">Eliminar</button>'
-	);
+	return `<button class="btn btn-pill btn-warning btn-air-warning" type="submit" title="Editar especie" OnClick="tbl_edit(${i})">Editar</button> 
+		<button class="btn_delete btn btn-pill btn-danger btn-air-danger" type="button" title="Eliminar especie">Eliminar</button>`;
 };
 const tbl_edit = (i) => {
 	$("#title_modal").html("Editar Especie");
@@ -165,6 +233,7 @@ const tbl_edit = (i) => {
 			$("#type_water").val(item.type_water).trigger("change");
 			$("#status").val(item.status).trigger("change");
 			$("#amount_s").val(item.amount_fish);
+			$("#id_specie").val(item.id_specie);
 		});
 		$("#mdl_add").modal("show");
 	});

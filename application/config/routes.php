@@ -71,3 +71,4 @@ $route['Acuario/API-SPECIES'] = 'aquarium/species/getSpecies';
 $route['Acuario/API-SPECIE'] = 'aquarium/species/getSpecie';
 $route['Acuario/save-specie'] = 'aquarium/species/create';
 $route['Acuario/edit-specie'] = 'aquarium/species/update';
+$route['Acuario/delete-specie'] = 'aquarium/species/delete';

@@ -37,7 +37,7 @@ class Species extends CI_Controller
 
     public function update()
     {
-        $id = "";
+        $id = $this->input->post('id_specie');
         $data = array(
             "common_specie" => $this->input->post('common_n'),
             "scientific_specie" => $this->input->post('scientific_n'),
@@ -45,11 +45,33 @@ class Species extends CI_Controller
             "amount_fish" => $this->input->post('amount_s'),
             "status" => $this->input->post('status')
         );
-        $r = $this->SpeciesModel->update($data, $id, 'tbl_species');
+        $r = $this->SpeciesModel->update($data, array("id_specie" => $id), 'tbl_species');
         $jsonData["data"] = $data;
-        $jsonData["id"] = $r;
+        $jsonData["id"] = $id;
         header('Content-type: application/json; charset=utf-8');
         echo json_encode($jsonData);
+    }
+    public function delete()
+    {
+        $data = json_decode(file_get_contents('php://input'), true);
+        if (isset($data['id_specie'])) {
+            try {
+                $id_specie = $data['id_specie'];
+                $this->SpeciesModel->delete(array("id_specie" => $id_specie), 'tbl_species');
+                $response = array(
+                    'success' => true,
+                    'message' => 'El registro ha sido eliminado.',
+                    'valor' => $id_specie
+                );
+            } catch (Exception $e) {
+                $response = array(
+                    'success' => false,
+                    'message' => 'Error al eliminar el registro: ' . $e->getMessage()
+                );
+            }
+            header('Content-Type: application/json');
+            echo json_encode($response);
+        }
     }
 
 
