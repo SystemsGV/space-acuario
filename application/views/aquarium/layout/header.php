@@ -32,6 +32,7 @@
   <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/css/vendors/sweetalert2.css">
   <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/toast/jquery.toast.css">
   <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/css/vendors/datatables.css">
+  <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/css/vendors/datatable-extension.css">
   <!-- Plugins css Ends-->
   <!-- Bootstrap css-->
   <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/css/vendors/bootstrap.css">

@@ -1,7 +1,14 @@
 $(($) => {
 	"use strict";
 	const t = $("#data-species").DataTable({
-		processing: true,
+		responsive: true,
+		dom: "Bfrtip",
+		buttons: [
+			{
+				extend: "colvis",
+				text: '<i class="fa fa-eye-slash"></i> Columnas Visibles',
+			},
+		],
 		language: {
 			url: "../assets/json/Spanish.json",
 		},
@@ -39,12 +46,6 @@ $(($) => {
 		dropdownParent: $("#mdl_add .modal-body"),
 	});
 
-	$("#data-species tbody").on("mouseenter", "td", function () {
-		var colIdx = t.cell(this).index().column;
-		$(t.cells().nodes()).removeClass("highlight");
-		$(t.column(colIdx).nodes()).addClass("highlight");
-	});
-
 	$("#btn_add").on("click", (e) => {
 		e.preventDefault();
 		clearForm();
@@ -58,7 +59,6 @@ $(($) => {
 	$("#frm_specie input").keyup(function () {
 		var form = $("#frm_specie").find(':input[type="text"]');
 		var check = checkCampos(form);
-		console.log(check);
 		if (check) {
 			$("#btn_send").removeClass("disabled");
 		} else {
@@ -161,7 +161,11 @@ $(($) => {
 	});
 
 	t.on("click", ".btn_delete", function () {
-		var row = $(this).closest("tr"); // Encuentra la fila padre del botón
+		var row = t.row($(this).parents("tr")).data(); // Encuentra la fila padre del botón
+		if (t.row(this).child.isShown()) {
+			//Cuando esta en tamaño responsivo
+			var id_specie = t.row(row).data().id_specie;
+		}
 		var id_specie = t.row(row).data().id_specie; // Encuentra la fila padre del botón
 		swal({
 			title: "Estas Seguro?",
@@ -182,7 +186,6 @@ $(($) => {
 					.then((response) => response.json())
 					.then((data) => {
 						if (data.success) {
-							alert(data.valor);
 							// Si la eliminación fue exitosa
 							swal("El registro ha sido eliminado!", {
 								icon: "success",
@@ -216,7 +219,6 @@ const tbl_edit = (i) => {
 	$("#title_modal").html("Editar Especie");
 	$("#btn_send").addClass("hidden");
 	$("#btn_update").removeClass("hidden");
-
 	$.ajax({
 		url: "API-SPECIE",
 		type: "post",

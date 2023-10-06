@@ -150,7 +150,7 @@
                                         </svg><span>Especies</span></a>
                                 </li>
                                 <li class="sidebar-list"><i class="fa fa-thumb-tack"></i>
-                                    <a class="sidebar-link sidebar-title link-nav" href="kanban.html">
+                                    <a class="sidebar-link sidebar-title link-nav" href="<?= base_url('Acuario/Peceras') ?>">
                                         <svg class="stroke-icon">
                                             <use href="<?= base_url() ?>assets/svg/icon-sprite.svg#stroke-board"></use>
                                         </svg>

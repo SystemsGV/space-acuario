@@ -66,9 +66,23 @@ $route['Login'] = 'Site/authUser';
 $route['Acuario/Cerrar-Sesion'] = 'aquarium/dashboard/session_destroy';
 $route['Acuario/Inicio'] = 'aquarium/dashboard';
 $route['Acuario'] = 'aquarium/dashboard';
+
+
+/* ROUTES SPECIES */
 $route['Acuario/Especies'] = 'aquarium/species';
 $route['Acuario/API-SPECIES'] = 'aquarium/species/getSpecies';
 $route['Acuario/API-SPECIE'] = 'aquarium/species/getSpecie';
 $route['Acuario/save-specie'] = 'aquarium/species/create';
 $route['Acuario/edit-specie'] = 'aquarium/species/update';
 $route['Acuario/delete-specie'] = 'aquarium/species/delete';
+
+
+/* ROUTES FISHBOWL */
+$route['Acuario/Peceras'] = 'aquarium/fishbowls';
+$route['Acuario/API-FISHBOWLS'] = 'aquarium/fishbowls/getFishbowls';
+$route['Acuario/save-fishbowl'] = 'aquarium/fishbowls/create';
+$route['Acuario/edit-fishbowl'] = 'aquarium/fishbowls/update';
+$route['Acuario/delete-fishbowl'] = 'aquarium/fishbowls/delete';
+
+
+
