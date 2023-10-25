@@ -304,7 +304,6 @@
 <script src="<?= base_url() ?>assets/js/animation/wow/wow.min.js"></script>
 <script src="<?= base_url() ?>assets/toast/jquery.toast.js"></script>
 <script src="<?= base_url() ?>assets/js/cleave/cleave.min.js"></script>
-<script src="<?= base_url() ?>assets/js/sweet-alert/sweetalert.min.js"></script>
 <script src="<?= base_url() ?>assets/js/datatable/datatables/jquery.dataTables.min.js"></script>
 <!--DATATABLES -->
 <script src="<?= base_url() ?>assets/js/datatable/datatable-extension/dataTables.buttons.min.js"></script>
@@ -322,6 +321,7 @@
 <script src="<?= base_url() ?>assets/js/datatable/datatable-extension/dataTables.rowReorder.min.js"></script>
 <script src="<?= base_url() ?>assets/js/datatable/datatable-extension/dataTables.scroller.min.js"></script>
 <script src="<?= base_url() ?>assets/js/select2/select2.full.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- Plugins JS Ends-->
 <!-- Theme js-->
 <script src="<?= base_url() ?>assets/js/script.js"></script>

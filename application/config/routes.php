@@ -83,6 +83,8 @@ $route['Acuario/API-FISHBOWLS'] = 'aquarium/fishbowls/getFishbowls';
 $route['Acuario/save-fishbowl'] = 'aquarium/fishbowls/create';
 $route['Acuario/edit-fishbowl'] = 'aquarium/fishbowls/update';
 $route['Acuario/delete-fishbowl'] = 'aquarium/fishbowls/delete';
+$route['Acuario/new-specie-fisbowl'] = 'aquarium/fishbowls/add_specie';
 
 
-
+//APIS
+$route['Acuario/species-select'] = 'aquarium/species/speciesSelect';

@@ -30,7 +30,7 @@ class SpeciesModel extends CI_Model
         $this->db->update($table, $action);
         return $this->db->insert_id();
     }
-    public function delete($where,$table)
+    public function delete($where, $table)
     {
         $this->db->select('*');
         $this->db->from($table);
@@ -45,5 +45,19 @@ class SpeciesModel extends CI_Model
         } else {
             return false;
         }
+    }
+    public function get_select($where = null)
+    {
+        if ($where != null) {
+            $this->db->select('id_specie, common_specie, amount_fish');
+            $this->db->from('tbl_species');
+            $this->db->where($where);
+            $query = $this->db->get();
+            return $query->result();
+        }
+        $this->db->select('id_specie, common_specie, amount_fish');
+        $this->db->from('tbl_species');
+        $query = $this->db->get();
+        return $query->result();
     }
 }

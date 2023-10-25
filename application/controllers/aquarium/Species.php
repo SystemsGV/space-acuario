@@ -73,8 +73,6 @@ class Species extends CI_Controller
             echo json_encode($response);
         }
     }
-
-
     //APIS FOR SPECIES
     public function getSpecies()
     {
@@ -95,5 +93,17 @@ class Species extends CI_Controller
         $jsonData["r"] = $this->SpeciesModel->get_species(array('id_specie' => $id));
         header('Content-type: application/json; charset=utf-8');
         echo json_encode($jsonData);
+    }
+    public function speciesSelect()
+    {
+        $result = $this->SpeciesModel->get_select();
+        if ($result) {
+            foreach ($result as $row) {
+                $array['species'][] = $row;
+            }
+        } else {
+            $array['species'] = array();
+        }
+        echo json_encode($array);
     }
 }

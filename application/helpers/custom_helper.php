@@ -33,3 +33,16 @@ if (!function_exists('add_json_species')) {
         }
     }
 }
+
+if (!function_exists('getFormattedTime')) {
+    function getFormattedTime()
+    {
+        $date = date('Y-m-d'); // Formato: año-mes-día
+        $time  = date('h:i A'); // Formato: horas:minutos AM/PM
+
+        return array(
+            'date' => $date,
+            'time' => $time
+        );
+    }
+}

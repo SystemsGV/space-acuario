@@ -251,7 +251,21 @@
 	$(".input_numb").on("input", function () {
 		this.value = this.value.replace(/[^0-9.]/g, "");
 	});
+
+
 })(jQuery);
+
+const Toast = Swal.mixin({
+	toast: true,
+	position: "top-end",
+	showConfirmButton: false,
+	timer: 5000,
+	timerProgressBar: true,
+	didOpen: (toast) => {
+		toast.addEventListener("mouseenter", Swal.stopTimer);
+		toast.addEventListener("mouseleave", Swal.resumeTimer);
+	},
+});
 
 function alert_type(t, h, i, d) {
 	const url_base = $("#url_base").val();

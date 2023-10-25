@@ -67,12 +67,28 @@ $(($) => {
 				data: "install_bowl",
 			},
 			{
+				data: "type_bowl",
+				visible: false,
+			},
+			{
+				data: "tmp_min",
+				visible: false,
+			},
+			{
+				data: "tmp_max",
+				visible: false,
+			},
+			{
 				data: "id_bowl",
 				render: function (data, type, row) {
 					return addActions(row.id_specie);
 				},
 			},
 		],
+	});
+
+	$("#select-new-species").select2({
+		dropdownParent: $("#mdl_logs .modal-body"),
 	});
 
 	$("#data-species tbody").on("mouseenter", "td", function () {
@@ -100,9 +116,9 @@ $(($) => {
 		var check = checkCampos(form);
 		console.log(check);
 		if (check) {
-			$("#btn_send").removeClass("disabled");
+			$("#btn_send").removeAttr("disabled");
 		} else {
-			$("#btn_send").addClass("disabled");
+			$("#btn_send").attr("disabled");
 		}
 	});
 
@@ -119,16 +135,6 @@ $(($) => {
 		} else {
 			$("#volumen_w").val("");
 		}
-	});
-
-	t.on("click", ".add_fish", function (e) {
-		var item = t.row($(this).parents("tr")).data(); //Detecta a que fila hago click y me captura los datos en la variable data.
-		if (t.row(this).child.isShown()) {
-			//Cuando esta en tamaño responsivo
-			var item = t.row(this).data();
-		}
-		$(".title_log").html(item.type_bowl + " " + item.name_bowl);
-		$("#mdl_logs").modal("show");
 	});
 
 	t.on("click", ".btn_edit", function () {
@@ -172,33 +178,21 @@ $(($) => {
 			},
 		})
 			.done((r) => {
-				alert_type("Pecera añadido correctamente", "Vista Pecera", "success");
+				Toast.fire({
+					icon: "success",
+					title: "Vista Pecera",
+					text: "Pecera añadido correctamente",
+				});
 				clearForm();
-				t.row
-					.add({
-						name_bowl: r.data["name_bowl"],
-						type_bowl: r.data["type_bowl"],
-						water_bowl: r.data["water_bowl"],
-						install_bowl: r.data["install_bowl"],
-						status_bowl: r.data["status_bowl"],
-						large_bowl: r.data["large_bowl"],
-						width_bowl: r.data["width_bowl"],
-						height_bowl: r.data["height_bowl"],
-						type_bowl: r.data["type_bowl"],
-						volumen_bowl: r.data["volumen_bowl"],
-						tmp_min: r.data["tmp_min"],
-						tmp_max: r.data["tmp_max"],
-						id_bowl: r.id,
-					})
-					.draw(false);
+				t.ajax.reload();
 			})
 			.fail((e) => {
 				console.log(e.responseText);
-				alert_type(
-					"Error del sistema, Comunicarse con SISTEMAS",
-					"Vista Pecera",
-					"error"
-				);
+				Toast.fire({
+					icon: "error",
+					title: "Vista Pecera",
+					text: "Error del sistema, Comunicarse con SISTEMAS",
+				});
 			})
 			.always(() => {
 				btn.innerHTML = "<i class='fa fa-save'></i> Guardar Especie";
@@ -214,15 +208,14 @@ $(($) => {
 			var id_bowl = t.row(row).data().id_bowl;
 		}
 		var id_bowl = t.row(row).data().id_bowl; // Encuentra la fila padre del botón
-		swal({
+		Swal.fire({
 			title: "Estas Seguro?",
 			text: "¡Una vez eliminado, no podrás recuperar este registro!",
 			icon: "warning",
-			buttons: true,
-			dangerMode: true,
-			buttons: ["Cancelar", "Eliminar"],
-		}).then((willDelete) => {
-			if (willDelete) {
+			showCancelButton: true,
+			confirmButtonText: "Si, elimialo!",
+		}).then((result) => {
+			if (result.isConfirmed) {
 				fetch("delete-fishbowl", {
 					method: "DELETE",
 					headers: {
@@ -234,14 +227,16 @@ $(($) => {
 					.then((data) => {
 						if (data.success) {
 							// Si la eliminación fue exitosa
-							swal("El registro ha sido eliminado!", {
+							Toast.fire({
 								icon: "success",
+								title: "El registro ha sido eliminado!",
 							});
 							t.row(row).remove().draw(); // Elimina la fila en la tabla
 						} else {
 							// Si hubo un error en la eliminación
-							swal("Hubo un error al eliminar el registro.", {
+							Toast.fire({
 								icon: "error",
+								title: "Hubo un error al eliminar el registro.",
 							});
 						}
 					})
@@ -261,13 +256,18 @@ $(($) => {
 			data: $("#frm_fishbowl").serialize(),
 			dataType: "json",
 			beforeSend: () => {
-				btn.innerHTML = "<i class='fa fa-spin'></i> Actualizando Pecera";
+				btn.innerHTML =
+					"<i class='fa fa-spin fa-spinner'></i> Actualizando Pecera";
 				btn.disabled = true;
 				btn.form.firstElementChild.disabled = true;
 			},
 		})
 			.done((r) => {
-				alert_type("Pecera editado Correctamente", "Vista Peceras", "success");
+				Toast.fire({
+					icon: "success",
+					title: "Vista Pecera",
+					text: "Pecera editado Correctamente",
+				});
 				var row = t.row((idx, data, node) => {
 					return data.id_bowl === r.id;
 				});
@@ -291,11 +291,11 @@ $(($) => {
 			})
 			.fail((e) => {
 				console.log(e.responseText);
-				alert_type(
-					"Error del sistema, Comunicarse con SISTEMAS",
-					"Vista Peceras",
-					"error"
-				);
+				Toast.fire({
+					icon: "error",
+					title: "Vista Pecera",
+					text: "Error del sistema, Comunicarse con SISTEMAS",
+				});
 			})
 			.always(() => {
 				btn.innerHTML = "<i class='fa fa-edit'></i> Actualizar Pecera";
@@ -303,8 +303,152 @@ $(($) => {
 				btn.form.firstElementChild.disabled = false;
 			});
 	});
+
+	//TODO: Add species to the fish tank
+	t.on("click", ".add_fish", function (e) {
+		var item = t.row($(this).parents("tr")).data(); //Detecta a que fila hago click y me captura los datos en la variable data.
+		if (t.row(this).child.isShown()) {
+			//Cuando esta en tamaño responsivo
+			var item = t.row(this).data();
+		}
+		const data = {
+			tank: item.id_bowl,
+			fishs: item.species,
+		};
+		sessionStorage.setItem("jsonData", JSON.stringify(data));
+		$(".title_log").html(item.type_bowl + " " + item.name_bowl);
+		$("#mdl_logs").modal("show");
+		const datos = JSON.parse(sessionStorage.getItem("jsonData"));
+	});
+
+	// ** BUTTON ADD && AMOUNT
+	$("#advance-product-tab").on("click", () => {
+		$("#manifest-option").addClass("show active");
+		$("#manifest-option-tab").addClass("active");
+		$("#new-specie-fishbowl").removeClass("active");
+		$("#additional-option").removeClass("show");
+		$("#additional-option").removeClass("active");
+		InitFormAdd();
+	});
+
+	// ** ADD NEW SPECIE FISHBOWL
+	$("#btn-addSpecie").on("click", () => {
+		$("#mdl_movements").modal("show");
+	});
+
+	$("#select-new-species").on("change", function () {
+		const selectedOption = $(this).find(":selected");
+		const amount = selectedOption.data("amount");
+		sessionStorage.setItem("am_species", amount);
+		$("#amount_fish").text(amount);
+		$("#add-amount").removeAttr("disabled");
+		$("#reason-add").removeAttr("disabled");
+	});
+
+	$("#add-amount").on("input", function () {
+		const add = $(this).val();
+		const amount = sessionStorage.getItem("am_species");
+		if (add <= amount) {
+			$(this).removeClass("is-invalid");
+			$("#restant_fish").text(amount - add);
+		} else {
+			$(this).addClass("is-invalid");
+		}
+	});
+
+	$("#form-new-specie").on("submit", function (e) {
+		e.preventDefault();
+		const session = JSON.parse(sessionStorage.getItem("jsonData"));
+		const btn = document.querySelector("#btn-send-new-specie");
+
+		const formData = new FormData(this);
+		formData.append("idBowl", session.tank);
+		formData.append("fishs", session.fishs);
+		$.ajax({
+			url: "new-specie-fisbowl",
+			method: "post",
+			data: formData,
+			dataType: "json",
+			cache: false,
+			contentType: false,
+			processData: false,
+			beforeSend: () => {
+				btn.innerHTML =
+					"<i class='fa fa-spin fa-spinner'></i> Actualizando Pecera";
+				btn.disabled = true;
+				btn.form.firstElementChild.disabled = true;
+			},
+		})
+			.done((data) => {
+				if (data.rsp == 500) {
+					Toast.fire({
+						icon: "warning",
+						title: "Agregando Nueva Especie",
+						text: "La cantidad que vas a agregar debe ser mayor a 0",
+					});
+				} else {
+					session.fishs = data.species;
+					sessionStorage.setItem("jsonData", JSON.stringify(session));
+					InitFormAdd();
+				}
+			})
+			.fail((error) => {
+				console.log(error.responseText);
+			})
+			.always(() => {
+				btn.innerHTML = "<i class='fa fa-plus'></i> Agregar nueva especie";
+				btn.disabled = false;
+				btn.form.firstElementChild.disabled = false;
+			});
+	});
+
+	//** FINISH ADD NEW SPECIE FISHBOWL */
 });
 
+function InitFormAdd() {
+	$("#form-new-specie")[0].reset;
+	$("#select-new-species").empty();
+	$("#select-new-species").append(
+		"<option value='0' disabled selected>Selecciona especie</option>"
+	);
+	$("#amount_fish").text("0");
+	$("#restant_fish").text("0");
+	$("#add-amount").val("0");
+	$("#reason-add").prop("disabled", true);
+	$("#add-amount").prop("disabled", true);
+	getSpecies();
+}
+
+const getSpecies = () => {
+	const selectS = document.getElementById("select-new-species");
+	fetch("species-select", {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+	})
+		.then((response) => {
+			if (!response.ok) {
+				throw new Error(`HTTP error! status: ${response.status}`);
+			}
+			return response.json();
+		})
+		.then(({ species }) => {
+			species.forEach((item) => {
+				const option = document.createElement("option");
+				option.value = item.id_specie;
+				option.text = item.common_specie;
+				option.dataset.amount = item.amount_fish;
+				if (parseInt(item.amount_fish <= 0)) {
+					option.disabled = true;
+				}
+				selectS.appendChild(option);
+			});
+		})
+		.catch((error) => {
+			console.error("Error:", error);
+		});
+};
 const checkSpecies = (i) => {
 	if (i != "") {
 		return ``;
@@ -317,8 +461,8 @@ const checkStatus = (i) => {
 		: '<span class="badge rounded-pill badge-danger">INACTIVO</span>';
 };
 const addActions = (i) => {
-	return `<button class="btn btn-pill btn-warning btn-air-warning btn_edit" type="submit" title="Editar especie">Editar</button> 
-		<button class="btn_delete btn btn-pill btn-danger btn-air-danger" type="button" title="Eliminar especie">Eliminar</button>`;
+	return `<button class="btn btn-pill btn-warning btn-air-warning btn_edit btn-animation" type="submit" title="Editar especie"><i class="icofont icofont-edit f-18"></i></button> 
+		<button class="btn_delete btn btn-pill btn-danger btn-air-danger btn-animation" type="button" title="Eliminar especie"><i class="icofont  icofont-trash f-18"></i></button>`;
 };
 const clearForm = () => {
 	$("#frm_fishbowl")[0].reset();
@@ -326,8 +470,16 @@ const clearForm = () => {
 	$("#status").val("0").trigger("change");
 	$("#type_bowl").val("0").trigger("change");
 };
+
+// Función para formatear un número con comas como separadores de miles
 const format_cs = (num) => {
-	return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	// Convierte el número a una cadena de texto
+	return (
+		num
+			.toString()
+			// Usa una expresión regular para agregar comas como separadores de miles
+			.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+	);
 };
 const checkCampos = (obj) => {
 	var camposRellenados = true;

@@ -16,7 +16,6 @@ class Fishbowls extends CI_Controller
 
         );
         $data['scripts'] = array(
-            '<script src="' . base_url() . 'assets/js/todo/todo.js"></script>',
             '<script src="' . base_url() . 'modules/specie/fishbowls.js"></script>'
         );
         $data['title'] = "Registro Especies";
@@ -96,6 +95,35 @@ class Fishbowls extends CI_Controller
             }
             header('Content-Type: application/json');
             echo json_encode($response);
+        }
+    }
+
+    public function add_specie()
+    {
+        $amount = $this->input->post('add-amount');
+        $jsonSpecie = [];
+        if ($amount == 0) {
+            $jsonSpecie["rsp"] = 500;
+            echo json_encode($jsonSpecie);
+        } else {
+            $array = "";
+            $species = $this->input->post('fishs');
+            $specie = $this->input->post('select-new-species');
+            if ($species == "") {
+                $array = $specie;
+            } else {
+                $array = $species . "," . $specie;
+            }
+            $dateTime = getFormattedTime();
+
+            $data = array(
+                "tankId" => $this->input->post('idBowl')
+            );
+
+
+            $jsonSpecie['species'] = $array;
+            $jsonSpecie['rsp'] = 200;
+            echo json_encode($jsonSpecie);
         }
     }
 

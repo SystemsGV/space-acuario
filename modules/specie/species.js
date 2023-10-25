@@ -120,7 +120,7 @@ $(($) => {
 			data: $("#frm_specie").serialize(),
 			dataType: "json",
 			beforeSend: () => {
-				btn.innerHTML = "<i class='fa fa-spin'></i> Actualizando Especie";
+				btn.innerHTML = "<i class='fa fa-spin fa-spinner'></i> Actualizando Especie";
 				btn.disabled = true;
 				btn.form.firstElementChild.disabled = true;
 			},
@@ -212,8 +212,8 @@ const clearForm = () => {
 	$("#status").val("0").trigger("change");
 };
 const addActions = (i) => {
-	return `<button class="btn btn-pill btn-warning btn-air-warning" type="submit" title="Editar especie" OnClick="tbl_edit(${i})">Editar</button> 
-		<button class="btn_delete btn btn-pill btn-danger btn-air-danger" type="button" title="Eliminar especie">Eliminar</button>`;
+	return `<button class="btn btn-pill btn-warning btn-air-warning" type="submit" title="Editar especie" OnClick="tbl_edit(${i})"><i class="icofont icofont-edit f-18"></i></button> 
+		<button class="btn_delete btn btn-pill btn-danger btn-air-danger" type="button" title="Eliminar especie"><i class="icofont  icofont-trash f-18"></i></button>`;
 };
 const tbl_edit = (i) => {
 	$("#title_modal").html("Editar Especie");

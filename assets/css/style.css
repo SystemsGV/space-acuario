@@ -42929,3 +42929,9 @@ html[dir=rtl] body.dark-only .page-wrapper .page-body-wrapper .page-body .card:n
   transition: background-color 0.5s ease-in-out; /* Define the animation */
   background-color: green; /* Light green */
 }
+.btn-animation{
+  transition: transform 0.3s;
+}
+.btn-animation:hover{
+  transform: scale(1.2);
+}
