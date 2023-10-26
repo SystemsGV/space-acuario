@@ -109,21 +109,33 @@ class Fishbowls extends CI_Controller
             $array = "";
             $species = $this->input->post('fishs');
             $specie = $this->input->post('select-new-species');
+            $amounts = $this->input->post('amount_s');
             if ($species == "") {
                 $array = $specie;
             } else {
                 $array = $species . "," . $specie;
             }
             $dateTime = getFormattedTime();
-
+            $amounts -= $this->input->post('add-amount');
             $data = array(
-                "tankId" => $this->input->post('idBowl')
+                "tankId" => $this->input->post('idBowl'),
+                "specieId" => $specie,
+                "amountM" => $this->input->post('add-amount'),
+                "reasonM" => $this->input->post('reason-add'),
+                "dateM" => $dateTime["date"],
+                "hourM" => $dateTime["time"],
+                "movementM" => "new"
             );
 
-
-            $jsonSpecie['species'] = $array;
-            $jsonSpecie['rsp'] = 200;
-            echo json_encode($jsonSpecie);
+            try {
+                $this->FishbowlsModel->insert($data, "tbl_movementstank");
+                $this->FishbowlsModel->update(array("amount_fish" => $amounts),"tbl_species");
+                $jsonSpecie['species'] = $array;
+                $jsonSpecie['rsp'] = 200;
+                echo json_encode($jsonSpecie);
+            } catch (\Exception $e) {
+                echo "Error: " . $e->getMessage();
+            }
         }
     }
 

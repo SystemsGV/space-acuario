@@ -364,6 +364,7 @@ $(($) => {
 		const formData = new FormData(this);
 		formData.append("idBowl", session.tank);
 		formData.append("fishs", session.fishs);
+		formData.append("amount_s", sessionStorage.getItem("am_species"));
 		$.ajax({
 			url: "new-specie-fisbowl",
 			method: "post",
