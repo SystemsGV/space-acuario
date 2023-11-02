@@ -331,10 +331,6 @@ for ($i = 0; $i < count($scripts); $i++) {
     echo $scripts[$i];
 }
 ?>
-<script>
-    new WOW().init();
-</script>
-
 
 </body>
 

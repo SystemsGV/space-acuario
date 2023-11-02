@@ -11,11 +11,9 @@ class Fishbowls extends CI_Controller
 
     public function index()
     {
-        $data['links'] = array(
-            '<link rel="stylesheet" type="text/css" href="' . base_url() . 'assets/css/vendors/todo.css">'
-
-        );
+        $data['links'] = array();
         $data['scripts'] = array(
+            '   <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>',
             '<script src="' . base_url() . 'modules/specie/fishbowls.js"></script>'
         );
         $data['title'] = "Registro Especies";
@@ -109,33 +107,134 @@ class Fishbowls extends CI_Controller
             $array = "";
             $species = $this->input->post('fishs');
             $specie = $this->input->post('select-new-species');
-            $amounts = $this->input->post('amount_s');
+            $amounts = $this->input->post('amount-s');
+            $total_species = $this->input->post('total-s');
+
+            $new_total = $total_species + $amount;
+
             if ($species == "") {
                 $array = $specie;
             } else {
                 $array = $species . "," . $specie;
             }
             $dateTime = getFormattedTime();
-            $amounts -= $this->input->post('add-amount');
+            $total = $amounts - $amount;
             $data = array(
                 "tankId" => $this->input->post('idBowl'),
                 "specieId" => $specie,
-                "amountM" => $this->input->post('add-amount'),
+                "amountM" => $amount,
                 "reasonM" => $this->input->post('reason-add'),
                 "dateM" => $dateTime["date"],
                 "hourM" => $dateTime["time"],
                 "movementM" => "new"
             );
 
+            $array_his = array(
+                "specie" => $specie,
+                "tank" => $this->input->post('idBowl'),
+                "amount" => $amount
+            );
+
             try {
                 $this->FishbowlsModel->insert($data, "tbl_movementstank");
-                $this->FishbowlsModel->update(array("amount_fish" => $amounts),"tbl_species");
+                $this->FishbowlsModel->insert($array_his, "tbl_specieBowls");
+                $this->FishbowlsModel->update(array("amount_fish" => $total), array("id_specie" => $specie), "tbl_species");
+
+                $data_f = array(
+                    "total_species" => $new_total,
+                    "species" => $array
+                );
+
+                $this->FishbowlsModel->update($data_f, array("id_bowl" => $this->input->post('idBowl')), "tbl_fishbowls");
                 $jsonSpecie['species'] = $array;
+                $jsonSpecie['total_f'] = $new_total;
                 $jsonSpecie['rsp'] = 200;
                 echo json_encode($jsonSpecie);
             } catch (\Exception $e) {
                 echo "Error: " . $e->getMessage();
             }
+        }
+    }
+
+    public function ammon_bowl()
+    {
+        $dateTime = getFormattedTime();
+
+        $amount = $this->input->post('ammon-add');
+        $jsonSpecie = [];
+        if ($amount == 0) {
+            $jsonSpecie["rsp"] = 500;
+            echo json_encode($jsonSpecie);
+        } else {
+            $bowl = $this->input->post('idBowl');
+            $specie = $this->input->post('select-existing');
+            $amount_s = $this->input->post('amount-s');
+            $total_species = $this->input->post('total-s');
+            $ammon = $this->input->post('ammon-s');
+
+            $total_bowl = $amount + $total_species; // Obtengo la nueva cantidad de especies en el bowl
+            $restart_fish = $amount_s - $amount; //le resto la cantidad que se agregara a la pecera
+            $total_fish = $ammon + $amount; // agrega la cantidad a la tabla de specieBowls
+
+            $data_movement = array(
+                "tankId" => $bowl,
+                "specieId" => $specie,
+                "amountM" => $amount,
+                "reasonM" => $this->input->post('reason-ammon'),
+                "dateM" => $dateTime["date"],
+                "hourM" => $dateTime["time"],
+                "movementM" => "update"
+            );
+            $this->FishbowlsModel->insert($data_movement, "tbl_movementstank");
+            $this->FishbowlsModel->update(array("amount_fish" => $restart_fish), array("id_specie" => $specie), "tbl_species");
+
+            $this->FishbowlsModel->update(array("total_species" => $total_bowl), array("id_bowl" => $this->input->post('idBowl')), "tbl_fishbowls");
+
+            $this->FishbowlsModel->update(array("amount" => $total_fish), array("specie" => $specie, "tank" => $bowl), "tbl_speciebowls");
+            $jsonSpecie['total_f'] = $total_bowl;
+            $jsonSpecie['rsp'] = 200;
+            echo json_encode($jsonSpecie);
+        }
+    }
+
+    public function dissmis_bowl()
+    {
+        $dateTime = getFormattedTime();
+
+        $amount = $this->input->post('minus-restart');
+        $jsonSpecie = [];
+        if ($amount == 0) {
+            $jsonSpecie["rsp"] = 500;
+            echo json_encode($jsonSpecie);
+        } else {
+            $bowl = $this->input->post('idBowl');
+            $specie = $this->input->post('select-minus');
+            $amount_s = $this->input->post('amount-s');
+            $total_species = $this->input->post('total-s');
+            $ammon = $this->input->post('ammon-s');
+
+            $total_bowl = $total_species - $amount; // Obtengo la nueva cantidad de especies en el bowl
+            $restart_fish = $amount_s + $amount; // aumento a la especie la cantidad que se quitara de pecera
+            $total_fish = $ammon - $amount; // disminuyo la cantidad a le resto la cantidad que se agregara a la peceraa tabla de specieBowls
+
+            $data_movement = array(
+                "tankId" => $bowl,
+                "specieId" => $specie,
+                "amountM" => $amount,
+                "reasonM" => $this->input->post('reason-minus'),
+                "dateM" => $dateTime["date"],
+                "hourM" => $dateTime["time"],
+                "movementM" => "dissmis"
+            );
+            $this->FishbowlsModel->insert($data_movement, "tbl_movementstank");
+            $this->FishbowlsModel->update(array("amount_fish" => $restart_fish), array("id_specie" => $specie), "tbl_species");
+
+            $this->FishbowlsModel->update(array("total_species" => $total_bowl), array("id_bowl" => $this->input->post('idBowl')), "tbl_fishbowls");
+
+            $this->FishbowlsModel->update(array("amount" => $total_fish), array("specie" => $specie, "tank" => $bowl), "tbl_speciebowls");
+            $jsonSpecie['total_f'] = $total_bowl;
+            $jsonSpecie['rsp'] = 200;
+            echo json_encode($jsonSpecie);
         }
     }
 
@@ -150,6 +249,33 @@ class Fishbowls extends CI_Controller
             }
         } else {
             $array['data'] = array();
+        }
+        echo json_encode($array);
+    }
+    public function logsFishbowls($tank)
+    {
+        $result = $this->FishbowlsModel->get_logsBowls(array("tankId" => $tank));
+        if ($result) {
+            foreach ($result as $row) {
+                $array['data'][] = $row;
+            }
+        } else {
+            $array['data'] = array();
+        }
+        echo json_encode($array);
+    }
+    public function graphicBowl()
+    {
+        $data = json_decode(file_get_contents('php://input'), true);
+
+        $result = $this->FishbowlsModel->getReportGraphic(array("T.tank" => $data['id_bowl']));
+
+        if ($result) {
+            foreach ($result as $row) {
+                $array['data'][] = $row;
+            }
+        } else {
+            $array['data'] = null;
         }
         echo json_encode($array);
     }

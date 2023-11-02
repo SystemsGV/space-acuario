@@ -34,7 +34,7 @@ body > .main {
 
 .test-title-inner {
   display: inline-block;
-  *display: inline;
+  display: inline;
   zoom: 1;
   text-align: left;
 }

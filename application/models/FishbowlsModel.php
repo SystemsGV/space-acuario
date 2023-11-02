@@ -45,4 +45,31 @@ class FishbowlsModel extends CI_Model
             return false;
         }
     }
+    public function get_logsBowls($where = null)
+    {
+        if ($where != null) {
+            $this->db->select('M.*, S.common_specie');
+            $this->db->from('tbl_movementstank M');
+            $this->db->join('tbl_species S', 'M.specieId = S.id_specie', 'inner');
+            $this->db->where($where);
+            $query = $this->db->get();
+            return $query->result();
+        }
+        $this->db->select('M.*, S.common_specie');
+        $this->db->from('tbl_movementstank M');
+        $this->db->join('tbl_species S', 'M.specieId = S.id_specie', 'inner');
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function getReportGraphic($where)
+    {
+        return $this->db
+            ->select('T.*, F.name_bowl, F.type_bowl, S.common_specie')
+            ->from('tbl_speciebowls T')
+            ->join('tbl_fishbowls F', 'T.tank = F.id_bowl')
+            ->join('tbl_species S', 'T.specie = S.id_specie')
+            ->where($where)
+            ->get()
+            ->result_array();
+    }
 }

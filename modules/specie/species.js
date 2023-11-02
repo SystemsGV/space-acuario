@@ -167,15 +167,14 @@ $(($) => {
 			var id_specie = t.row(row).data().id_specie;
 		}
 		var id_specie = t.row(row).data().id_specie; // Encuentra la fila padre del botón
-		swal({
+		Swal.fire({
 			title: "Estas Seguro?",
 			text: "¡Una vez eliminado, no podrás recuperar este registro!",
 			icon: "warning",
-			buttons: true,
-			dangerMode: true,
-			buttons: ["Cancelar", "Eliminar"],
-		}).then((willDelete) => {
-			if (willDelete) {
+			showCancelButton: true,
+			confirmButtonText: "Si, elimialo!",
+		}).then((result) => {
+			if (result.isConfirmed) {
 				fetch("delete-specie", {
 					method: "DELETE",
 					headers: {
@@ -187,14 +186,16 @@ $(($) => {
 					.then((data) => {
 						if (data.success) {
 							// Si la eliminación fue exitosa
-							swal("El registro ha sido eliminado!", {
+							Toast.fire({
 								icon: "success",
+								title: "El registro ha sido eliminado!",
 							});
 							t.row(row).remove().draw(); // Elimina la fila en la tabla
 						} else {
 							// Si hubo un error en la eliminación
-							swal("Hubo un error al eliminar el registro.", {
+							Toast.fire({
 								icon: "error",
+								title: "Hubo un error al eliminar el registro.",
 							});
 						}
 					})

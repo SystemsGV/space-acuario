@@ -106,4 +106,17 @@ class Species extends CI_Controller
         }
         echo json_encode($array);
     }
+  
+    public function getCheckout($where)
+    {
+        $result = $this->SpeciesModel->get_checkout(array("tank" => $where));
+        if ($result) {
+            foreach ($result as $row) {
+                $array['species'][] = $row;
+            }
+        } else {
+            $array['species'] = array();
+        }
+        echo json_encode($array);
+    }
 }

@@ -55,8 +55,24 @@ class SpeciesModel extends CI_Model
             $query = $this->db->get();
             return $query->result();
         }
-        $this->db->select('id_specie, common_specie, amount_fish');
+        $this->db->select('*');
         $this->db->from('tbl_species');
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function get_checkout($where = null)
+    {
+        if ($where != null) {
+            $this->db->select('S.id_specie, S.common_specie, S.amount_fish, H.amount');
+            $this->db->from('tbl_species S');
+            $this->db->join('tbl_speciebowls H', 'S.id_specie = H.specie', 'inner');
+            $this->db->where($where);
+            $query = $this->db->get();
+            return $query->result();
+        }
+        $this->db->select('S.id_specie, S.common_specie, S.amount_fish, H.amount');
+        $this->db->from('tbl_species S');
+        $this->db->join('tbl_speciebowls H', 'S.id_specie = H.specie', 'inner');
         $query = $this->db->get();
         return $query->result();
     }

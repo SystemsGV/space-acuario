@@ -80,11 +80,17 @@ $route['Acuario/delete-specie'] = 'aquarium/species/delete';
 /* ROUTES FISHBOWL */
 $route['Acuario/Peceras'] = 'aquarium/fishbowls';
 $route['Acuario/API-FISHBOWLS'] = 'aquarium/fishbowls/getFishbowls';
+$route['Acuario/API-LOGSBOWLS/(:any)'] = 'aquarium/fishbowls/logsFishbowls/$1';
 $route['Acuario/save-fishbowl'] = 'aquarium/fishbowls/create';
 $route['Acuario/edit-fishbowl'] = 'aquarium/fishbowls/update';
 $route['Acuario/delete-fishbowl'] = 'aquarium/fishbowls/delete';
 $route['Acuario/new-specie-fisbowl'] = 'aquarium/fishbowls/add_specie';
+$route['Acuario/ammon-specie-fisbowl'] = 'aquarium/fishbowls/ammon_bowl';
+$route['Acuario/dissmis-specie-fisbowl'] = 'aquarium/fishbowls/dissmis_bowl';
+$route['Acuario/API-PIE'] = 'aquarium/fishbowls/graphicBowl';
 
 
 //APIS
 $route['Acuario/species-select'] = 'aquarium/species/speciesSelect';
+$route['Acuario/species-checkout/(:any)'] = 'aquarium/species/getCheckout/$1';
+$route['Acuario/getJsonSpecies'] = 'aquarium/species/getJsonSpecies';

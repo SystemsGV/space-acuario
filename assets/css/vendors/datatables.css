@@ -1091,7 +1091,6 @@ table.dataTable.table thead td.sorting_desc:after {
 }
 table.dataTable.table thead th.sorting:after,
 table.dataTable.table thead td.sorting:after {
-  content: "\f0dc";
   color: #ddd;
   font-size: 0.8em;
 }

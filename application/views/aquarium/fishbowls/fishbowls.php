@@ -195,7 +195,7 @@
                         <button class="btn btn-success" disabled type="submit" id="btn_send">
                             <i class="fa fa-save"></i> Guardar Pecera
                         </button>
-                        <button class="btn btn-info hidden" type="submit" id="btn_update">
+                        <button class="btn btn-info +" type="submit" id="btn_update">
                             <i class="fa fa-edit"></i> Actualizar Especie
                         </button>
                     </div>
@@ -209,305 +209,261 @@
 <div class="modal fade" tabindex="-1" role="dialog" id="mdl_logs" aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-centered">
         <div class="modal-content">
+            <div class="modal-header">
+                <h5 id="title_log"></h5>
+                <button class="btn-close theme-close bg-primary" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
             <div class="modal-body">
-                <div class="container-fluid email-wrap bookmark-wrap todo-wrap">
+                <div class="container-fluid">
                     <div class="row">
-                        <div class="col-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h5 id="">Product Form</h5>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row g-xl-5 g-3">
-                                        <div class="col-xxl-3 col-xl-4 box-col-4e sidebar-left-wrapper">
-                                            <ul class="sidebar-left-icons nav nav-pills" id="add-product-pills-tab" role="tablist">
-                                                <li class="nav-item">
-                                                    <a class="nav-link active" id="detail-product-tab" data-bs-toggle="pill" href="#detail-product" role="tab" aria-controls="detail-product" aria-selected="false">
-                                                        <div class="nav-rounded">
-                                                            <div class="product-icons">
-                                                                <svg class="stroke-icon">
-                                                                    <use href="../assets/svg/icon-sprite.svg#product-category">
-                                                                    </use>
-                                                                </svg>
-                                                            </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row g-xl-5 g-3">
+                                    <div class="col-xxl-3 col-xl-4 box-col-4e sidebar-left-wrapper">
+                                        <ul class="sidebar-left-icons nav nav-pills" id="add-product-pills-tab" role="tablist">
+                                            <li class="nav-item">
+                                                <a class="nav-link" id="aditional-graphic-tab" data-bs-toggle="pill" href="#aditional-graphic" role="tab" aria-controls="category-graphics" aria-selected="false">
+                                                    <div class="nav-rounded">
+                                                        <div class="product-icons">
+                                                            <svg class="stroke-icon">
+                                                                <use href="../assets/svg/icon-sprite.svg#tread">
+                                                                </use>
+                                                            </svg>
                                                         </div>
-                                                        <div class="product-tab-content">
-                                                            <h6>Historial de cambios</h6>
-                                                            <p>Visualizaras ingresos y salidas</p>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" id="advance-product-tab" data-bs-toggle="pill" href="#add-species-fishbowl" role="tab" aria-controls="add-species-fishbowl" aria-selected="false">
-                                                        <div class="nav-rounded">
-                                                            <div class="product-icons">
-                                                                <svg class="stroke-icon">
-                                                                    <use href="../assets/svg/icon-sprite.svg#product-detail">
-                                                                    </use>
-                                                                </svg>
-                                                            </div>
-                                                        </div>
-                                                        <div class="product-tab-content">
-                                                            <h6>Ingresos</h6>
-                                                            <p>Aumentar especies</p>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" id="category-product-tab" data-bs-toggle="pill" href="#category-product" role="tab" aria-controls="category-product" aria-selected="false">
-                                                        <div class="nav-rounded">
-                                                            <div class="product-icons">
-                                                                <svg class="stroke-icon">
-                                                                    <use href="../assets/svg/icon-sprite.svg#product-category">
-                                                                    </use>
-                                                                </svg>
-                                                            </div>
-                                                        </div>
-                                                        <div class="product-tab-content">
-                                                            <h6>Salidas</h6>
-                                                            <p>Disminuir cantidad especies</p>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-xxl-9 col-xl-8 box-col-8 position-relative">
-                                            <div class="tab-content" id="add-product-pills-tabContent">
-                                                <div class="tab-pane fade show active" id="detail-product" role="tabpanel" aria-labelledby="detail-product-tab">
-                                                    <div class="sidebar-body">
-                                                        <table class="table">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>Especie</th>
-                                                                    <th>Cantidad</th>
-                                                                    <th>Tipo de Mov.</th>
-                                                                    <th>Fecha y hora</th>
-                                                                    <th>Acciones</th>
-                                                                </tr>
-                                                            </thead>
-                                                        </table>
                                                     </div>
+                                                    <div class="product-tab-content">
+                                                        <h6>Graficos</h6>
+                                                        <p>Disminuir cantidad especies</p>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link active" id="detail-product-tab" data-bs-toggle="pill" href="#detail-product" role="tab" aria-controls="detail-product" aria-selected="false">
+                                                    <div class="nav-rounded">
+                                                        <div class="product-icons">
+                                                            <svg class="stroke-icon">
+                                                                <use href="../assets/svg/icon-sprite.svg#product-category">
+                                                                </use>
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product-tab-content">
+                                                        <h6>Historial de cambios</h6>
+                                                        <p>Visualizaras ingresos y salidas</p>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" id="advance-product-tab" data-bs-toggle="pill" href="#add-species-fishbowl" role="tab" aria-controls="add-species-fishbowl" aria-selected="false">
+                                                    <div class="nav-rounded">
+                                                        <div class="product-icons">
+                                                            <svg class="stroke-icon">
+                                                                <use href="../assets/svg/icon-sprite.svg#product-detail">
+                                                                </use>
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product-tab-content">
+                                                        <h6>Ingresos</h6>
+                                                        <p>Aumentar especies</p>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" id="category-product-tab" data-bs-toggle="pill" href="#minus-species" role="tab" aria-controls="minus-species" aria-selected="false">
+                                                    <div class="nav-rounded">
+                                                        <div class="product-icons">
+                                                            <svg class="stroke-icon">
+                                                                <use href="../assets/svg/icon-sprite.svg#trash">
+                                                                </use>
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product-tab-content">
+                                                        <h6>Salidas</h6>
+                                                        <p>Disminuir cantidad especies</p>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-xxl-9 col-xl-8 box-col-8 position-relative">
+                                        <div class="tab-content" id="add-product-pills-tabContent">
+                                            <div class="tab-pane fade show active" id="detail-product" role="tabpanel" aria-labelledby="detail-product-tab">
+                                                <div class="table-responsive">
+                                                    <table class="table table-striped table-hover" id="data-log">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Especie</th>
+                                                                <th>Cantidad</th>
+                                                                <th>Razón.</th>
+                                                                <th>Fecha y hora</th>
+                                                                <th>Mov.</th>
+                                                            </tr>
+                                                        </thead>
+                                                    </table>
                                                 </div>
-                                                <div class="tab-pane fade" id="category-product" role="tabpanel" aria-labelledby="category-product-tab">
-                                                    <div class="sidebar-body">
-                                                        <div class="row g-lg-4 g-3">
-                                                            <div class="col-12">
-                                                                <div class="row g-3">
-                                                                    <div class="col-sm-6">
-                                                                        <div class="row g-2">
-                                                                            <div class="col-12">
-                                                                                <label class="form-label m-0" for="validationDefault04">Add
-                                                                                    Category</label>
-                                                                            </div>
-                                                                            <div class="col-12">
-                                                                                <select class="form-select" id="validationDefault04" required="">
-                                                                                    <option selected="" value="">
-                                                                                        Toys & games
-                                                                                    </option>
-                                                                                    <option>Sportswear</option>
-                                                                                    <option>Jewellery</option>
-                                                                                    <option>Furniture and Decor
-                                                                                    </option>
-                                                                                    <option>
-                                                                                        Health, Personal Care, and
-                                                                                        Beauty
-                                                                                    </option>
-                                                                                    <option>Auto and Parts</option>
-                                                                                    <option>Baby Care Products
-                                                                                    </option>
-                                                                                </select>
-                                                                                <p class="f-light">
-                                                                                    A product can be added to a
-                                                                                    category
-                                                                                </p>
+                                            </div>
+                                            <div class="tab-pane fade" id="minus-species" role="tabpanel" aria-labelledby="category-product-tab">
+                                                <div class="sidebar-body advance-options">
+                                                    <ul class="nav nav-tabs border-tab mb-0" id="minus-option-tab" role="tablist">
+                                                        <li class="nav-item">
+                                                            <a class="nav-link active" id="min-option-tab" data-bs-toggle="tab" href="#minus-option" role="tab" aria-controls="minus-option" aria-selected="true">Descontar especie existente </a>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="tab-content" id="minus-option-tabContent">
+                                                        <div class="tab-pane fade show active" id="minus-option" role="tabpanel" aria-labelledby="min-option-tab">
+                                                            <div class="meta-body">
+                                                                <form id="minus-existing">
+                                                                    <div class="row g-3">
+                                                                        <div class="col-sm-6">
+                                                                            <label class="form-label">Especies Existentes</label>
+                                                                            <select class="form-select" aria-label="lista de especies" id="select-minus" name="select-minus">
+                                                                            </select>
+                                                                        </div>
+                                                                        <div class="col-sm-6">
+                                                                            <div class="row custom-input">
+                                                                                <label class="form-label">Cantidad en Pecera</label>
+                                                                                <h1 id="actuality_fish"></h1>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="col-sm-6">
-                                                                        <div class="row g-2 product-tag">
-                                                                            <div class="col-12">
-                                                                                <label class="form-label d-block m-0">Add
-                                                                                    Tag</label>
-                                                                            </div>
-                                                                            <div class="col-12">
-                                                                                <input name="basic-tags" value="watches, sports, clothes, bottles" />
-                                                                                <p class="f-light">
-                                                                                    Products can be tagged
-                                                                                </p>
+                                                                    <div class="row g-3">
+                                                                        <div class="col-sm-6">
+                                                                            <label class="form-label">Cantidad a descontar</label>
+                                                                            <input type="number" class="form-control input_numb" id="minus-restart" name="minus-restart" value="0">
+                                                                            <div class="invalid-feedback">La cantidad que ingreso es mayor al número actual.</div>
+                                                                        </div>
+                                                                        <div class="col-sm-6">
+                                                                            <div class="row custom-input">
+                                                                                <label class="form-label" for="tagTitle">Cantidad Restante</label>
+                                                                                <h1 id="restart_fish"></h1>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-12">
-                                                                <div class="row g-3">
-                                                                    <div class="col-sm-6">
-                                                                        <div class="row">
-                                                                            <div class="col-12">
-                                                                                <label class="form-label" for="publishStatus">Publish
-                                                                                    Status</label>
-                                                                                <select class="form-select" id="publishStatus" required="">
-                                                                                    <option selected="" value="">
-                                                                                        Publish
-                                                                                    </option>
-                                                                                    <option>Drafts</option>
-                                                                                    <option>Unpublish</option>
-                                                                                </select>
-                                                                                <p class="f-light">
-                                                                                    Choose the status
-                                                                                </p>
-                                                                            </div>
+                                                                    <div class="row g-3">
+                                                                        <div class="col-sm-12">
+                                                                            <label class="form-label">Razón de descuento</label>
+                                                                            <textarea class="form-control" name="reason-minus" id="reason-minus"></textarea>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="col-sm-6">
-                                                                        <div class="row">
-                                                                            <div class="col-12">
-                                                                                <label class="form-label" for="datetime-local1">Publish
-                                                                                    Date & Time</label>
-                                                                                <div class="input-group flatpicker-calender product-date">
-                                                                                    <input class="form-control" id="datetime-local1" type="date" />
-                                                                                </div>
-                                                                            </div>
+                                                                    <div class="row g-3 text-end">
+                                                                        <div class="col-sm-12">
+                                                                            <br>
+                                                                            <button class="btn btn-success me-3" id="btn-send-minus-specie" type="submit" disabled><i class="fa fa-minus-square"></i> Disminuir especie</button>
                                                                         </div>
                                                                     </div>
-                                                                </div>
+                                                                </form>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="tab-pane fade" id="add-species-fishbowl" role="tabpanel" aria-labelledby="advance-product-tab">
-                                                    <div class="sidebar-body advance-options">
-                                                        <ul class="nav nav-tabs border-tab mb-0" id="advance-option-tab" role="tablist">
-                                                            <li class="nav-item">
-                                                                <a class="nav-link active" id="manifest-option-tab" data-bs-toggle="tab" href="#manifest-option" role="tab" aria-controls="manifest-option" aria-selected="true">Aumentar especie existente </a>
-                                                            </li>
-                                                            <li class="nav-item">
-                                                                <a class="nav-link" id="new-specie-fishbowl" data-bs-toggle="tab" href="#additional-option" role="tab" aria-controls="additional-option" aria-selected="false">Agregar nueva especie</a>
-                                                            </li>
-                                                        </ul>
-                                                        <div class="tab-content" id="advance-option-tabContent">
-                                                            <div class="tab-pane fade" id="manifest-option" role="tabpanel" aria-labelledby="manifest-option-tab">
-                                                                <div class="meta-body">
-                                                                    <div class="row g-3 custom-input">
+                                            </div>
+                                            <div class="tab-pane fade" id="add-species-fishbowl" role="tabpanel" aria-labelledby="advance-product-tab">
+                                                <div class="sidebar-body advance-options">
+                                                    <ul class="nav nav-tabs border-tab mb-0" id="advance-option-tab" role="tablist">
+                                                        <li class="nav-item">
+                                                            <a class="nav-link active" id="manifest-option-tab" data-bs-toggle="tab" href="#manifest-option" role="tab" aria-controls="manifest-option" aria-selected="true">Aumentar especie existente </a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" id="new-specie-fishbowl" data-bs-toggle="tab" href="#additional-option" role="tab" aria-controls="additional-option" aria-selected="false">Agregar nueva especie</a>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="tab-content" id="advance-option-tabContent">
+                                                        <div class="tab-pane fade" id="manifest-option" role="tabpanel" aria-labelledby="manifest-option-tab">
+                                                            <div class="meta-body">
+                                                                <form id="add-existing">
+                                                                    <div class="row g-3">
+                                                                        <div class="col-sm-6">
+                                                                            <label class="form-label">Especies Existentes</label>
+                                                                            <select class="form-select" aria-label="lista de especies" id="select-existing" name="select-existing">
+                                                                            </select>
+                                                                        </div>
+                                                                        <div class="col-sm-6">
+                                                                            <div class="row custom-input">
+                                                                                <label class="form-label">Cantidad Restante</label>
+                                                                                <h1 id="quantity_fish"></h1>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row g-3">
+                                                                        <div class="col-sm-6">
+                                                                            <label class="form-label">Cantidad a agregar</label>
+                                                                            <input type="number" class="form-control input_numb" id="ammon-add" name="ammon-add" value="0">
+                                                                            <div class="invalid-feedback">La cantidad a agregar debe ser menor o igual a la cantidad actual.</div>
+                                                                        </div>
+                                                                        <div class="col-sm-6">
+                                                                            <div class="row custom-input">
+                                                                                <label class="form-label" for="tagTitle">Cantidad en Pecera</label>
+                                                                                <h1 id="ammon_fish"></h1>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row g-3">
+                                                                        <div class="col-sm-12">
+                                                                            <label class="form-label">Razón de ingreso</label>
+                                                                            <textarea class="form-control" name="reason-ammon" id="reason-ammon"></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row g-3 text-end">
+                                                                        <div class="col-sm-12">
+                                                                            <br>
+                                                                            <button class="btn btn-success me-3" id="btn-send-ammon-specie" type="submit" disabled><i class="fa fa-plus"></i> Aumentar especie</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                        <div class="tab-pane fade" id="additional-option" role="tabpanel" aria-labelledby="new-specie-fishbowl">
+                                                            <div class="meta-body">
+                                                                <form id="form-new-specie">
+                                                                    <div class="row g-3">
                                                                         <div class="col-sm-6">
                                                                             <label class="form-label">Especies</label>
-                                                                            <select class="form-select" aria-label="Default select example">
-                                                                                <option selected="">In stock
-                                                                                </option>
-                                                                                <option value="1">
-                                                                                    Out of stock
-                                                                                </option>
-                                                                                <option value="2">Pre-order</option>
+                                                                            <select class="form-select" aria-label="lista de especies" id="select-new-species" name="select-new-species">
                                                                             </select>
                                                                         </div>
                                                                         <div class="col-sm-6">
-                                                                            <label class="form-label">Low
-                                                                                Stock</label>
-                                                                            <select class="form-select" aria-label="Default select example">
-                                                                                <option selected="">
-                                                                                    Low Stock (5 or less)
-                                                                                </option>
-                                                                                <option value="1">
-                                                                                    Low Stock (10 or less)
-                                                                                </option>
-                                                                                <option value="2">
-                                                                                    Low Stock (20 or less)
-                                                                                </option>
-                                                                                <option value="2">
-                                                                                    Low Stock (25 or less)
-                                                                                </option>
-                                                                                <option value="2">
-                                                                                    Low Stock (30 or less)
-                                                                                </option>
-                                                                            </select>
-                                                                        </div>
-                                                                        <div class="col-lg-3 col-sm-6">
-                                                                            <label class="form-label" for="exampleFormControlInput1">SKU
-                                                                                <span class="txt-danger">*</span></label>
-                                                                            <input class="form-control" id="exampleFormControlInput1" type="text" />
-                                                                        </div>
-                                                                        <div class="col-lg-3 col-sm-6">
-                                                                            <label class="form-label" for="exampleFormControlInputa">Stock
-                                                                                Quantity
-                                                                                <span class="txt-danger">*</span></label>
-                                                                            <input class="form-control" id="exampleFormControlInputa" type="number" value="7" min="0" />
-                                                                        </div>
-                                                                        <div class="col-lg-3 col-sm-6">
-                                                                            <label class="form-label" for="exampleFormControlInputb">Restock
-                                                                                Date
-                                                                                <span class="txt-danger">*</span></label>
-                                                                            <input class="form-control" id="exampleFormControlInputb" type="number" />
-                                                                        </div>
-                                                                        <div class="col-lg-3 col-sm-6">
-                                                                            <label class="form-label" for="exampleFormControlInputc">Pre-Order
-                                                                                <span class="txt-danger">*</span></label>
-                                                                            <input class="form-control" id="exampleFormControlInputc" type="number" />
-                                                                        </div>
-                                                                        <div class="col-12">
-                                                                            <label class="form-label">Allow
-                                                                                Backorders</label>
-                                                                            <div class="form-check">
-                                                                                <input class="form-check-input" id="gridCheck" type="checkbox" />
-                                                                                <label class="form-check-label m-0" for="gridCheck">This is a
-                                                                                    digital Product</label>
-                                                                                <p class="f-light">
-                                                                                    Decide if the product is a
-                                                                                    digital
-                                                                                    or physical item. Shipping may
-                                                                                    be
-                                                                                    necessary for real-world items.
-                                                                                </p>
+                                                                            <div class="row custom-input">
+                                                                                <label class="form-label">Cantidad Actual</label>
+                                                                                <h1 id="amount_fish"></h1>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="tab-pane fade" id="additional-option" role="tabpanel" aria-labelledby="new-specie-fishbowl">
-                                                                <div class="meta-body">
-                                                                    <form id="form-new-specie">
-                                                                        <div class="row g-3">
-                                                                            <div class="col-sm-6">
-                                                                                <label class="form-label">Especies</label>
-                                                                                <select class="form-select" aria-label="lista de especies" id="select-new-species" name="select-new-species">
-                                                                                </select>
-                                                                            </div>
-                                                                            <div class="col-sm-6">
-                                                                                <div class="row custom-input">
-                                                                                    <label class="form-label">Cantidad Actual</label>
-                                                                                    <h1 id="amount_fish"></h1>
-                                                                                </div>
+                                                                    <div class="row g-3">
+                                                                        <div class="col-sm-6">
+                                                                            <label class="form-label">Cantidad a agregar</label>
+                                                                            <input type="number" class="form-control input_numb" id="add-amount" name="add-amount" value="0">
+                                                                            <div class="invalid-feedback">La cantidad a agregar debe ser menor o igual a la cantidad actual.</div>
+                                                                        </div>
+                                                                        <div class="col-sm-6">
+                                                                            <div class="row custom-input">
+                                                                                <label class="form-label" for="tagTitle">Cantidad Restante</label>
+                                                                                <h1 id="restant_fish"></h1>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="row g-3">
-                                                                            <div class="col-sm-6">
-                                                                                <label class="form-label">Cantidad a agregar</label>
-                                                                                <input type="text" class="form-control input_numb" id="add-amount" name="add-amount"  value="0">
-                                                                                <div class="invalid-feedback">La cantidad a agregar debe ser menor o igual a la cantidad actual.</div>
-                                                                            </div>
-                                                                            <div class="col-sm-6">
-                                                                                <div class="row custom-input">
-                                                                                    <label class="form-label" for="tagTitle">Cantidad Restante</label>
-                                                                                    <h1 id="restant_fish"></h1>
-                                                                                </div>
-                                                                            </div>
+                                                                    </div>
+                                                                    <div class="row g-3">
+                                                                        <div class="col-sm-12">
+                                                                            <label class="form-label">Razón de ingreso</label>
+                                                                            <textarea class="form-control" name="reason-add" id="reason-add"></textarea>
                                                                         </div>
-                                                                        <div class="row g-3">
-                                                                            <div class="col-sm-12">
-                                                                                <label class="form-label">Razón de ingreso</label>
-                                                                                <textarea class="form-control" name="reason-add" id="reason-add" ></textarea>
-                                                                            </div>
+                                                                    </div>
+                                                                    <div class="row g-3 text-end">
+                                                                        <div class="col-sm-12">
+                                                                            <br>
+                                                                            <button class="btn btn-success me-3" id="btn-send-new-specie" type="submit" disabled><i class="fa fa-plus"></i> Agregar nueva especie</button>
                                                                         </div>
-                                                                        <div class="row g-3 text-end">
-                                                                            <div class="col-sm-12">
-                                                                                <br>
-                                                                                <button class="btn btn-success me-3" id="btn-send-new-specie" type="submit"><i class="fa fa-plus"></i> Agregar nueva especie</button>
-                                                                            </div>
-                                                                        </div>
-                                                                    </form>
-                                                                </div>
+                                                                    </div>
+                                                                </form>
                                                             </div>
                                                         </div>
                                                     </div>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane fade" id="aditional-graphic" role="tabpanel" aria-labelledby="aditional-graphic-tab">
+                                                <div class="sidebar-body">
+                                                    <div class="apache-cotainer" id="tank-pie"></div>
                                                 </div>
                                             </div>
                                         </div>

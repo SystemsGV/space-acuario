@@ -251,8 +251,6 @@
 	$(".input_numb").on("input", function () {
 		this.value = this.value.replace(/[^0-9.]/g, "");
 	});
-
-
 })(jQuery);
 
 const Toast = Swal.mixin({
@@ -266,6 +264,30 @@ const Toast = Swal.mixin({
 		toast.addEventListener("mouseleave", Swal.resumeTimer);
 	},
 });
+
+function convertDate(dateString) {
+	const meses = [
+		"Ene",
+		"Feb",
+		"Mar",
+		"Abr",
+		"May",
+		"Jun",
+		"Jul",
+		"Ago",
+		"Sep",
+		"Oct",
+		"Nov",
+		"Dic",
+	];
+
+	const partes = dateString.split("-");
+	const year = partes[0];
+	const month = meses[parseInt(partes[1], 10) - 1]; // Restamos 1 porque los meses empiezan en 0
+	const day = partes[2];
+
+	return `${day} de ${month}. ${year}`;
+}
 
 function alert_type(t, h, i, d) {
 	const url_base = $("#url_base").val();
