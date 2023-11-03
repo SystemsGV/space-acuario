@@ -517,14 +517,12 @@ $(($) => {
 			});
 	});
 
-
-
 	//** FINISH ADD NEW SPECIE FISHBOWL */
 
 	// ** MINUS SPECIE
-	$("#category-product-tab").on("click",() =>{
+	$("#category-product-tab").on("click", () => {
 		InitFormMinus();
-	})
+	});
 	$("#select-minus").on("change", function () {
 		const selectedOption = $(this).find(":selected");
 		const amount = selectedOption.data("amount");
@@ -808,10 +806,8 @@ const getCheckoutD = (select) => {
 const checkSpecies = (i) => {
 	// Get the JSON string from sessionStorage
 	const speciesObjectJSON = sessionStorage.getItem("speciesJSON");
-
 	// Convert the JSON string back to a JavaScript object
 	const speciesObject = JSON.parse(speciesObjectJSON);
-
 	if (i != "") {
 		const keys = i.split(",").map(Number);
 		const result = keys.map((key) => speciesObject[key]).join(", ");

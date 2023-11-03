@@ -145,16 +145,22 @@
 	--product-shadow: 0px 1px 0px rgba(82, 82, 108, 0.15);
 	--light-shade-primary: rgba(245, 244, 255);
 	--dark-primary: rgba(115, 102, 255);
-	--fc-button-bg-color: var(--theme-deafult);
-	--fc-button-active-bg-color: var(--theme-deafult);
-	--fc-button-active-border-color: var(--theme-deafult);
-	--fc-button-border-color: var(--theme-deafult);
-	--fc-button-hover-bg-color: var(--theme-deafult);
-	--fc-button-hover-border-color: var(--theme-deafult);
+	--fc-button-bg-color: var(
+	--theme-deafult);
+	--fc-button-active-bg-color: var(
+	--theme-deafult);
+	--fc-button-active-border-color: var(
+	--theme-deafult);
+	--fc-button-border-color: var(
+	--theme-deafult);
+	--fc-button-hover-bg-color: var(
+	--theme-deafult);
+	--fc-button-hover-border-color: var(
+	--theme-deafult);
 	--normal: #eceaf3;
-	--normal-shadow: #d9d8e3;
-	--normal-mouth: #9795a4;
-	--normal-eye: #595861;
+	/* --normal-shadow: #d9d8e3; */
+	/* --normal-mouth: #9795a4; */
+	/* --normal-eye: #595861; */
 	--active: #f8da69;
 	--active-shadow: #f4b555;
 	--active-mouth: #f05136;
@@ -13051,7 +13057,7 @@ th {
 .table-bordered tr,
 .table-bordered td,
 .table-bordered th {
-	border-color: rgba(153, 153, 153, 0.3);
+	/* border-color: rgba(153, 153, 153, 0.3); */
 }
 
 /**=====================

@@ -90,6 +90,14 @@ $route['Acuario/dissmis-specie-fisbowl'] = 'aquarium/fishbowls/dissmis_bowl';
 $route['Acuario/API-PIE'] = 'aquarium/fishbowls/graphicBowl';
 
 
+/* CONTROL BOWLS */
+
+$route['Acuario/Control-Temperatura'] = 'aquarium/control';
+$route['Acuario/API-EDITABLE'] = 'aquarium/control/fillTableTemp';
+$route['Acuario/API-EDIT-CELL'] = 'aquarium/control/editCell';
+
+
+
 //APIS
 $route['Acuario/species-select'] = 'aquarium/species/speciesSelect';
 $route['Acuario/species-checkout/(:any)'] = 'aquarium/species/getCheckout/$1';

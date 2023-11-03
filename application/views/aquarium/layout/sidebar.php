@@ -170,46 +170,10 @@
                                         <svg class="fill-icon">
                                             <use href="<?= base_url() ?>assets/svg/icon-sprite.svg#fill-form">
                                             </use>
-                                        </svg><span>Forms</span></a>
+                                        </svg><span>Control Pec.</span></a>
                                     <ul class="sidebar-submenu">
-                                        <li><a class="submenu-title" href="#">Form
-                                                Controls<span class="sub-arrow"><i class="fa fa-angle-right"></i></span></a>
-                                            <ul class="nav-sub-childmenu submenu-content">
-                                                <li><a href="form-validation.html">Form
-                                                        Validation</a></li>
-                                                <li><a href="base-input.html">Base
-                                                        Inputs</a></li>
-                                                <li><a href="radio-checkbox-control.html">Checkbox
-                                                        & Radio</a></li>
-                                                <li><a href="input-group.html">Input
-                                                        Groups</a></li>
-                                                <li> <a href="input-mask.html">Input
-                                                        Mask</a></li>
-                                                <li><a href="megaoptions.html">Mega
-                                                        Options</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a class="submenu-title" href="#">Form
-                                                Widgets<span class="sub-arrow"><i class="fa fa-angle-right"></i></span></a>
-                                            <ul class="nav-sub-childmenu submenu-content">
-                                                <li><a href="datepicker.html">Datepicker</a></li>
-                                                <li><a href="touchspin.html">Touchspin</a></li>
-                                                <li><a href="select2.html">Select2</a></li>
-                                                <li><a href="switch.html">Switch</a></li>
-                                                <li><a href="typeahead.html">Typeahead</a></li>
-                                                <li><a href="clipboard.html">Clipboard</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a class="submenu-title" href="#">Form
-                                                layout<span class="sub-arrow"><i class="fa fa-angle-right"></i></span></a>
-                                            <ul class="nav-sub-childmenu submenu-content">
-                                                <li><a href="form-wizard.html">Form
-                                                        Wizard 1</a></li>
-                                                <li><a href="form-wizard-two.html">Form
-                                                        Wizard 2</a></li>
-                                                <li><a href="two-factor.html">Two
-                                                        Factor</a></li>
-                                            </ul>
+                                        <li>
+                                            <a href="<?= base_url('Acuario/Control-Temperatura'); ?>">Medición Temp. </a>
                                         </li>
                                     </ul>
                                 </li>

@@ -289,6 +289,20 @@ function convertDate(dateString) {
 	return `${day} de ${month}. ${year}`;
 }
 
+function addLeadingZero(number) {
+	return number < 10 ? `0${number}` : `${number}`;
+}
+
+function getDateTemp() {
+	const fechaActual = new Date();
+	const dia = addLeadingZero(fechaActual.getDate());
+	const mes = addLeadingZero(fechaActual.getMonth() + 1); // ¡Recuerda que los meses empiezan desde 0!
+	const año = fechaActual.getFullYear();
+	const fechaFormateada = `${dia}-${mes}-${año}`;
+	localStorage.setItem("dateActual", fechaFormateada);
+	return fechaFormateada;
+}
+
 function alert_type(t, h, i, d) {
 	const url_base = $("#url_base").val();
 	const audio = new Audio(url_base + "assets/sounds/alert.mp3");
