@@ -21,7 +21,11 @@ class Control extends CI_Controller
     }
     public function fillTableTemp()
     {
-        $result = $this->TemperatureModel->fillTableTemp();
+        $where = array(
+            "recorded_date" => date('d-m-Y')
+        );
+
+        $result = $this->TemperatureModel->fillTableTemp($where);
         if ($result) {
             foreach ($result as $row) {
                 $array['data'][] = $row;

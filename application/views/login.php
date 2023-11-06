@@ -95,11 +95,13 @@
     <script src="<?= base_url() ?>assets/js/config.js"></script>
     <!-- Plugins JS start-->
     <script src="<?= base_url() ?>assets/js/notify/bootstrap-notify.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Plugins JS Ends-->
     <!-- Theme js-->
     <script src="<?= base_url() ?>assets/js/script.js"></script>
     <script src="<?= base_url() ?>modules/pages/login.js"></script>
+
 </body>
 
 </html>

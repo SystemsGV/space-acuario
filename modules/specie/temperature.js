@@ -14,15 +14,44 @@ $(($) => {
 			data.forEach((item) => {
 				const row = `
                 <tr>
-                    <td class="text-nowrap" scope="row">${item.type_bowl} ${item.name_bowl}</td>
+                    <td class="text-nowrap" scope="row">${item.type_bowl} ${
+					item.name_bowl
+				}</td>
                     <td>${checkSpecies(item.species)}</td>
-                    <td class="editable" data-tank="${item.tank_name}" data-date="hour_12_am">${item.hour_12_am}</td>
-                    <td class="editable" data-tank="${item.tank_name}" data-date="hour_4_am">${item.hour_4_am}</td>
-                    <td class="editable" data-tank="${item.tank_name}" data-date="hour_8_am">${item.hour_8_am}</td>
-                    <td class="editable" data-tank="${item.tank_name}" data-date="hour_12_pm">${item.hour_12_pm}</td>
-                    <td class="editable" data-tank="${item.tank_name}" data-date="hour_4_pm">${item.hour_4_pm}</td>
-                    <td class="editable" data-tank="${item.tank_name}" data-date="hour_8_pm">${item.hour_8_pm}</td>
-                    <td class="editable" data-tank="${item.tank_name}" data-date="observation"> ${item.observation}</td>
+                    <td class="editable" data-tank="${
+											item.tank_name
+										}" data-date="hour_12_am" data-min="${
+					item.tmp_min
+				}" data-max="${item.tmp_max}">${item.hour_12_am}</td>
+                    <td class="editable" data-tank="${
+											item.tank_name
+										}" data-date="hour_4_am" data-min="${
+					item.tmp_min
+				}" data-max="${item.tmp_max}">${item.hour_4_am}</td>
+                    <td class="editable" data-tank="${
+											item.tank_name
+										}" data-date="hour_8_am" data-min="${
+					item.tmp_min
+				}" data-max="${item.tmp_max}">${item.hour_8_am}</td>
+                    <td class="editable" data-tank="${
+											item.tank_name
+										}" data-date="hour_12_pm" data-min="${
+					item.tmp_min
+				}" data-max="${item.tmp_max}">${item.hour_12_pm}</td>
+                    <td class="editable" data-tank="${
+											item.tank_name
+										}" data-date="hour_4_pm" data-min="${
+					item.tmp_min
+				}" data-max="${item.tmp_max}">${item.hour_4_pm}</td>
+                    <td class="editable" data-tank="${
+											item.tank_name
+										}" data-date="hour_8_pm" data-min="${
+					item.tmp_min
+				}" data-max="${item.tmp_max}">${item.hour_8_pm}</td>
+                    <td 
+					}" class="editable observation-cell" data-tank="${
+						item.tank_name
+					}" data-date="observation"> ${item.observation}</td>
                 </tr>
             `;
 				// Asegúrate de tener una referencia a tbody
@@ -53,6 +82,8 @@ $(($) => {
 		editedDataTank = $(cell).data("tank");
 		editedCellValue = $(cell).text();
 		editedDate = $(cell).data("date");
+		editedMin = $(cell).data("min");
+		editedMax = $(cell).data("max");
 
 		// Focus on the cell for tablets
 		$(cell).focus();
@@ -88,16 +119,28 @@ $(($) => {
 					}
 					return response.json();
 				})
-				.then((data) => {
-					console.log("asdasd");
-					// Procesa la respuesta si es necesario
-				})
+				.then((data) => {})
 				.catch((err) => {
 					console.error("Error:", err);
 				});
 		}
 	}
+	// Esto ejecuta la función para cada celda editable
+	$(".editable").each(function () {
+		let tank = $(this).data("tank");
+		let date = $(this).data("date");
+		let min = $(this).data("min");
+		let max = $(this).data("max");
 
+		let value = parseFloat($(this).text());
+
+		setBackgroundColor(this, value, min, max, 2);
+
+		$(this).on("input", function () {
+			let editedValue = parseFloat($(this).text());
+			setBackgroundColor(this, editedValue, min, max, 2);
+		});
+	});
 	// Enable editing when clicking on an editable cell
 	$(".editable").click(function () {
 		// Before enabling the new cell, save the changes of the current cell
@@ -156,7 +199,7 @@ const checkSpecies = (i) => {
 		const result = keys.map((key) => speciesObject[key]).join(", ");
 		return `${result}`;
 	}
-	return `Agregar Especies`;
+	return `Sin especies`;
 };
 
 const speciesJson = () => {
@@ -180,4 +223,28 @@ const speciesJson = () => {
 		.catch((err) => {
 			console.error("Error:", error);
 		});
+};
+// Esta función determina el color de fondo según el rango
+const setBackgroundColor = (cell, value, min, max, threshold) => {
+	if (!value || isNaN(value)) {
+		$(cell).css({ backgroundColor: "" }); // Elimina el color de fondo
+		return;
+	}
+
+	let lowerThreshold = min + threshold;
+	let upperThreshold = max - threshold;
+
+	let color = "";
+	if (value >= lowerThreshold && value <= upperThreshold) {
+		color = "rgba(0, 128, 0, 0.5)";
+	} else if (
+		(value >= min && value <= lowerThreshold) ||
+		(value >= upperThreshold && value <= max)
+	) {
+		color = "rgba(255, 165, 0, 0.5)";
+	} else {
+		color = "rgba(255, 0, 0, 0.5)";
+	}
+
+	$(cell).css({ backgroundColor: color });
 };

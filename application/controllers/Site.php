@@ -40,9 +40,4 @@ class Site extends CI_Controller
         echo json_encode($jsonData);
     }
 
-
-    public function s()
-    {
-        echo "s";
-    }
 }

@@ -26,12 +26,13 @@ class TemperatureModel extends CI_Model
             return false;
         }
     }
-    public function fillTableTemp()
+    public function fillTableTemp($where)
     {
         return $this->db
             ->select('T.*, F.name_bowl, F.type_bowl, F.tmp_min, F.tmp_max, F.species')
             ->from('tank_data T')
             ->join('tbl_fishbowls F', 'T.tank_name = F.id_bowl')
+            ->where($where)
             ->get()
             ->result();
     }

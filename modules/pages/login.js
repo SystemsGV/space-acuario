@@ -28,7 +28,6 @@ $(($) => {
 					} else if (v.rsp === 400) {
 						authInputs("Contraseña errónea ", "green", "red");
 					} else if (v.rsp == 200) {
-						console.log("echo");
 					}
 				})
 				.always(() => {
