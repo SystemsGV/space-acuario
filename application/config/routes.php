@@ -97,6 +97,12 @@ $route['Acuario/API-EDITABLE'] = 'aquarium/control/fillTableTemp';
 $route['Acuario/API-EDIT-CELL'] = 'aquarium/control/editCell';
 
 
+/* REPORTS */
+
+$route['Report-Temp'] = 'aquarium/dashboard/reportBowlsTemp';
+
+
+
 
 //APIS
 $route['Acuario/species-select'] = 'aquarium/species/speciesSelect';

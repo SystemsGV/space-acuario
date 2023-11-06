@@ -322,3 +322,14 @@ function alert_type(t, h, i, d) {
 		loaderBg: "#ffff",
 	});
 }
+function dateActuality() {
+	var fechaActual = new Date();
+
+	var dia = fechaActual.getDate().toString().padStart(2, "0"); // Obtiene el día y lo formatea a dos dígitos
+	var mes = (fechaActual.getMonth() + 1).toString().padStart(2, "0"); // Obtiene el mes (los meses empiezan en 0) y lo formatea a dos dígitos
+	var anio = fechaActual.getFullYear().toString().slice(-2); // Obtiene los últimos dos dígitos del año
+
+	var fechaFormateada = dia + "-" + mes + "-" + anio;
+
+	return fechaFormateada; // Output: '15-11-23' (para el 15 de noviembre de 2023)
+}

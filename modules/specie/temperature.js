@@ -14,43 +14,29 @@ $(($) => {
 			data.forEach((item) => {
 				const row = `
                 <tr>
-                    <td class="text-nowrap" scope="row">${item.type_bowl} ${
-					item.name_bowl
-				}</td>
+                    <td class="text-nowrap" scope="row">${item.type_bowl} ${item.name_bowl
+					}</td>
                     <td>${checkSpecies(item.species)}</td>
-                    <td class="editable" data-tank="${
-											item.tank_name
-										}" data-date="hour_12_am" data-min="${
-					item.tmp_min
-				}" data-max="${item.tmp_max}">${item.hour_12_am}</td>
-                    <td class="editable" data-tank="${
-											item.tank_name
-										}" data-date="hour_4_am" data-min="${
-					item.tmp_min
-				}" data-max="${item.tmp_max}">${item.hour_4_am}</td>
-                    <td class="editable" data-tank="${
-											item.tank_name
-										}" data-date="hour_8_am" data-min="${
-					item.tmp_min
-				}" data-max="${item.tmp_max}">${item.hour_8_am}</td>
-                    <td class="editable" data-tank="${
-											item.tank_name
-										}" data-date="hour_12_pm" data-min="${
-					item.tmp_min
-				}" data-max="${item.tmp_max}">${item.hour_12_pm}</td>
-                    <td class="editable" data-tank="${
-											item.tank_name
-										}" data-date="hour_4_pm" data-min="${
-					item.tmp_min
-				}" data-max="${item.tmp_max}">${item.hour_4_pm}</td>
-                    <td class="editable" data-tank="${
-											item.tank_name
-										}" data-date="hour_8_pm" data-min="${
-					item.tmp_min
-				}" data-max="${item.tmp_max}">${item.hour_8_pm}</td>
+                    <td class="editable" data-tank="${item.tank_name
+					}" data-date="hour_12_am" data-min="${item.tmp_min
+					}" data-max="${item.tmp_max}">${item.hour_12_am}</td>
+                    <td class="editable" data-tank="${item.tank_name
+					}" data-date="hour_4_am" data-min="${item.tmp_min
+					}" data-max="${item.tmp_max}">${item.hour_4_am}</td>
+                    <td class="editable" data-tank="${item.tank_name
+					}" data-date="hour_8_am" data-min="${item.tmp_min
+					}" data-max="${item.tmp_max}">${item.hour_8_am}</td>
+                    <td class="editable" data-tank="${item.tank_name
+					}" data-date="hour_12_pm" data-min="${item.tmp_min
+					}" data-max="${item.tmp_max}">${item.hour_12_pm}</td>
+                    <td class="editable" data-tank="${item.tank_name
+					}" data-date="hour_4_pm" data-min="${item.tmp_min
+					}" data-max="${item.tmp_max}">${item.hour_4_pm}</td>
+                    <td class="editable" data-tank="${item.tank_name
+					}" data-date="hour_8_pm" data-min="${item.tmp_min
+					}" data-max="${item.tmp_max}">${item.hour_8_pm}</td>
                     <td 
-					}" class="editable observation-cell" data-tank="${
-						item.tank_name
+					}" class="editable observation-cell" data-tank="${item.tank_name
 					}" data-date="observation"> ${item.observation}</td>
                 </tr>
             `;
@@ -119,7 +105,7 @@ $(($) => {
 					}
 					return response.json();
 				})
-				.then((data) => {})
+				.then((data) => { })
 				.catch((err) => {
 					console.error("Error:", err);
 				});

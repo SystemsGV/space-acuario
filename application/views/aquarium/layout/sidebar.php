@@ -123,16 +123,8 @@
                                         </svg><span class="lan-3">Dashboard
                                         </span></a>
                                     <ul class="sidebar-submenu">
-                                        <li><a class="lan-4" href="<?= base_url('Acuario') ?>">Default</a></li>
-                                        <li><a class="lan-5" href="dashboard-02.html">Ecommerce</a></li>
-                                        <li><a href="dashboard-03.html">Online
-                                                course</a></li> 
-                                        <li><a href="dashboard-04.html">Crypto</a></li>
-                                        <li><a href="dashboard-05.html">Social</a></li>
-                                        <li><a href="dashboard-06.html">NFT</a></li>
-                                        <li> <a href="dashboard-07.html">School
-                                                management</a></li>
-                                        <li> <a href="dashboard-08.html">POS</a></li>
+                                        <li><a class="lan-4" href="<?= base_url('Acuario') ?>">Metrica Temp.</a></li>
+                                        <li><a class="lan-5" href="dashboard-02.html">Metrica Especies</a></li>
                                     </ul>
                                 </li>
                                 <li class="sidebar-main-title">
@@ -179,7 +171,7 @@
                                 </li>
                                 <li class="sidebar-main-title">
                                     <div>
-                                        <h6>SISTEMA</h6>
+                                        <h6>Reportes</h6>
                                     </div>
                                 </li>
                                 <li class="sidebar-list">
@@ -194,6 +186,25 @@
                                             </use>
                                         </svg>
                                         <span>Landing page</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-main-title">
+                                    <div>
+                                        <h6>SISTEMA</h6>
+                                    </div>
+                                </li>
+                                <li class="sidebar-list">
+                                    <i class="fa fa-thumb-tack"></i>
+                                    <a class="sidebar-link sidebar-title link-nav" href="landing-page.html">
+                                        <svg class="stroke-icon">
+                                            <use href="<?= base_url() ?>assets/svg/icon-sprite.svg#stroke-landing-page">
+                                            </use>
+                                        </svg>
+                                        <svg class="fill-icon">
+                                            <use href="<?= base_url() ?>assets/svg/icon-sprite.svg#fill-landing-page">
+                                            </use>
+                                        </svg>
+                                        <span>Usuarios</span>
                                     </a>
                                 </li>
                             </ul>

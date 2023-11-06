@@ -13,7 +13,6 @@ class Control extends CI_Controller
     {
         $data['links'] = array();
         $data['scripts'] = array(
-            '<script src="' . base_url() . 'assets/js/table-editor/SimpleTableCellEditor.js"></script>',
             '<script src="' . base_url() . 'modules/specie/temperature.js"></script>'
         );
         $data['title'] = "Inicio";

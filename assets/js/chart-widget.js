@@ -608,6 +608,7 @@
   // Crypto annotation chart
 
   var series = {
+
     monthDataSeries1: {
       prices: [8107, 8300, 8260, 8400, 8350, 8500, 8350],
       dates: [
@@ -632,7 +633,7 @@
       height: 400,
       type: "line",
       toolbar: {
-        show: false,
+        show: true,
       },
     },
     annotations: {
@@ -655,41 +656,9 @@
           },
         },
       ],
-      xaxis: [
-        {
-          x: new Date("15 Nov 2017").getTime(),
-          strokeDashArray: 0,
-          borderColor: CubaAdminConfig.primary,
-          label: {
-            borderColor: CubaAdminConfig.primary,
-            offsetY: 20,
-            style: {
-              color: "#fff",
-              background: CubaAdminConfig.primary,
-            },
-            text: "Anno Test",
-          },
-        },
-        {
-          x: new Date("17 Nov 2017").getTime(),
-          x2: new Date("18 Nov 2017").getTime(),
-          fillColor: "#51bb25",
-          opacity: 0.1,
-          label: {
-            borderColor: "##51bb25",
-            style: {
-              fontSize: "10px",
-              color: "#fff",
-              background: "#51bb25",
-            },
-            offsetY: 20,
-            text: "X-axis range",
-          },
-        },
-      ],
     },
     dataLabels: {
-      enabled: false,
+      enabled: true,
     },
     stroke: {
       width: 3,
