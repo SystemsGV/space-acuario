@@ -62,6 +62,9 @@ $(($) => {
 			{
 				data: "species",
 				render: function (data, type, row) {
+					if (data == undefined || data == "") {
+						return `<a class="add_fish" href="javascript:void(0)">Agregar Especies</a>`;
+					}
 					return checkSpecies(data);
 				},
 			},
@@ -803,18 +806,17 @@ const getCheckoutD = (select) => {
 			console.error("Error:", error.message);
 		});
 };
-const checkSpecies = (i) => {
+function checkSpecies(i) {
 	// Get the JSON string from sessionStorage
 	const speciesObjectJSON = sessionStorage.getItem("speciesJSON");
 	// Convert the JSON string back to a JavaScript object
 	const speciesObject = JSON.parse(speciesObjectJSON);
-	if (i != "") {
+	if (i != "" || i != undefined) {
 		const keys = i.split(",").map(Number);
-		const result = keys.map((key) => speciesObject[key]).join(", ");
+		const result = keys.map((key) => speciesObject[key]).join(",");
 		return `<a class="add_fish" href="javascript:void(0)">${result}</a>`;
 	}
-	return `<a class="add_fish" href="javascript:void(0)">Agregar Especies</a>`;
-};
+}
 const checkStatus = (i) => {
 	return i == 1
 		? '<span class="badge rounded-pill badge-success">ACTIVO</span>'

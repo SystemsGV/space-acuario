@@ -114,7 +114,7 @@
                                     </div>
                                 </li>
                                 <li class="sidebar-list"><i class="fa fa-thumb-tack"></i>
-                                    <label class="badge badge-light-primary">8</label><a class="sidebar-link sidebar-title" href="#">
+                                    <label class="badge badge-light-primary">2</label><a class="sidebar-link sidebar-title" href="#">
                                         <svg class="stroke-icon">
                                             <use href="<?= base_url() ?>assets/svg/icon-sprite.svg#stroke-home"></use>
                                         </svg>
@@ -124,7 +124,7 @@
                                         </span></a>
                                     <ul class="sidebar-submenu">
                                         <li><a class="lan-4" href="<?= base_url('Acuario') ?>">Metrica Temp.</a></li>
-                                        <li><a class="lan-5" href="dashboard-02.html">Metrica Especies</a></li>
+                                        <li><a class="lan-5" href="<?= base_url('Acuario/Dashboard-Especies') ?>">Metrica Especies</a></li>
                                     </ul>
                                 </li>
                                 <li class="sidebar-main-title">

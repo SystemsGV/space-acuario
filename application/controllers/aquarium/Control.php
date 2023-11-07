@@ -21,7 +21,8 @@ class Control extends CI_Controller
     public function fillTableTemp()
     {
         $where = array(
-            "recorded_date" => date('d-m-Y')
+            "recorded_date" => date('d-m-Y'),
+            "status_bowl" => 1
         );
 
         $result = $this->TemperatureModel->fillTableTemp($where);

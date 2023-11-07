@@ -4,7 +4,7 @@
         <div class="page-title">
             <div class="row">
                 <div class="col-6">
-                    <h4>Default </h4>
+                    <h4>Graficos Temperatura Pecera </h4>
                 </div>
                 <div class="col-6">
                     <ol class="breadcrumb">
@@ -13,7 +13,7 @@
                                     <use href="<?= base_url() ?>assets/svg/icon-sprite.svg#stroke-home"></use>
                                 </svg></a></li>
                         <li class="breadcrumb-item">Dashboard</li>
-                        <li class="breadcrumb-item active">Default </li>
+                        <li class="breadcrumb-item active">Temperatura Pecera </li>
                     </ol>
                 </div>
             </div>
@@ -28,9 +28,9 @@
                         <div class="media media-wrapper justify-content-between">
                             <div class="media-body">
                                 <div class="greeting-user">
-                                    <h4 class="f-w-600">Welcome to cuba</h4>
-                                    <p>Here whats happing in your account today</p>
-                                    <div class="whatsnew-btn"><a class="btn btn-outline-white">Whats New !</a></div>
+                                    <h4 class="f-w-600">Bienvenido a AcuaSys</h4>
+                                    <p>Mantente al tanto con actualizaciones en vivo de tu mundo submarino.</p>
+                                    <div class="whatsnew-btn"><a class="btn btn-outline-white">Novedades !</a></div>
                                 </div>
                             </div>
                             <div>

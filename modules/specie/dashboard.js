@@ -1,6 +1,5 @@
 $(($) => {
-	
-	LoadReports()
+	LoadReports();
 
 	$("#exampleDataList1").on("input", function () {
 		var filterValue = $(this).val().toLowerCase();
@@ -49,21 +48,21 @@ function LoadReports(date) {
 				var peceraContainer = document.createElement("div");
 				peceraContainer.className = "xl-50 col-xl-6 col-lg-12";
 				peceraContainer.innerHTML = `
-            <div class="card card-graphic">
-                <div class="card-header">
-                    <h5>${pecera.type_bowl + " " + pecera.name_bowl}</h5>
-                </div>
-                <div class="card-body">
-                    <div class="chart-container">
-                        <div class="row">
-                        <div class="col-12">
-                            <div id="chart-container-${pecera.tank_name}"></div>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            `;
+					<div class="card card-graphic">
+						<div class="card-header">
+							<h5>${pecera.type_bowl + " " + pecera.name_bowl}</h5>
+						</div>
+						<div class="card-body">
+							<div class="chart-container">
+								<div class="row">
+								<div class="col-12">
+									<div id="chart-container-${pecera.tank_name}"></div>
+								</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					`;
 				gridContainer.appendChild(peceraContainer);
 
 				var series = {

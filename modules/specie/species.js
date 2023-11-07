@@ -1,5 +1,6 @@
 $(($) => {
-	"use strict";
+	sessionStorage.clear();
+	("use strict");
 	const t = $("#data-species").DataTable({
 		responsive: true,
 		dom: "Bfrtip",
@@ -27,6 +28,9 @@ $(($) => {
 			},
 			{
 				data: "amount_fish",
+				render: function (data, type, row) {
+					return `<a class="quantity_fish" href="javascript:void(0)"> ${data} </a>`;
+				},
 			},
 			{
 				data: "status",
@@ -42,6 +46,24 @@ $(($) => {
 			},
 		],
 	});
+	t.on("click", ".quantity_fish", function () {
+		let item = t.row($(this).parents("tr")).data(); //Detecta a que fila hago click y me captura los datos en la variable data.
+		if (t.row(this).child.isShown()) {
+			//Cuando esta en tamaño responsivo
+			let item = t.row(this).data();
+		}
+		const data = {
+			quantity_fish: item.amount_fish,
+			id_fish: item.id_specie,
+			total_fish: item.total_species,
+		};
+		sessionStorage.setItem("dataSpecies", JSON.stringify(data));
+
+		$("#mdl_quantity").modal("show");
+		$("#quantityFish").val(item.total_species);
+		$("#title_quantity").text("Aumentar: " + item.common_specie);
+	});
+
 	$("#type_water, #status").select2({
 		dropdownParent: $("#mdl_add .modal-body"),
 	});
@@ -54,6 +76,8 @@ $(($) => {
 		$("#title_modal").html("Agregar Especie");
 		$("#mdl_add").modal("show");
 		$("#process").val("save");
+	$("#amount_s").removeClass("disabled");
+
 	});
 
 	$("#frm_specie input").keyup(function () {
@@ -120,7 +144,8 @@ $(($) => {
 			data: $("#frm_specie").serialize(),
 			dataType: "json",
 			beforeSend: () => {
-				btn.innerHTML = "<i class='fa fa-spin fa-spinner'></i> Actualizando Especie";
+				btn.innerHTML =
+					"<i class='fa fa-spin fa-spinner'></i> Actualizando Especie";
 				btn.disabled = true;
 				btn.form.firstElementChild.disabled = true;
 			},
@@ -155,6 +180,57 @@ $(($) => {
 			})
 			.always(() => {
 				btn.innerHTML = "<i class='fa fa-edit'></i> Actualizar Especie";
+				btn.disabled = false;
+				btn.form.firstElementChild.disabled = false;
+			});
+	});
+
+	$("#frm_quantity").on("submit", function (e) {
+		e.preventDefault();
+		let btn = document.querySelector("#btn_quantity");
+
+		const sess = JSON.parse(sessionStorage.getItem("dataSpecies"));
+
+		const formData = new FormData(this);
+		formData.append("quantity", sess.quantity_fish);
+		formData.append("id_fish", sess.id_fish);
+		formData.append("total_fish", sess.total_fish);
+
+		$.ajax({
+			url: "update-quantity",
+			type: "post",
+			data: formData,
+			dataType: "json",
+			cache: false,
+			contentType: false,
+			processData: false,
+			beforeSend: () => {
+				btn.innerHTML =
+					"<i class='fa fa-spin fa-spinner'></i> 	Aumentando Especie";
+				btn.disabled = true;
+				btn.form.firstElementChild.disabled = true;
+			},
+		})
+			.done((r) => {
+				alert_type(
+					"Especie aumentado Correctamente",
+					"Vista Especies",
+					"success"
+				);
+				$("#mdl_quantity").modal("hide");
+				$(this)[0].reset();
+				t.ajax.reload();
+			})
+			.fail((e) => {
+				console.log(e.responseText);
+				alert_type(
+					"Error del sistema, Comunicarse con SISTEMAS",
+					"Vista Especie",
+					"error"
+				);
+			})
+			.always(() => {
+				btn.innerHTML = "<i class='fa fa-plus'></i> Aumentar Especie";
 				btn.disabled = false;
 				btn.form.firstElementChild.disabled = false;
 			});
@@ -217,6 +293,7 @@ const addActions = (i) => {
 		<button class="btn_delete btn btn-pill btn-danger btn-air-danger" type="button" title="Eliminar especie"><i class="icofont  icofont-trash f-18"></i></button>`;
 };
 const tbl_edit = (i) => {
+	$("#amount_s").addClass("disabled");
 	$("#title_modal").html("Editar Especie");
 	$("#btn_send").addClass("hidden");
 	$("#btn_update").removeClass("hidden");

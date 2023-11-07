@@ -66,6 +66,7 @@ $route['Login'] = 'Site/authUser';
 $route['Acuario/Cerrar-Sesion'] = 'aquarium/dashboard/session_destroy';
 $route['Acuario/Inicio'] = 'aquarium/dashboard';
 $route['Acuario'] = 'aquarium/dashboard';
+$route['Acuario/Dashboard-Especies'] = 'aquarium/DSpecies';
 
 
 /* ROUTES SPECIES */
@@ -75,6 +76,7 @@ $route['Acuario/API-SPECIE'] = 'aquarium/species/getSpecie';
 $route['Acuario/save-specie'] = 'aquarium/species/create';
 $route['Acuario/edit-specie'] = 'aquarium/species/update';
 $route['Acuario/delete-specie'] = 'aquarium/species/delete';
+$route['Acuario/update-quantity'] = 'aquarium/species/updateQuantity';
 
 
 /* ROUTES FISHBOWL */
@@ -100,6 +102,7 @@ $route['Acuario/API-EDIT-CELL'] = 'aquarium/control/editCell';
 /* REPORTS */
 
 $route['Report-Temp'] = 'aquarium/dashboard/reportBowlsTemp';
+$route['Acuario/Report-Bowls'] = 'aquarium/DSpecies/graphicBowl';
 
 
 

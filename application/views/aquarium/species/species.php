@@ -135,3 +135,46 @@
                               </div>
                           </div>
                       </div>
+
+                      <div class="modal fade" tabindex="-1" role="dialog" id="mdl_quantity" aria-hidden="true">
+                          <div class="modal-dialog modal-lg modal-dialog-centered">
+                              <div class="modal-content">
+                                  <div class="modal-header">
+                                      <h4 class="modal-title" id="title_quantity"></h4>
+                                      <button class="btn-close theme-close bg-primary" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                                  </div>
+                                  <div class="modal-body">
+                                      <form class="form-bookmark theme-form" id="frm_quantity">
+                                          <div class="card-body">
+                                              <div class="row">
+                                                  <div class="col-md-4">
+                                                      <div class="mb-3">
+                                                          <label class="form-label" for="common_n">Cantidad Ingresar</label>
+                                                          <input class="form-control input-air-primary fnRow" id="ing_data" name="ing_data" type="number" autofocus>
+                                                      </div>
+                                                  </div>
+                                                  <div class="col-md-6">
+                                                      <div class="mb-3">
+                                                          <label class="form-label" for="scientific_n">Cantidad actual</label>
+                                                          <input class="form-control input-air-primary fnRow disabled" id="quantityFish" type="number">
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                              <div class="row">
+                                                  <div class="col-md-12">
+                                                      <div class="mb-3">
+                                                          <label class="form-label" for="exampleFormControlTextarea14">Razón de Ingreso</label>
+                                                          <textarea class="form-control btn-square" id="exampleFormControlTextarea14" rows="3"></textarea>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          <div class="card-footer text-end">
+                                              <button class="btn btn-danger" type="button" data-bs-dismiss="modal"><i class="fa fa-times-circle"></i> Cancelar</button>
+                                              <button class="btn btn-success" type="submit" id="btn_quantity"><i class="fa fa-plus"></i> Aumentar Especie</button>
+                                          </div>
+                                      </form>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>

@@ -56,11 +56,11 @@ class Dashboard extends CI_Controller
     public function reportBowlsTemp()
     {
         $date = $this->input->post('data');
-        if($date == ""){
+        if ($date == "") {
             $date = date("d-m-Y");
         }
 
-        $result = $this->DashboardModel->reportBowlsTemp(array('recorded_date' => $date));
+        $result = $this->DashboardModel->reportBowlsTemp(array('recorded_date' => $date, 'status_bowl' => 1));
         echo json_encode($result);
     }
 

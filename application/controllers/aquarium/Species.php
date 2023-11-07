@@ -26,7 +26,8 @@ class Species extends CI_Controller
             "scientific_specie" => $this->input->post('scientific_n'),
             "type_water" => $this->input->post('type_water'),
             "amount_fish" => $this->input->post('amount_s'),
-            "status" => $this->input->post('status')
+            "status" => $this->input->post('status'),
+            "total_species" => $this->input->post('amount_s')
         );
         $r = $this->SpeciesModel->insert($data, 'tbl_species');
         $jsonData["data"] = $data;
@@ -51,6 +52,25 @@ class Species extends CI_Controller
         header('Content-type: application/json; charset=utf-8');
         echo json_encode($jsonData);
     }
+
+    public function updateQuantity()
+    {
+        $id = $this->input->post('id_fish');
+        $total =  $this->input->post('total_fish');
+        $rest =  $this->input->post('quantity');
+        $ing =  $this->input->post('ing_data');
+        $totalNew = $total + $ing;
+        $restNew = $rest + $ing;
+        $data = array(
+            "amount_fish" => $restNew,
+            "total_species" => $totalNew,
+        );
+        $r = $this->SpeciesModel->update($data, array("id_specie" => $id), 'tbl_species');
+        $jsonData["data"] = $data;
+        header('Content-type: application/json; charset=utf-8');
+        echo json_encode($jsonData);
+    }
+
     public function delete()
     {
         $data = json_decode(file_get_contents('php://input'), true);
@@ -106,7 +126,7 @@ class Species extends CI_Controller
         }
         echo json_encode($array);
     }
-  
+
     public function getCheckout($where)
     {
         $result = $this->SpeciesModel->get_checkout(array("tank" => $where));

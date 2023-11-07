@@ -25,4 +25,25 @@ class DashboardModel extends CI_Model
             ->get()
             ->result_array();
     }
+
+    public function reportDashboardSpecies()
+    {
+        return $this->db
+            ->select('*')
+            ->from('tbl_species')
+            ->get()
+            ->result();
+    }
+
+    public function getReportGraphicBowls()
+    {
+        return $this->db
+            ->select('T.*, F.name_bowl, F.type_bowl, S.common_specie')
+            ->from('tbl_speciebowls T')
+            ->join('tbl_fishbowls F', 'T.tank = F.id_bowl')
+            ->join('tbl_species S', 'T.specie = S.id_specie')
+            ->where(array("status_bowl" => 1))
+            ->get()
+            ->result_array();
+    }
 }

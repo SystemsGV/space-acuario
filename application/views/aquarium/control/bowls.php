@@ -25,9 +25,7 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Grid options</h4>
-                        <p class="mt-1 f-m-light"></p>Bootstrap grid system allow all six breakpoints, and any breakpoints
-                        you can customize.
+                        <h4>Control de Temperatura Acuario</h4>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
