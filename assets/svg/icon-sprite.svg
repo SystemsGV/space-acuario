@@ -234,7 +234,7 @@
         <path opacity="0.4" d="M14.3337 5.75998V2.90665C14.3337 2.03998 13.667 1.33331 12.847 1.33331H10.1537C9.33366 1.33331 8.66699 2.03998 8.66699 2.90665V5.75998C8.66699 6.62665 9.33366 7.33331 10.1537 7.33331H12.847C13.667 7.33331 14.3337 6.62665 14.3337 5.75998Z"/>
     </symbol>
 
-    <symbol xmlns="http://www.w3.org/2000/svg" id="stroke-project" viewBox="0 0 18 17" fill="none">
+    <symbol xmlns="http://www.w3.org/2000/svg" id="stroke-project" viewBox="0 0 18 17" ill="none">
         <path d="M9 16C13.1421 16 16.5 12.6421 16.5 8.5C16.5 4.35786 13.1421 1 9 1C4.85786 1 1.5 4.35786 1.5 8.5C1.5 12.6421 4.85786 16 9 16Z" stroke-opacity="0.8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         <path opacity="0.4" d="M9 9.99976C9.82843 9.99976 10.5 9.32818 10.5 8.49976C10.5 7.67133 9.82843 6.99976 9 6.99976C8.17157 6.99976 7.5 7.67133 7.5 8.49976C7.5 9.32818 8.17157 9.99976 9 9.99976Z" stroke-opacity="0.8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
     </symbol>

@@ -65,7 +65,7 @@ $route['Login'] = 'Site/authUser';
 
 $route['Acuario/Cerrar-Sesion'] = 'aquarium/dashboard/session_destroy';
 $route['Acuario/Inicio'] = 'aquarium/dashboard';
-$route['Acuario'] = 'aquarium/dashboard';
+$route['Acuario/Dashboard-Temperatura'] = 'aquarium/dashboard';
 $route['Acuario/Dashboard-Especies'] = 'aquarium/DSpecies';
 
 
@@ -101,8 +101,17 @@ $route['Acuario/API-EDIT-CELL'] = 'aquarium/control/editCell';
 
 /* REPORTS */
 
-$route['Report-Temp'] = 'aquarium/dashboard/reportBowlsTemp';
+$route['Acuario/Report-Temp'] = 'aquarium/dashboard/reportBowlsTemp';
 $route['Acuario/Report-Bowls'] = 'aquarium/DSpecies/graphicBowl';
+
+$route['Acuario/Reporte-Temperatura'] = 'aquarium/reports';
+$route['Acuario/API-REPORT-TEMPERATURE'] = 'aquarium/reports/getTableData';
+$route['Acuario/Reporte-PDF'] = 'aquarium/reports/reportPDFTemperature';
+
+
+/*  USER ROUTES */
+$route['Acuario/Usuarios'] = 'aquarium/User';
+
 
 
 

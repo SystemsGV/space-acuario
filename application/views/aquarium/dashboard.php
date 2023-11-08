@@ -101,7 +101,7 @@
                                             <h4><?= $activeTanks ?></h4><span class="f-light">Activos</span>
                                         </div>
                                     </div>
-                                    <div class="font-primary f-w-500"><span><?= ($activeTanks / $totalTanks) * 100 ?>%</span></div>
+                                    <div class="font-primary f-w-500"><span><?= number_format(round(($activeTanks / $totalTanks) * 100, 1),1) ?>%</span></div>
                                 </div>
                             </div>
                         </div>
@@ -128,7 +128,7 @@
                                         <h4><?= $inactiveTanks ?></h4><span class="f-light">Inactivos</span>
                                     </div>
                                 </div>
-                                <div class="font-warning f-w-500"></i><span><?= ($inactiveTanks / $totalTanks) * 100 ?>%</span></div>
+                                <div class="font-warning f-w-500"></i><span><?= number_format(round(($inactiveTanks / $totalTanks) * 100,1),1)  ?>%</span></div>
                             </div>
                         </div>
                         <div class="col-xl-12">
@@ -149,7 +149,7 @@
                                             <h4><?= $freshwaterTanks ?></h4><span class="f-light">Agua Dulce</span>
                                         </div>
                                     </div>
-                                    <div class="font-success f-w-500"><i class="icon-arrow-up icon-rotate me-1"></i><span><?= ($freshwaterTanks / $totalTanks) * 100 ?>%</span></div>
+                                    <div class="font-success f-w-500"><i class="icon-arrow-up icon-rotate me-1"></i><span><?= number_format(round(($freshwaterTanks / $totalTanks) * 100,1),1)  ?>%</span></div>
                                 </div>
                             </div>
                         </div>
@@ -176,7 +176,7 @@
                                         <h4><?= $saltwaterTanks ?></h4><span class="f-light">Agua Salada</span>
                                     </div>
                                 </div>
-                                <div class="font-success f-w-500"><i class="icon-arrow-up icon-rotate me-1"></i><span><?= ($saltwaterTanks / $totalTanks) * 100 ?>%</span></div>
+                                <div class="font-success f-w-500"><i class="icon-arrow-up icon-rotate me-1"></i><span><?= number_format(round(($saltwaterTanks / $totalTanks) * 100,1),1) ?>%</span></div>
                             </div>
                         </div>
                     </div>

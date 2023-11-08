@@ -811,9 +811,11 @@ function checkSpecies(i) {
 	const speciesObjectJSON = sessionStorage.getItem("speciesJSON");
 	// Convert the JSON string back to a JavaScript object
 	const speciesObject = JSON.parse(speciesObjectJSON);
-	if (i != "" || i != undefined) {
+	if (i) {
 		const keys = i.split(",").map(Number);
-		const result = keys.map((key) => speciesObject[key]).join(",");
+		const result = keys
+			.map((key) => speciesObject && speciesObject[key])
+			.join(",");
 		return `<a class="add_fish" href="javascript:void(0)">${result}</a>`;
 	}
 }

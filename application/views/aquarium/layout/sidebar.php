@@ -84,10 +84,7 @@
 
             </div>
         </div>
-        <!-- Page Header Ends                              -->
-        <!-- Page Body Start-->
         <div class="page-body-wrapper">
-            <!-- Page Sidebar Start-->
             <div class="sidebar-wrapper" sidebar-layout="stroke-svg">
                 <div>
                     <div class="logo-wrapper"><a href="<?= base_url('Acuario') ?>"><img class="img-fluid for-light" src="<?= base_url() ?>assets/images/logo/logo.png" alt><img class="img-fluid for-dark" src="<?= base_url() ?>assets/images/logo/logo_dark.png" alt></a>
@@ -123,8 +120,8 @@
                                         </svg><span class="lan-3">Dashboard
                                         </span></a>
                                     <ul class="sidebar-submenu">
-                                        <li><a class="lan-4" href="<?= base_url('Acuario') ?>">Metrica Temp.</a></li>
-                                        <li><a class="lan-5" href="<?= base_url('Acuario/Dashboard-Especies') ?>">Metrica Especies</a></li>
+                                        <li><a class="lan-4" href="Dashboard-Temperatura">Metrica Temp.</a></li>
+                                        <li><a class="lan-5" href="Dashboard-Especies">Metrica Especies</a></li>
                                     </ul>
                                 </li>
                                 <li class="sidebar-main-title">
@@ -133,7 +130,7 @@
                                     </div>
                                 </li>
                                 <li class="sidebar-list"><i class="fa fa-thumb-tack"></i>
-                                    <a class="sidebar-link sidebar-title link-nav" href="<?= base_url('Acuario/Especies') ?>">
+                                    <a class="sidebar-link sidebar-title link-nav" href="Especies">
                                         <svg class="stroke-icon">
                                             <use href="<?= base_url() ?>assets/svg/icon-sprite.svg#stroke-file"></use>
                                         </svg>
@@ -142,7 +139,7 @@
                                         </svg><span>Especies</span></a>
                                 </li>
                                 <li class="sidebar-list"><i class="fa fa-thumb-tack"></i>
-                                    <a class="sidebar-link sidebar-title link-nav" href="<?= base_url('Acuario/Peceras') ?>">
+                                    <a class="sidebar-link sidebar-title link-nav" href="Peceras">
                                         <svg class="stroke-icon">
                                             <use href="<?= base_url() ?>assets/svg/icon-sprite.svg#stroke-board"></use>
                                         </svg>
@@ -165,7 +162,7 @@
                                         </svg><span>Control Pec.</span></a>
                                     <ul class="sidebar-submenu">
                                         <li>
-                                            <a href="<?= base_url('Acuario/Control-Temperatura'); ?>">Medición Temp. </a>
+                                            <a href="Control-Temperatura">Medición Temp. </a>
                                         </li>
                                     </ul>
                                 </li>
@@ -176,17 +173,17 @@
                                 </li>
                                 <li class="sidebar-list">
                                     <i class="fa fa-thumb-tack"></i>
-                                    <a class="sidebar-link sidebar-title link-nav" href="landing-page.html">
+                                    <a class="sidebar-link sidebar-title link-nav" href="Reporte-Temperatura">
                                         <svg class="stroke-icon">
-                                            <use href="<?= base_url() ?>assets/svg/icon-sprite.svg#stroke-landing-page">
+                                            <use href="<?= base_url() ?>assets/svg/icon-sprite.svg#stroke-others">
                                             </use>
                                         </svg>
                                         <svg class="fill-icon">
                                             <use href="<?= base_url() ?>assets/svg/icon-sprite.svg#fill-landing-page">
                                             </use>
                                         </svg>
-                                        <span>Landing page</span>
-                                    </a>
+                                        <span>Registros Temp.</span>
+                                    </a> 
                                 </li>
                                 <li class="sidebar-main-title">
                                     <div>
@@ -195,9 +192,9 @@
                                 </li>
                                 <li class="sidebar-list">
                                     <i class="fa fa-thumb-tack"></i>
-                                    <a class="sidebar-link sidebar-title link-nav" href="landing-page.html">
+                                    <a class="sidebar-link sidebar-title link-nav" href="Usuarios">
                                         <svg class="stroke-icon">
-                                            <use href="<?= base_url() ?>assets/svg/icon-sprite.svg#stroke-landing-page">
+                                            <use href="<?= base_url() ?>assets/svg/icon-sprite.svg#stroke-user">
                                             </use>
                                         </svg>
                                         <svg class="fill-icon">

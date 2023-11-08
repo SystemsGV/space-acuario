@@ -39,7 +39,6 @@
 <script src="<?= base_url() ?>assets/js/datatable/datatable-extension/buttons.bootstrap4.min.js"></script>
 <script src="<?= base_url() ?>assets/js/datatable/datatable-extension/buttons.html5.min.js"></script>
 <script src="<?= base_url() ?>assets/js/datatable/datatable-extension/buttons.print.min.js"></script>
-<script src="<?= base_url() ?>assets/js/datatable/datatable-extension/dataTables.bootstrap4.min.js"></script>
 <script src="<?= base_url() ?>assets/js/datatable/datatable-extension/dataTables.responsive.min.js"></script>
 <script src="<?= base_url() ?>assets/js/datatable/datatable-extension/responsive.bootstrap4.min.js"></script>
 <script src="<?= base_url() ?>assets/js/datatable/datatable-extension/dataTables.keyTable.min.js"></script>

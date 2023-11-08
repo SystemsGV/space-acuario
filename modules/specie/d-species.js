@@ -55,8 +55,11 @@ function LoadBowlsFish() {
 					peceraContainer.innerHTML = `
 					<div class="card card-graphic">
 						<div class="card-header">
-							<h5>${tanquesUnicos[tank][0].type_bowl + " " + tanquesUnicos[tank][0].name_bowl
-								}</h5>
+							<h5>${
+								tanquesUnicos[tank][0].type_bowl +
+								" " +
+								tanquesUnicos[tank][0].name_bowl
+							}</h5>
 						</div>
 						<div class="card-body">
 							<div class="chart-container">
@@ -86,6 +89,9 @@ function LoadBowlsFish() {
 						chart: {
 							width: 380,
 							type: "pie",
+							toolbar: {
+								show: true,
+							},
 						},
 						labels: labels,
 						series: series,
