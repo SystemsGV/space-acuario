@@ -42,7 +42,7 @@
                                             ESPECIE
                                         </th>
                                         <th colspan="6" rowspan="1">
-                                            hora
+                                            HORA
                                         </th>
                                         <th rowspan="2">
                                             OBSERVACION

@@ -64,6 +64,11 @@ class Dashboard extends CI_Controller
         echo json_encode($result);
     }
 
+    public function loadNotifications(){
+        $result = $this->DashboardModel->select('tbl_notifications');
+        echo json_encode($result);
+    }
+
     public function session_destroy()
     {
         redirect(base_url('login'));

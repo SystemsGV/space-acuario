@@ -118,6 +118,7 @@
 			$("body").removeClass("offcanvas");
 		}
 	});
+	loadNotifications();
 
 	$("body").keydown(function (e) {
 		if (e.keyCode == 27) {
@@ -252,6 +253,89 @@
 		this.value = this.value.replace(/[^0-9.]/g, "");
 	});
 })(jQuery);
+
+function loadNotifications() {
+	fetch("Load-Notifications")
+		.then((response) => response.json())
+		.then((data) => {
+			// Llama a la función para mostrar las notificaciones en el contenedor
+			displayNotifications(data);
+		})
+		.catch((error) => {
+			console.error("Error al obtener notificaciones:", error);
+		});
+}
+// Función para mostrar las notificaciones en el contenedor
+function displayNotifications(notifications) {
+	// Obtén el contenedor de notificaciones
+	var notificationsContainer = $(".onhover-show-div.notification-dropdown ul");
+
+	// Limpia el contenido actual del contenedor
+	notificationsContainer.empty();
+
+	// Contador de notificaciones no vistas
+	var unseenCount = 0;
+
+	// Itera sobre las notificaciones y crea elementos HTML para mostrarlas
+	notifications.forEach(function (notification) {
+		var notificationElement = $('<li class="border-4 notification-link">');
+
+		// Agrega la clase CSS según el tipo de notificación
+		var alertClass =
+			notification.alert_type_notify === "warning"
+				? "b-l-warning"
+				: "b-l-danger";
+		notificationElement.addClass(alertClass);
+
+		// Agrega el evento onclick al elemento li
+		notificationElement.on("click", function () {
+			// Acciones que deseas realizar al hacer clic en la notificación
+			window.open(notification.redirect_url_notify, "_blank");
+		});
+
+		// Formatea la fecha y la hora
+		var formattedDateTime = formatDateTime(notification.date_time_notify);
+
+		// Agrega el contenido de la notificación al elemento li
+		notificationElement.append(
+			"<p><b>" +
+				notification.title_notify +
+				'</b><span class="font-danger">' +
+				formattedDateTime +
+				"</span></p>"
+		);
+		notificationElement.append(
+			"<span>" + notification.content_notify + "</span>"
+		);
+
+		// Agrega el elemento de notificación al contenedor
+		notificationsContainer.append(notificationElement);
+
+		// Incrementa el contador si la notificación no está vista
+		if (notification.status_notify === "0") {
+			unseenCount++;
+		}
+	});
+
+	// Actualiza el contenido de la etiqueta span con el contador
+	$("#notificationCount").text(unseenCount);
+
+	// Agrega el enlace para ver todas las notificaciones
+	notificationsContainer.append('<li class="f-w-700">Ver Todo</li>');
+}
+// Función para formatear la fecha y la hora
+function formatDateTime(dateTimeString) {
+	var dateTime = new Date(dateTimeString);
+	var options = {
+		weekday: "long",
+		month: "long",
+		day: "numeric",
+		hour: "numeric",
+		minute: "numeric",
+		second: "numeric",
+	};
+	return dateTime.toLocaleString("es-ES", options);
+}
 
 const Toast = Swal.mixin({
 	toast: true,

@@ -17,36 +17,54 @@ $(($) => {
 					item.name_bowl
 				}</td>
                     <td>${checkSpecies(item.species)}</td>
-                    <td class="editable" data-tank="${
-											item.tank_name
-										}" data-date="hour_12_am" data-min="${
-					item.tmp_min
-				}" data-max="${item.tmp_max}">${item.hour_12_am}</td>
-                    <td class="editable" data-tank="${
-											item.tank_name
-										}" data-date="hour_4_am" data-min="${
-					item.tmp_min
-				}" data-max="${item.tmp_max}">${item.hour_4_am}</td>
-                    <td class="editable" data-tank="${
-											item.tank_name
-										}" data-date="hour_8_am" data-min="${
-					item.tmp_min
-				}" data-max="${item.tmp_max}">${item.hour_8_am}</td>
-                    <td class="editable" data-tank="${
-											item.tank_name
-										}" data-date="hour_12_pm" data-min="${
-					item.tmp_min
-				}" data-max="${item.tmp_max}">${item.hour_12_pm}</td>
-                    <td class="editable" data-tank="${
-											item.tank_name
-										}" data-date="hour_4_pm" data-min="${
-					item.tmp_min
-				}" data-max="${item.tmp_max}">${item.hour_4_pm}</td>
-                    <td class="editable" data-tank="${
-											item.tank_name
-										}" data-date="hour_8_pm" data-min="${
-					item.tmp_min
-				}" data-max="${item.tmp_max}">${item.hour_8_pm}</td>
+                    <td data-name="${item.type_bowl} ${
+					item.name_bowl
+				}" class="editable" data-tank="${
+					item.tank_name
+				}" data-date="hour_12_am" data-min="${item.tmp_min}" data-max="${
+					item.tmp_max
+				}">${item.hour_12_am}</td>
+
+                    <td data-name="${item.type_bowl} ${
+					item.name_bowl
+				}" class="editable" data-tank="${
+					item.tank_name
+				}" data-date="hour_4_am" data-min="${item.tmp_min}" data-max="${
+					item.tmp_max
+				}">${item.hour_4_am}</td>
+
+                    <td data-name="${item.type_bowl} ${
+					item.name_bowl
+				}" class="editable" data-tank="${
+					item.tank_name
+				}" data-date="hour_8_am" data-min="${item.tmp_min}" data-max="${
+					item.tmp_max
+				}">${item.hour_8_am}</td>
+
+                    <td data-name="${item.type_bowl} ${
+					item.name_bowl
+				}" class="editable" data-tank="${
+					item.tank_name
+				}" data-date="hour_12_pm" data-min="${item.tmp_min}" data-max="${
+					item.tmp_max
+				}">${item.hour_12_pm}</td>
+
+                    <td data-name="${item.type_bowl} ${
+					item.name_bowl
+				}" class="editable" data-tank="${
+					item.tank_name
+				}" data-date="hour_4_pm" data-min="${item.tmp_min}" data-max="${
+					item.tmp_max
+				}">${item.hour_4_pm}</td>
+
+                    <td data-name="${item.type_bowl} ${
+					item.name_bowl
+				}" class="editable" data-tank="${
+					item.tank_name
+				}" data-date="hour_8_pm" data-min="${item.tmp_min}" data-max="${
+					item.tmp_max
+				}">${item.hour_8_pm}</td>
+
                     <td 
 					}" class="editable observation-cell" data-tank="${
 						item.tank_name
@@ -73,6 +91,8 @@ $(($) => {
 	let editedDataTank;
 	let editedCellValue;
 	let editedDate;
+	let nameBowl;
+
 	// Function to enable cell editing
 	function enableEditing(cell) {
 		$(cell).attr("contenteditable", true);
@@ -84,6 +104,7 @@ $(($) => {
 		editedDate = $(cell).data("date");
 		editedMin = $(cell).data("min");
 		editedMax = $(cell).data("max");
+		nameBowl = $(cell).data("name");
 
 		// Focus on the cell for tablets
 		$(cell).focus();
@@ -95,17 +116,21 @@ $(($) => {
 		$(cell).removeAttr("contenteditable");
 		isCellEdited = false;
 	}
-
 	// Save changes when clicking on another cell
 	function saveChanges() {
 		if (isCellEdited) {
+			// Prepare data to be sent to the server
 			let postData = {
 				tank: editedDataTank,
 				value: editedCellValue,
 				date: editedDate,
 				recorded: recorded,
+				min: editedMin,
+				max: editedMax,
+				nameBowl: nameBowl
 			};
 
+			// Send data to the server using fetch
 			fetch("API-EDIT-CELL", {
 				method: "POST",
 				headers: {
@@ -119,12 +144,16 @@ $(($) => {
 					}
 					return response.json();
 				})
-				.then((data) => {})
+				.then((data) => {
+					// Handle the response from the server if needed
+					console.log(data);
+				})
 				.catch((err) => {
 					console.error("Error:", err);
 				});
 		}
 	}
+
 	// Esto ejecuta la función para cada celda editable
 	$(".editable").each(function () {
 		let tank = $(this).data("tank");
@@ -134,12 +163,14 @@ $(($) => {
 
 		let value = parseFloat($(this).text());
 
-		setBackgroundColor(this, value, min, max, 2);
+		if (!$(this).hasClass("observation-cell")) {
+			setBackgroundColor(this, value, min, max, 2);
 
-		$(this).on("input", function () {
-			let editedValue = parseFloat($(this).text());
-			setBackgroundColor(this, editedValue, min, max, 2);
-		});
+			$(this).on("input", function () {
+				let editedValue = parseFloat($(this).text());
+				setBackgroundColor(this, editedValue, min, max, 2);
+			});
+		}
 	});
 	// Enable editing when clicking on an editable cell
 	$(".editable").click(function () {
@@ -196,7 +227,9 @@ const checkSpecies = (i) => {
 	const speciesObject = JSON.parse(speciesObjectJSON);
 	if (i) {
 		const keys = i.split(",").map(Number);
-		const result = keys.map((key) => speciesObject && speciesObject[key]).join(",");
+		const result = keys
+			.map((key) => speciesObject && speciesObject[key])
+			.join(",");
 		return `${result}`;
 	}
 	return `Sin especies`;

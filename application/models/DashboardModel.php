@@ -5,6 +5,15 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class DashboardModel extends CI_Model
 {
     // check if the user exists
+    public function select($table)
+    {
+        return $this->db->select('*')
+            ->from($table)
+            ->order_by('date_time_notify', 'DESC') // Ordena por fecha descendente
+            ->limit(10) // Limita a 10 registros
+            ->get()
+            ->result();
+    }
 
     public function reportDashboardTank()
     {

@@ -46,3 +46,21 @@ if (!function_exists('getFormattedTime')) {
         );
     }
 }
+
+if (!function_exists('getMinMax')) {
+    function getMinMax($min, $max, $data)
+    {
+        $lower = $min + 2;
+        $upper = $max - 2;
+
+        if ($data >= $lower && $data <= $upper) {
+            return 1;
+        }
+
+        if (($data >= $min && $data <= $lower) || ($data >= $upper && $data <= $max)) {
+            return 2;
+        }
+
+        return 3;
+    }
+}

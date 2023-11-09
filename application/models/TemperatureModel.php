@@ -4,6 +4,18 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class TemperatureModel extends CI_Model
 {
+    public function verified($where)
+    {
+        $this->db->where($where);
+        $result = $this->db->get('tbl_notifications');
+
+        return ($result->num_rows() > 0);
+    }
+    public function insert($data, $table)
+    {
+        $this->db->insert($table, $data);
+        return $this->db->insert_id();
+    }
     public function update($action, $id, $table)
     {
         $this->db->where($id);

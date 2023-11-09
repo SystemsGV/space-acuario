@@ -45,15 +45,13 @@ class Reports extends CI_Controller
     public function ViewPDF()
     {
         $this->load->library('dompdf_lib');
-
-        // Carga la vista que deseas convertir a PDF
-        $html = $this->load->view('aquarium/reports/pdf/pdfTemp', [], true);
-        // Genera el PDF
-        $this->dompdf_lib->generar_pdf($html, 'nombre_archivo.pdf');
         $dateIn = $this->session->userdata("dateIn");
         $dateOut =  $this->session->userdata("dateOut");
-
-        echo $dateIn;
-        echo $dateOut;
+        $result = $this->ReportModel->reportTankDataWhere($dateIn, $dateOut);
+        $data['result'] = $result;
+        // Carga la vista que deseas convertir a PDF
+        $html = $this->load->view('aquarium/reports/pdf/pdfTemp', $data, true);
+        // Genera el PDF
+        $this->dompdf_lib->generar_pdf($html, 'nombre_archivo.pdf');
     }
 }

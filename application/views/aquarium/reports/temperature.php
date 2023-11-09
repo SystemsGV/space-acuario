@@ -25,7 +25,7 @@
                         <div class="main-product-wrapper mx-auto d-flex align-items-center">
                             <div class="col-lg-4 col-sm-12">
                                 <div class="badge-spacing">
-                                    <a class="btn btn-danger btn-hover-effect" href="javascript:void(0)" id="export-pdf">
+                                    <a class="btn btn-danger btn-hover-effect" target="_blank" href="<?=base_url('Acuario/Ver-Reporte-PDF')?>" id="export-pdf">
                                         <i class="fa fa-file-pdf-o f-18"></i>
                                     </a>
                                 </div>

@@ -1,4 +1,56 @@
 <body>
+    <style>
+        .notification-dropdown {
+            max-height: 500px;
+            /* Establece la altura máxima para activar el desplazamiento */
+            overflow-y: auto !important;
+            /* Habilita el desplazamiento vertical cuando se supera la altura máxima */
+            scrollbar-width: thin;
+            /* Estilo de la barra de desplazamiento para Firefox */
+            scrollbar-color: #007bff #f8f9fa;
+            /* Establece los colores de la barra de desplazamiento (para Firefox) */
+        }
+
+        .notification-dropdown::-webkit-scrollbar {
+            width: 10px;
+            /* Ancho de la barra de desplazamiento para WebKit (Chrome, Safari) */
+        }
+
+        .notification-dropdown::-webkit-scrollbar-thumb {
+            background-color: #407CF3;
+            /* Color del pulgar de la barra de desplazamiento para WebKit */
+        }
+
+        .notification-dropdown::-webkit-scrollbar-track {
+            background-color: #f8f9fa;
+            /* Color del riel de la barra de desplazamiento para WebKit */
+        }
+
+        .notification-dropdown ul {
+            padding: 10px;
+            /* Ajusta el relleno según tu diseño */
+            margin: 0;
+            /* Asegura que no haya márgenes externos */
+            list-style: none;
+            /* Elimina los estilos de lista predeterminados */
+        }
+
+        .dropdown-title {
+            position: sticky;
+            top: 0;
+            background-color: #fff;
+            /* Color de fondo según tu diseño */
+            z-index: 1;
+            /* Asegura que esté por encima del contenido de la lista */
+        }
+
+        @media only screen and (max-width: 932.98px) {
+            .notification-dropdown {
+                max-height: 320px;
+                /* Establece la altura máxima para activar el desplazamiento */
+            }
+        }
+    </style>
     <!-- loader starts-->
     <div class="loader-wrapper">
         <div class="loader-index"> <span></span></div>
@@ -40,26 +92,14 @@
                             <div class="notification-box">
                                 <svg>
                                     <use href="<?= base_url() ?>assets/svg/icon-sprite.svg#notification"></use>
-                                </svg><span class="badge rounded-pill badge-secondary">4
-                                </span>
+                                </svg>
+                                <span id="notificationCount" class="badge rounded-pill badge-secondary">0</span>
                             </div>
                             <div class="onhover-show-div notification-dropdown">
-                                <h6 class="f-18 mb-0 dropdown-title">Notitications
+                                <h6 class="f-18 mb-0 dropdown-title">Notificaciones
                                 </h6>
                                 <ul>
-                                    <li class="b-l-primary border-4">
-                                        <p>Delivery processing <span class="font-danger">10 min.</span></p>
-                                    </li>
-                                    <li class="b-l-success border-4">
-                                        <p>Order Complete<span class="font-success">1 hr</span></p>
-                                    </li>
-                                    <li class="b-l-secondary border-4">
-                                        <p>Tickets Generated<span class="font-secondary">3 hr</span></p>
-                                    </li>
-                                    <li class="b-l-warning border-4">
-                                        <p>Delivery Complete<span class="font-warning">6 hr</span></p>
-                                    </li>
-                                    <li><a class="f-w-700" href="#">Check all</a></li>
+
                                 </ul>
                             </div>
                         </li>
@@ -72,8 +112,6 @@
                             <ul class="profile-dropdown onhover-show-div">
                                 <li><a href="#"><i data-feather="user"></i><span>Account
                                         </span></a></li>
-                                <li><a href="#"><i data-feather="mail"></i><span>Inbox</span></a></li>
-                                <li><a href="#"><i data-feather="file-text"></i><span>Taskboard</span></a></li>
                                 <li><a href="#"><i data-feather="settings"></i><span>Settings</span></a></li>
                                 <li><a href="#"><i data-feather="log-in"> </i><span>Log
                                             in</span></a></li>
@@ -183,7 +221,7 @@
                                             </use>
                                         </svg>
                                         <span>Registros Temp.</span>
-                                    </a> 
+                                    </a>
                                 </li>
                                 <li class="sidebar-main-title">
                                     <div>
