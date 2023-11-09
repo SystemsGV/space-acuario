@@ -52,6 +52,6 @@ class Reports extends CI_Controller
         // Carga la vista que deseas convertir a PDF
         $html = $this->load->view('aquarium/reports/pdf/pdfTemp', $data, true);
         // Genera el PDF
-        $this->dompdf_lib->generar_pdf($html, 'nombre_archivo.pdf');
+        $this->dompdf_lib->generar_pdf($html, 'Reprote temperatura de ' . $dateIn . ' hasta ' . $dateOut . '.pdf');
     }
 }

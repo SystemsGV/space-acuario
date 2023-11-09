@@ -1,0 +1,12 @@
+BEGIN
+    -- Inserta un registro en tank_data para cada pecera
+    INSERT INTO tank_data (tank_name, recorded_date)
+    SELECT id_bowl, DATE_FORMAT(CURRENT_DATE(), '%d-%m-%Y')
+    FROM tbl_fishbowls
+    WHERE NOT EXISTS (
+        SELECT 1
+        FROM tank_data
+        WHERE tank_data.tank_name = tbl_fishbowls.id_bowl
+          AND tank_data.recorded_date = DATE_FORMAT(CURRENT_DATE(), '%d-%m-%Y')
+    );
+END
