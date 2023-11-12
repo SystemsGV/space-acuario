@@ -180,4 +180,16 @@ class Species extends CI_Controller
         }
         echo json_encode($array);
     }
+    public function logsSpecies()
+    {
+        $result = $this->SpeciesModel->getLogsSpecies();
+        if ($result) {
+            foreach ($result as $row) {
+                $array['data'][] = $row;
+            }
+        } else {
+            $array['data'] = array();
+        }
+        echo json_encode($array);
+    }
 }

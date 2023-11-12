@@ -329,6 +329,8 @@ $(($) => {
 			}
 		});
 	});
+
+	$("#view-logs").on("click", viewLogs);
 });
 
 const clearForm = () => {
@@ -386,4 +388,51 @@ const checkCampos = (obj) => {
 		return true;
 	}
 };
-async function update() {}
+const viewLogs = () => {
+	$("#data-logs").DataTable().destroy();
+	const tbl_logs = $("#data-logs").DataTable({
+		order: [[3, "desc"]],
+		bAutoHeader: false,
+		scrollY: "50vh",
+		scrollX: false,
+		scrollCollapse: true,
+		paging: false,
+		language: {
+			url: "../assets/json/Spanish.json",
+		},
+		ajax: {
+			url: "API-LOGSPECIES",
+		},
+		columns: [
+			{
+				data: "common_specie",
+			},
+			{
+				data: "type_log",
+				render: function (data) {
+					if (data === "plus") {
+						return '<div class="badge badge-success label-square"><i class="fa fa-plus-square f-14"></i><span class="f-14"> &nbsp; INGRESO</span></div>';
+					} else {
+						return '<div class="badge badge-danger label-square"><i class="fa fa-minus-square f-14"></i><span class="f-14">  &nbsp; SALIDA</span></div>';
+					}
+				},
+			},
+			{
+				data: "amount_log",
+				render: function (data) {
+					return `<h5 class=" f-w-300"><code>${data}</code></h5>`;
+				},
+			},
+			{
+				data: "reason_log",
+			},
+			{
+				data: "date_log",
+				render: function (data) {
+					return formatDateTime(data);
+				},
+			},
+		],
+	});
+	$("#mdl_logs").modal("show");
+};

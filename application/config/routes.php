@@ -53,7 +53,7 @@ $route['default_controller'] = 'site';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['Iniciar-Sesion'] = 'site/login';
+$route['Iniciar-Sesion'] = 'site/   login';
 
 
 /* ROUTES LOGIN */
@@ -78,6 +78,7 @@ $route['Acuario/edit-specie'] = 'aquarium/species/update';
 $route['Acuario/delete-specie'] = 'aquarium/species/delete';
 $route['Acuario/update-quantity'] = 'aquarium/species/updateQuantity';
 $route['Acuario/update-minus'] = 'aquarium/species/minusQuantity';
+$route['Acuario/API-LOGSPECIES'] = 'aquarium/species/logsSpecies';
 
 
 /* ROUTES FISHBOWL */

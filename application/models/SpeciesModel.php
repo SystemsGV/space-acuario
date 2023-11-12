@@ -76,4 +76,13 @@ class SpeciesModel extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+    public function getLogsSpecies()
+    {
+        return $this->db
+            ->select("L.*, S.common_specie")
+            ->from("logs_species L")
+            ->join("tbl_species S", "S.id_specie = L.specie_log")
+            ->get()
+            ->result();
+    }
 }

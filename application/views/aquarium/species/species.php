@@ -27,8 +27,8 @@
                                           <div class="card-header card-no-border">
                                               <div class="header-top">
                                                   <div class="badge-spacing">
-                                                      <a class="btn btn-danger btn-hover-effect" target="_blank" href="<?= base_url('Acuario/Ver-Reporte-PDF') ?>" id="export-pdf">
-                                                          <i class="fa fa-file-pdf-o f-16"></i> Historial
+                                                      <a class="btn btn-danger btn-hover-effect" href="javascript:void(0)" id="view-logs">
+                                                          <i class="fa fa-history f-16"></i> Historial
                                                       </a>
                                                   </div>
                                                   <div class="card-header-right-icon">
@@ -52,6 +52,7 @@
                                                           <tr>
                                                               <th>COMUN</th>
                                                               <th>CIENTIFICO</th>
+                                                          </tr>
                                                       </thead>
                                                       <tfoot class="text-center">
                                                           <tr>
@@ -244,6 +245,32 @@
                                                   </div>
                                               </div>
                                           </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="modal fade" tabindex="-1" role="dialog" id="mdl_logs" aria-hidden="true">
+                          <div class="modal-dialog modal-xl modal-dialog-centered">
+                              <div class="modal-content">
+                                  <div class="modal-header">
+                                      <h4 class="modal-title">Historial Especies </h4>
+                                      <button class="btn-close theme-close bg-primary" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                                  </div>
+                                  <div class="modal-body">
+                                      <div class="table-responsive">
+                                          <table class="table table-striped text-center" id="data-logs">
+                                              <thead class="text-center">
+                                                  <tr>
+                                                      <th>ESPECIE</th>
+                                                      <th>MOVIMIENTO</th>
+                                                      <th>CANTIDAD</th>
+                                                      <th>RAZON</th>
+                                                      <th>FECHA</th>
+                                                  </tr>
+                                              </thead>
+                                          </table>
                                       </div>
                                   </div>
                               </div>
