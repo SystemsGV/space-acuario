@@ -53,7 +53,7 @@ $route['default_controller'] = 'site';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['Iniciar-Sesion'] = 'site/   login';
+$route['Iniciar-Sesion'] = 'site/login';
 
 
 /* ROUTES LOGIN */
