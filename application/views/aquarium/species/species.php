@@ -12,7 +12,6 @@
                                                       <svg class="stroke-icon">
                                                           <use href="<?= base_url() ?>assets/svg/icon-sprite.svg#stroke-home"></use>
                                                       </svg></a></li>
-                                              <li class="breadcrumb-item">Dashboard</li>
                                               <li class="breadcrumb-item active">Especies </li>
                                           </ol>
                                       </div>
@@ -27,7 +26,11 @@
                                       <div class="card">
                                           <div class="card-header card-no-border">
                                               <div class="header-top">
-                                                  <h5 class="m-0"></h5>
+                                                  <div class="badge-spacing">
+                                                      <a class="btn btn-danger btn-hover-effect" target="_blank" href="<?= base_url('Acuario/Ver-Reporte-PDF') ?>" id="export-pdf">
+                                                          <i class="fa fa-file-pdf-o f-16"></i> Historial
+                                                      </a>
+                                                  </div>
                                                   <div class="card-header-right-icon">
                                                       <button id="btn_add" class="btn btn-pill btn-success btn-air-success" type="submit">
                                                           <i class="fa fa-plus"></i> Agregar Especie
@@ -144,36 +147,104 @@
                                       <button class="btn-close theme-close bg-primary" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
                                   </div>
                                   <div class="modal-body">
-                                      <form class="form-bookmark theme-form" id="frm_quantity">
-                                          <div class="card-body">
-                                              <div class="row">
-                                                  <div class="col-md-4">
-                                                      <div class="mb-3">
-                                                          <label class="form-label" for="common_n">Cantidad Ingresar</label>
-                                                          <input class="form-control input-air-primary fnRow" id="ing_data" name="ing_data" type="number" autofocus>
-                                                      </div>
+
+                                      <ul class="nav nav-tabs border-tab border-0 mb-0 nav-danger" id="topline-tab" role="tablist">
+                                          <li class="nav-item">
+                                              <a class="nav-link active nav-border pt-0" id="topline-top-user-tab" data-bs-toggle="tab" href="#topline-top-user" role="tab" aria-controls="topline-top-user" aria-selected="true">
+                                                  <i class="icofont icofont-plus-square"></i> Aumentar Especies</a>
+                                          </li>
+                                          <li class="nav-item">
+                                              <a class="nav-link nav-border " id="topline-top-description-tab" data-bs-toggle="tab" href="#topline-top-description" role="tab" aria-controls="topline-top-description" aria-selected="false">
+                                                  <i class="icofont icofont-minus-square"></i> Retirar Especies</a>
+                                          </li>
+                                      </ul>
+                                      <div class="tab-content" id="topline-tabContent">
+                                          <div class="tab-pane fade show active" id="topline-top-user" role="tabpanel" aria-labelledby="topline-top-user-tab">
+                                              <div class="card-body px-0 pb-0">
+                                                  <div class="user-header pb-2">
+                                                      <h6 class="fw-bold"></h6>
+                                                      <br>
                                                   </div>
-                                                  <div class="col-md-6">
-                                                      <div class="mb-3">
-                                                          <label class="form-label" for="scientific_n">Cantidad actual</label>
-                                                          <input class="form-control input-air-primary fnRow disabled" id="quantityFish" type="number">
-                                                      </div>
-                                                  </div>
-                                              </div>
-                                              <div class="row">
-                                                  <div class="col-md-12">
-                                                      <div class="mb-3">
-                                                          <label class="form-label" for="exampleFormControlTextarea14">Razón de Ingreso</label>
-                                                          <textarea class="form-control btn-square" id="exampleFormControlTextarea14" rows="3"></textarea>
-                                                      </div>
+                                                  <div class="user-content">
+                                                      <form class=" theme-form" id="frm_quantity">
+                                                          <div class="card-body">
+                                                              <div class="row">
+                                                                  <div class="col-md-4">
+                                                                      <div class="mb-3">
+                                                                          <label class="form-label" for="common_n">Cantidad Ingresar</label>
+                                                                          <input class="form-control input-air-primary fnRow" id="ing_data" name="ing_data" type="number" autofocus>
+                                                                      </div>
+                                                                  </div>
+                                                                  <div class="col-md-6">
+                                                                      <div class="mb-3">
+                                                                          <label class="form-label" for="scientific_n">Cantidad actual</label>
+                                                                          <input class="form-control input-air-primary fnRow disabled" id="quantityFish" type="number">
+                                                                      </div>
+                                                                  </div>
+                                                              </div>
+                                                              <div class="row">
+                                                                  <div class="col-md-12">
+                                                                      <div class="mb-3">
+                                                                          <label class="form-label" for="exampleFormControlTextarea14">Razón de Ingreso</label>
+                                                                          <textarea class="form-control btn-square" name="reason_fish" id="reason_fish" rows="3"></textarea>
+                                                                      </div>
+                                                                  </div>
+                                                              </div>
+                                                          </div>
+                                                          <div class="card-footer text-end">
+                                                              <button class="btn btn-danger" type="button" data-bs-dismiss="modal"><i class="fa fa-times-circle"></i> Cancelar</button>
+                                                              <button class="btn btn-success" type="submit" id="btn_quantity"><i class="fa fa-plus"></i> Aumentar Especie</button>
+                                                          </div>
+                                                      </form>
                                                   </div>
                                               </div>
                                           </div>
-                                          <div class="card-footer text-end">
-                                              <button class="btn btn-danger" type="button" data-bs-dismiss="modal"><i class="fa fa-times-circle"></i> Cancelar</button>
-                                              <button class="btn btn-success" type="submit" id="btn_quantity"><i class="fa fa-plus"></i> Aumentar Especie</button>
+                                          <div class="tab-pane fade" id="topline-top-description" role="tabpanel" aria-labelledby="topline-top-description-tab">
+                                              <div class="card-body px-0 pb-0">
+                                                  <div class="user-header pb-2">
+                                                      <h6 class="fw-bold"></h6>
+                                                      <br>
+                                                  </div>
+                                                  <div class="user-content">
+                                                      <form class=" theme-form" id="frm_minus">
+                                                          <div class="card-body">
+                                                              <div class="alert alert-light-warning border-warning alert-dismissible fade show p-0" role="alert">
+                                                                  <div class="alert-arrow bg-warning"><i class="icon-alert"></i></div>
+                                                                  <p>Para eliminar un número de especie, asegúrate de que no esté actualmente asociado a una pecera. Si lo está, retíralo primero de la Pecera <a href="Peceras" target="_blank">Dirigite a Peceras</a>.</p>
+                                                                  <button class="p-0 border-0 me-2 ms-auto" type="button" data-bs-dismiss="alert" aria-label="Close"><span class="bg-warning px-3 py-1" aria-hidden="true">X</span></button>
+                                                              </div>
+                                                              <div class="row">
+                                                                  <div class="col-md-4">
+                                                                      <div class="mb-3">
+                                                                          <label class="form-label" for="common_n">Cantidad a Retirar</label>
+                                                                          <input class="form-control input-air-primary fnRow" id="minus_data" name="minus_data" type="number" autofocus>
+                                                                      </div>
+                                                                  </div>
+                                                                  <div class="col-md-6">
+                                                                      <div class="mb-3">
+                                                                          <label class="form-label" for="scientific_n">Cantidad Fuera de Pecera</label>
+                                                                          <input class="form-control input-air-primary fnRow disabled" id="amountM" type="number">
+                                                                      </div>
+                                                                  </div>
+                                                              </div>
+                                                              <div class="row">
+                                                                  <div class="col-md-12">
+                                                                      <div class="mb-3">
+                                                                          <label class="form-label" for="exampleFormControlTextarea14">Razón de Retiro</label>
+                                                                          <textarea class="form-control btn-square" name="reason_minus" id="reason_minus" rows="3"></textarea>
+                                                                      </div>
+                                                                  </div>
+                                                              </div>
+                                                          </div>
+                                                          <div class="card-footer text-end">
+                                                              <button class="btn btn-danger" type="button" data-bs-dismiss="modal"><i class="fa fa-times-circle"></i> Cancelar</button>
+                                                              <button class="btn btn-success" type="submit" id="btn_quantity_minus"><i class="fa fa-minus-square"></i> Disminuir Especie</button>
+                                                          </div>
+                                                      </form>
+                                                  </div>
+                                              </div>
                                           </div>
-                                      </form>
+                                      </div>
                                   </div>
                               </div>
                           </div>

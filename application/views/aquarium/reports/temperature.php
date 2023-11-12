@@ -22,20 +22,24 @@
             <div class="col-xl-12">
                 <div class="card">
                     <div class="card-body card-no-border">
-                        <div class="main-product-wrapper mx-auto d-flex align-items-center">
-                            <div class="col-lg-4 col-sm-12">
-                                <div class="badge-spacing">
-                                    <a class="btn btn-danger btn-hover-effect" target="_blank" href="<?=base_url('Acuario/Ver-Reporte-PDF')?>" id="export-pdf">
-                                        <i class="fa fa-file-pdf-o f-18"></i>
-                                    </a>
+                        <div class="row">
+                            <div class="col-lg-4 col-sm-4">
+                                <div class="mb-3">
+                                    <div class="badge-spacing">
+                                        <a class="btn btn-danger btn-hover-effect" target="_blank" href="<?= base_url('Acuario/Ver-Reporte-PDF') ?>" id="export-pdf">
+                                            <i class="fa fa-file-pdf-o f-18"></i>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-sm-12">
-                                <div class="input-group">
-                                    <input class="form-control" type="text" id="date-range" name="date-range" placeholder="Filtra por fechas">
-                                    <span class="input-group-text list-light-primary">
-                                        <i data-feather="calendar"></i>
-                                    </span>
+                            <div class="col-lg-4 col-sm-8">
+                                <div class="mb-3">
+                                    <div class="input-group">
+                                        <input class="form-control" type="text" id="date-range" name="date-range" placeholder="Filtra por fechas">
+                                        <span class="input-group-text list-light-primary">
+                                            <i data-feather="calendar"></i>
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>

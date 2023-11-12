@@ -1,5 +1,6 @@
 <?php
 
+
 if (!function_exists('check_login_user')) {
     function check_login_user()
     {
@@ -10,10 +11,11 @@ if (!function_exists('check_login_user')) {
 
             $ci->session->sess_destroy();
 
-            redirect(base_url());
+            redirect(base_url('Iniciar-Sesion'));
         }
     }
 }
+
 
 
 if (!function_exists('add_json_species')) {
@@ -44,6 +46,18 @@ if (!function_exists('getFormattedTime')) {
             'date' => $date,
             'time' => $time
         );
+    }
+}
+if (!function_exists('viewRol')) {
+    function viewRol($rol)
+    {
+        $rolesNumericos = [
+            1 => 'Administrador',
+            2 => 'Control'
+            // Puedes agregar más roles según sea necesario
+        ];
+
+        return isset($rolesNumericos[$rol]) ? $rolesNumericos[$rol] : 'SIN ROL';
     }
 }
 

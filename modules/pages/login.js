@@ -5,38 +5,31 @@ $(($) => {
 
 	$("#frm_login").on("submit", (e) => {
 		e.preventDefault();
-		const user = $("#user_name").val(),
-			pass = $("#user_password").val();
-		if (user == "" || pass == "") {
-			authInputs("Ingrese las crendeciales", "red", "red");
+
+		const user = $("#user_name").val();
+		const pass = $("#user_password").val();
+		const btn = $("#btn_send")[0]; // Asegúrate de proporcionar el ID correcto
+
+		if (user === "" || pass === "") {
+			authInputs("Ingrese las credenciales", "red", "red");
 		} else {
 			$.ajax({
-				url: "Login",
+				url: "AuthUser",
 				data: { u: user, p: pass },
 				type: "post",
 				dataType: "json",
 				beforeSend: () => {
-					btn.innerHTML =
-						"<i class='fa fa-spin fa-spinner'></i>  Validando Credenciales";
-					btn.disabled = true;
-					btn.form.firstElementChild.disabled = true;
+					updateButton(btn, true);
 				},
 			})
-				.done((v) => {
-					if (v.rsp === 100) {
-						authInputs("No se ha encontrado ningun usuario", "red", "red");
-					} else if (v.rsp === 400) {
-						authInputs("Contraseña errónea ", "green", "red");
-					} else if (v.rsp == 200) {
-					}
+				.done((response) => {
+					handleLoginResponse(response);
+				})
+				.fail((error) => {
+					console.log(error.responseText);
 				})
 				.always(() => {
-					btn.innerHTML = "INICIAR SESION";
-					btn.disabled = false;
-					btn.form.firstElementChild.disabled = false;
-				})
-				.fail((e) => {
-					console.log(e.responseText);
+					updateButton(btn, false);
 				});
 		}
 	});
@@ -61,4 +54,32 @@ function authInputs(text, txtuser, txtpass) {
 			exit: "animated fadeOutUp",
 		},
 	});
+}
+function updateButton(btn, isLoading) {
+	// Función para actualizar el estado del botón de inicio de sesión
+	if (isLoading) {
+		btn.innerHTML = "<i class='fa fa-spinner'></i>  Validando Credenciales";
+	} else {
+		btn.innerHTML = "INICIAR SESION";
+	}
+
+	btn.disabled = isLoading;
+	btn.form.firstElementChild.disabled = isLoading;
+}
+
+function handleLoginResponse(response) {
+	// Función para manejar la respuesta de la solicitud de inicio de sesión
+	if (response.rsp === 100) {
+		authInputs("No se ha encontrado ningún usuario", "red", "red");
+	} else if (response.rsp === 400) {
+		authInputs("Contraseña errónea ", "green", "red");
+	} else if (response.rsp == 200) {
+		// Lógica adicional para el caso de éxito
+		console.log(response.id_rol);
+		if (response.id_rol == 1) {
+			window.location.href = "Acuario/Dashboard-Temperatura";
+		} else {
+			window.location.href = "Acuario/Control-Temperatura";
+		}
+	}
 }

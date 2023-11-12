@@ -101,7 +101,7 @@
                                             <h4><?= $activeTanks ?></h4><span class="f-light">Activos</span>
                                         </div>
                                     </div>
-                                    <div class="font-primary f-w-500"><span><?= number_format(round(($activeTanks / $totalTanks) * 100, 1),1) ?>%</span></div>
+                                    <div class="font-primary f-w-500"><span><?= number_format(round(($activeTanks / $totalTanks) * 100, 1), 1) ?>%</span></div>
                                 </div>
                             </div>
                         </div>
@@ -128,7 +128,7 @@
                                         <h4><?= $inactiveTanks ?></h4><span class="f-light">Inactivos</span>
                                     </div>
                                 </div>
-                                <div class="font-warning f-w-500"></i><span><?= number_format(round(($inactiveTanks / $totalTanks) * 100,1),1)  ?>%</span></div>
+                                <div class="font-warning f-w-500"></i><span><?= number_format(round(($inactiveTanks / $totalTanks) * 100, 1), 1)  ?>%</span></div>
                             </div>
                         </div>
                         <div class="col-xl-12">
@@ -149,7 +149,7 @@
                                             <h4><?= $freshwaterTanks ?></h4><span class="f-light">Agua Dulce</span>
                                         </div>
                                     </div>
-                                    <div class="font-success f-w-500"><i class="icon-arrow-up icon-rotate me-1"></i><span><?= number_format(round(($freshwaterTanks / $totalTanks) * 100,1),1)  ?>%</span></div>
+                                    <div class="font-success f-w-500"><i class="icon-arrow-up icon-rotate me-1"></i><span><?= number_format(round(($freshwaterTanks / $totalTanks) * 100, 1), 1)  ?>%</span></div>
                                 </div>
                             </div>
                         </div>
@@ -176,7 +176,7 @@
                                         <h4><?= $saltwaterTanks ?></h4><span class="f-light">Agua Salada</span>
                                     </div>
                                 </div>
-                                <div class="font-success f-w-500"><i class="icon-arrow-up icon-rotate me-1"></i><span><?= number_format(round(($saltwaterTanks / $totalTanks) * 100,1),1) ?>%</span></div>
+                                <div class="font-success f-w-500"><i class="icon-arrow-up icon-rotate me-1"></i><span><?= number_format(round(($saltwaterTanks / $totalTanks) * 100, 1), 1) ?>%</span></div>
                             </div>
                         </div>
                     </div>
@@ -184,23 +184,27 @@
             </div>
             <div class="col-xl-12">
                 <div class="card">
-                    <div class="card-header card-no-border">
-                        <div class="main-product-wrapper">
-                            <div class="col-lg-4">
-                                <div class="input-group">
+                    <div class="card-body card-no-border">
+                        <div class="row">
+                            <div class="col-sm-6 col-md-4 order-sm-12">
+                                <div class="input-group mb-3">
                                     <span class="input-group-text">
                                         <i class="search-icon text-gray" data-feather="search"></i>
                                     </span>
-                                    <input class="form-control" type="text" placeholder="Busca aqui.." list="datalistOptionssearch" id="exampleDataList1">
-
+                                    <input class="form-control" type="text" placeholder="Buscar aquí.." list="datalistOptionssearch" id="exampleDataList1">
                                 </div>
                             </div>
-                            <div class="col-lg-4">
-                                <div class="input-group">
+
+                            <div class="col-sm-6 col-md-4 order-sm-1">
+                                <div class="input-group mb-3">
                                     <input class="form-control" type="date" placeholder="Selecciona una fecha" id="search-date">
+                                    <span class="input-group-text list-light-primary">
+                                        <i data-feather="calendar"></i>
+                                    </span>
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>

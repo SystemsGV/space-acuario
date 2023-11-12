@@ -11,7 +11,6 @@
                                 <svg class="stroke-icon">
                                     <use href="<?= base_url() ?>assets/svg/icon-sprite.svg#stroke-home"></use>
                                 </svg></a></li>
-                        <li class="breadcrumb-item">Dashboard</li>
                         <li class="breadcrumb-item">Control Pec. </li>
                         <li class="breadcrumb-item active">Medicion de Temp.</li>
                     </ol>

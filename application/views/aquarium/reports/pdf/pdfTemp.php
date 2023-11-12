@@ -52,7 +52,8 @@
             color: green;
 
         }
-        img{
+
+        img {
             height: 10%;
             float: right;
         }
@@ -78,7 +79,10 @@
     $nombreImagen = "assets/images/logo.png";
     $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nombreImagen));
     $registros_por_fecha = array();
+    ?>
+    <img src="<?php echo $imagenBase64 ?>" alt="">
 
+    <?php
     // Agrupar los registros por fecha
     foreach ($result as $registro) {
         $fecha = $registro->formatted_date;
@@ -91,7 +95,6 @@
     // Mostrar los registros en tablas separadas por fecha
     foreach ($registros_por_fecha as $fecha => $registros) {
     ?>
-        <img src="<?php echo $imagenBase64 ?>" alt="">
         <br><br><br><br><br>
         <table>
             <thead>
@@ -125,7 +128,7 @@
 
                 ?>
                     <tr>
-                        <td class="td-min"><?= $registro->type_bowl. " ".$registro->name_bowl ?></td>
+                        <td class="td-min"><?= $registro->type_bowl . " " . $registro->name_bowl ?></td>
                         <td class="td-min"><?= $registro->species ?></td>
                         <td class="td-min"><?= verifyLimited($registro->tmp_min, $registro->tmp_max, $registro->hour_12_am); ?></td>
                         <td class="td-min"><?= verifyLimited($registro->tmp_min, $registro->tmp_max, $registro->hour_4_am); ?></td>

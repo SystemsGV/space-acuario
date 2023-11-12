@@ -7,6 +7,7 @@ class Dashboard extends CI_Controller
     {
         parent::__construct();
         $this->load->model('DashboardModel');
+        check_login_user();
     }
 
     public function index()
@@ -18,6 +19,7 @@ class Dashboard extends CI_Controller
             '<script src="' . base_url() . 'assets/js/chart/apex-chart/moment.min.js"></script>',
             '<script src="' . base_url() . 'assets/js/chart/apex-chart/apex-chart.js"></script>',
             '<script src="' . base_url() . 'assets/js/flat-pickr/flatpickr.js"></script>',
+            '<script src="' . base_url() . 'assets/js/flat-pickr/es.js"></script>',
             '<script src="' . base_url() . 'modules/specie/dashboard.js"></script>',
         );
         // Get results from the database
@@ -64,13 +66,17 @@ class Dashboard extends CI_Controller
         echo json_encode($result);
     }
 
-    public function loadNotifications(){
+    public function loadNotifications()
+    {
         $result = $this->DashboardModel->select('tbl_notifications');
         echo json_encode($result);
     }
 
     public function session_destroy()
     {
-        redirect(base_url('login'));
+
+        // Destruir todas las sesiones
+        $this->session->sess_destroy();
+        redirect(base_url());
     }
 }

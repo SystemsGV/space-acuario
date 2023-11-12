@@ -27,6 +27,7 @@ $(($) => {
 	flatpickr("#search-date", {
 		dateFormat: "d-m-Y",
 		maxDate: dateActuality(),
+		locale: "es",
 	});
 
 	$("#search-date").on("change", function (e) {

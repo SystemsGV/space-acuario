@@ -29,7 +29,7 @@ $(($) => {
 			{
 				data: "amount_fish",
 				render: function (data, type, row) {
-					return `<a class="quantity_fish" href="javascript:void(0)"> ${data} </a>`;
+					return `<a class="quantity_fish" href="javascript:void(0)"> ${data} (${row.total_species})</a>`;
 				},
 			},
 			{
@@ -61,7 +61,17 @@ $(($) => {
 
 		$("#mdl_quantity").modal("show");
 		$("#quantityFish").val(item.total_species);
-		$("#title_quantity").text("Aumentar: " + item.common_specie);
+		$("#amountM").val(item.amount_fish);
+		let btn = document.querySelector("#btn_quantity_minus");
+
+		if (item.amount_fish == 0) {
+			btn.disabled = true;
+			btn.form.firstElementChild.disabled = true;
+		} else {
+			btn.disabled = false;
+			btn.form.firstElementChild.disabled = false;
+		}
+		$("#title_quantity").text(item.common_specie);
 	});
 
 	$("#type_water, #status").select2({
@@ -76,8 +86,7 @@ $(($) => {
 		$("#title_modal").html("Agregar Especie");
 		$("#mdl_add").modal("show");
 		$("#process").val("save");
-	$("#amount_s").removeClass("disabled");
-
+		$("#amount_s").removeClass("disabled");
 	});
 
 	$("#frm_specie input").keyup(function () {
@@ -156,19 +165,7 @@ $(($) => {
 					"Vista Especies",
 					"success"
 				);
-				var row = t.row((idx, data, node) => {
-					return data.id_specie === r.id;
-				});
-				const node = row
-					.data({
-						common_specie: r.data["common_specie"],
-						scientific_specie: r.data["scientific_specie"],
-						type_water: r.data["type_water"],
-						amount_fish: r.data["amount_fish"],
-						status: r.data["status"],
-						id_specie: r.id,
-					})
-					.draw(false);
+				t.ajax.reload();
 			})
 			.fail((e) => {
 				console.log(e.responseText);
@@ -231,6 +228,57 @@ $(($) => {
 			})
 			.always(() => {
 				btn.innerHTML = "<i class='fa fa-plus'></i> Aumentar Especie";
+				btn.disabled = false;
+				btn.form.firstElementChild.disabled = false;
+			});
+	});
+
+	$("#frm_minus").on("submit", function (e) {
+		e.preventDefault();
+		let btn = document.querySelector("#btn_quantity_minus");
+
+		const sess = JSON.parse(sessionStorage.getItem("dataSpecies"));
+
+		const formData = new FormData(this);
+		formData.append("quantity", sess.quantity_fish);
+		formData.append("id_fish", sess.id_fish);
+		formData.append("total_fish", sess.total_fish);
+
+		$.ajax({
+			url: "update-minus",
+			type: "post",
+			data: formData,
+			dataType: "json",
+			cache: false,
+			contentType: false,
+			processData: false,
+			beforeSend: () => {
+				btn.innerHTML =
+					"<i class='fa fa-spin fa-spinner'></i> 	Disminuyendo Especie";
+				btn.disabled = true;
+				btn.form.firstElementChild.disabled = true;
+			},
+		})
+			.done((r) => {
+				alert_type(
+					"Especie disminuida Correctamente",
+					"Vista Especies",
+					"success"
+				);
+				$("#mdl_quantity").modal("hide");
+				$(this)[0].reset();
+				t.ajax.reload();
+			})
+			.fail((e) => {
+				console.log(e.responseText);
+				alert_type(
+					"Error del sistema, Comunicarse con SISTEMAS",
+					"Vista Especie",
+					"error"
+				);
+			})
+			.always(() => {
+				btn.innerHTML = "<i class='fa fa-minus-square'></i> Disminuir Especie";
 				btn.disabled = false;
 				btn.form.firstElementChild.disabled = false;
 			});
@@ -338,3 +386,4 @@ const checkCampos = (obj) => {
 		return true;
 	}
 };
+async function update() {}

@@ -53,12 +53,12 @@ $route['default_controller'] = 'site';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['Iniciar-Sesion'] = 'site';
+$route['Iniciar-Sesion'] = 'site/login';
 
 
 /* ROUTES LOGIN */
 
-$route['Login'] = 'Site/authUser';
+$route['AuthUser'] = 'Site/authUser';
 
 
 /* ROUTES ADMIN */
@@ -77,6 +77,7 @@ $route['Acuario/save-specie'] = 'aquarium/species/create';
 $route['Acuario/edit-specie'] = 'aquarium/species/update';
 $route['Acuario/delete-specie'] = 'aquarium/species/delete';
 $route['Acuario/update-quantity'] = 'aquarium/species/updateQuantity';
+$route['Acuario/update-minus'] = 'aquarium/species/minusQuantity';
 
 
 /* ROUTES FISHBOWL */
@@ -112,9 +113,12 @@ $route['Acuario/Ver-Reporte-PDF'] = 'aquarium/reports/ViewPDF';
 
 /*  USER ROUTES */
 $route['Acuario/Usuarios'] = 'aquarium/User';
+$route['Acuario/save-user'] = 'aquarium/User/create';
+$route['Acuario/update-user'] = 'aquarium/User/update';
 
 
-
+//USERS
+$route['Acuario/API-USERS'] = 'aquarium/user/getUsers';
 
 
 //APIS

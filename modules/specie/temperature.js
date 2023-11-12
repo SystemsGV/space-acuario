@@ -127,7 +127,7 @@ $(($) => {
 				recorded: recorded,
 				min: editedMin,
 				max: editedMax,
-				nameBowl: nameBowl
+				nameBowl: nameBowl,
 			};
 
 			// Send data to the server using fetch
@@ -172,7 +172,7 @@ $(($) => {
 			});
 		}
 	});
-	// Enable editing when clicking on an editable cell
+	// Enable editing when clicking on an editable cell1
 	$(".editable").click(function () {
 		// Before enabling the new cell, save the changes of the current cell
 		if (

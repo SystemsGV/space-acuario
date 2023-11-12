@@ -53410,3 +53410,10 @@ html[dir="rtl"]
 /**=====================
   5.9 Box-layout CSS Ends
 ==========================**/
+    .highlight-row td {
+        background-color: rgba(169, 169, 169, 0.5); /* Plomo opaco para filas */
+    }
+
+    .highlight-column {
+        background-color: rgba(169, 169, 169, 0.5); /* Plomo opaco para columnas */
+    }

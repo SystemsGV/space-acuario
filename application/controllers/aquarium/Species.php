@@ -6,6 +6,7 @@ class Species extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        check_login_user();
         $this->load->model('SpeciesModel');
     }
 
@@ -58,6 +59,7 @@ class Species extends CI_Controller
         $id = $this->input->post('id_fish');
         $total =  $this->input->post('total_fish');
         $rest =  $this->input->post('quantity');
+        $reason =  $this->input->post('reason_fish');
         $ing =  $this->input->post('ing_data');
         $totalNew = $total + $ing;
         $restNew = $rest + $ing;
@@ -65,11 +67,50 @@ class Species extends CI_Controller
             "amount_fish" => $restNew,
             "total_species" => $totalNew,
         );
+        $log = array(
+            "specie_log" => $id,
+            "type_log" => 'plus',
+            "amount_log" => $ing,
+            "quantity_log" => $total,
+            "reason_log" => $reason
+        );
+        $this->SpeciesModel->insert($log, 'logs_species');
         $r = $this->SpeciesModel->update($data, array("id_specie" => $id), 'tbl_species');
         $jsonData["data"] = $data;
         header('Content-type: application/json; charset=utf-8');
         echo json_encode($jsonData);
     }
+
+
+
+    public function minusQuantity()
+    {
+        $id = $this->input->post('id_fish');
+        $total =  $this->input->post('total_fish');
+        $rest =  $this->input->post('quantity');
+        $reason =  $this->input->post('reason_minus');
+        $ing =  $this->input->post('minus_data');
+        $totalNew = $total - $ing;
+        $restNew = $rest - $ing;
+        $data = array(
+            "amount_fish" => $restNew,
+            "total_species" => $totalNew,
+        );
+        $log = array(
+            "specie_log" => $id,
+            "type_log" => 'minus',
+            "amount_log" => $ing,
+            "quantity_log" => $total,
+            "reason_log" => $reason
+        );
+        $this->SpeciesModel->insert($log, 'logs_species');
+        $r = $this->SpeciesModel->update($data, array("id_specie" => $id), 'tbl_species');
+        $jsonData["data"] = $data;
+        header('Content-type: application/json; charset=utf-8');
+        echo json_encode($jsonData);
+    }
+
+
 
     public function delete()
     {

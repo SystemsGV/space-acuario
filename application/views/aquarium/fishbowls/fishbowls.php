@@ -14,7 +14,6 @@
                                     <use href="<?= base_url() ?>assets/svg/icon-sprite.svg#stroke-home"></use>
                                 </svg></a>
                         </li>
-                        <li class="breadcrumb-item">Dashboard</li>
                         <li class="breadcrumb-item active">Pesceras y Acuarios</li>
                     </ol>
                 </div>

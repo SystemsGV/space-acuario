@@ -7,6 +7,8 @@ class Control extends CI_Controller
     {
         parent::__construct();
         $this->load->model('TemperatureModel');
+        check_login_user();
+
     }
 
     public function index()

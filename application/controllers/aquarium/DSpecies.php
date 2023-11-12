@@ -6,6 +6,8 @@ class DSpecies extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        check_login_user();
+
         $this->load->model('DashboardModel');
     }
 
@@ -15,6 +17,7 @@ class DSpecies extends CI_Controller
         $data['scripts'] = array(
             '<script src="' . base_url() . 'assets/js/chart/apex-chart/moment.min.js"></script>',
             '<script src="' . base_url() . 'assets/js/chart/apex-chart/apex-chart.js"></script>',
+            '<script src="' . base_url() . 'assets/js/flat-pickr/es.js"></script>',
             '<script src="' . base_url() . 'modules/specie/d-species.js"></script>',
         );
 

@@ -872,7 +872,6 @@ function GraphicPie(tank) {
 		})
 		.then(({ data }) => {
 			if (data === null) {
-				return alert("No encontramos");
 			}
 
 			const title = data[0].type_bowl + " " + data[0].name_bowl;
