@@ -70,6 +70,7 @@ $(($) => {
 			},
 			{
 				data: "install_bowl",
+				visible:false,
 			},
 			{
 				data: "type_bowl",
@@ -496,7 +497,7 @@ $(($) => {
 				if (data.rsp == 500) {
 					Toast.fire({
 						icon: "warning",
-						title: "Aumentando Especie",
+						title: "Ingresando Especie",
 						text: "La cantidad que vas a agregar debe ser mayor a 0",
 					});
 				} else {
@@ -505,7 +506,7 @@ $(($) => {
 					sessionStorage.setItem("jsonData", JSON.stringify(session));
 					Toast.fire({
 						icon: "success",
-						title: "Nueva especie agregado",
+						title: "Número de especie Aumentado",
 					});
 					t.ajax.reload();
 				}
@@ -753,7 +754,6 @@ const getCheckoutS = (select) => {
 			return response.json();
 		})
 		.then(({ species }) => {
-			console.log(species);
 			species.forEach((item) => {
 				const option = document.createElement("option");
 				option.value = item.id_specie;
@@ -790,7 +790,6 @@ const getCheckoutD = (select) => {
 			return response.json();
 		})
 		.then(({ species }) => {
-			console.log(species);
 			species.forEach((item) => {
 				const option = document.createElement("option");
 				option.value = item.id_specie;
@@ -872,6 +871,7 @@ function GraphicPie(tank) {
 		})
 		.then(({ data }) => {
 			if (data === null) {
+				return console.log(data);
 			}
 
 			const title = data[0].type_bowl + " " + data[0].name_bowl;

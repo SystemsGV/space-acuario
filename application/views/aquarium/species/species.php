@@ -4,7 +4,7 @@
                               <div class="page-title">
                                   <div class="row">
                                       <div class="col-6">
-                                          <h4>Especies </h4>
+                                          <h4>Desarrollo Poblacional </h4>
                                       </div>
                                       <div class="col-6">
                                           <ol class="breadcrumb">
@@ -12,7 +12,7 @@
                                                       <svg class="stroke-icon">
                                                           <use href="<?= base_url() ?>assets/svg/icon-sprite.svg#stroke-home"></use>
                                                       </svg></a></li>
-                                              <li class="breadcrumb-item active">Especies </li>
+                                              <li class="breadcrumb-item active">Des. Poblacional </li>
                                           </ol>
                                       </div>
                                   </div>
@@ -152,11 +152,11 @@
                                       <ul class="nav nav-tabs border-tab border-0 mb-0 nav-danger" id="topline-tab" role="tablist">
                                           <li class="nav-item">
                                               <a class="nav-link active nav-border pt-0" id="topline-top-user-tab" data-bs-toggle="tab" href="#topline-top-user" role="tab" aria-controls="topline-top-user" aria-selected="true">
-                                                  <i class="icofont icofont-plus-square"></i> Aumentar Especies</a>
+                                                  <i class="icofont icofont-plus-square"></i> Ingreso Especie</a>
                                           </li>
                                           <li class="nav-item">
                                               <a class="nav-link nav-border " id="topline-top-description-tab" data-bs-toggle="tab" href="#topline-top-description" role="tab" aria-controls="topline-top-description" aria-selected="false">
-                                                  <i class="icofont icofont-minus-square"></i> Retirar Especies</a>
+                                                  <i class="icofont icofont-minus-square"></i> Salida Especie</a>
                                           </li>
                                       </ul>
                                       <div class="tab-content" id="topline-tabContent">
@@ -194,7 +194,7 @@
                                                           </div>
                                                           <div class="card-footer text-end">
                                                               <button class="btn btn-danger" type="button" data-bs-dismiss="modal"><i class="fa fa-times-circle"></i> Cancelar</button>
-                                                              <button class="btn btn-success" type="submit" id="btn_quantity"><i class="fa fa-plus"></i> Aumentar Especie</button>
+                                                              <button class="btn btn-success" type="submit" id="btn_quantity"><i class="fa fa-plus"></i> Ingresar Especie</button>
                                                           </div>
                                                       </form>
                                                   </div>

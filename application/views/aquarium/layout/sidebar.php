@@ -180,7 +180,7 @@
                                             </svg>
                                             <svg class="fill-icon">
                                                 <use href="<?= base_url() ?>assets/svg/icon-sprite.svg#fill-file"></use>
-                                            </svg><span>Especies</span></a>
+                                            </svg><span>Des. Poblacional</span></a>
                                     </li>
                                     <li class="sidebar-list"><i class="fa fa-thumb-tack"></i>
                                         <a class="sidebar-link sidebar-title link-nav" href="Peceras">
