@@ -5,7 +5,7 @@ class Reports extends CI_Controller
 {
     public function __construct()
     {
-     
+
         parent::__construct();
         check_login_user();
         $this->load->model('ReportModel');
@@ -49,7 +49,12 @@ class Reports extends CI_Controller
         $this->load->library('dompdf_lib');
         $dateIn = $this->session->userdata("dateIn");
         $dateOut =  $this->session->userdata("dateOut");
-        $result = $this->ReportModel->reportTankDataWhere($dateIn, $dateOut);
+        if ($dateIn != null || $dateOut != null) {
+            $result = $this->ReportModel->reportTankDataWhere($dateIn, $dateOut);
+        } else {
+            $result = $this->ReportModel->reportTankDataWhere();
+        }
+
         $data['result'] = $result;
         // Carga la vista que deseas convertir a PDF
         $html = $this->load->view('aquarium/reports/pdf/pdfTemp', $data, true);

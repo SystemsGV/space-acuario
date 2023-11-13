@@ -79,7 +79,7 @@
         <div class="page-header">
             <div class="header-wrapper row m-0">
                 <div class="header-logo-wrapper col-auto p-0">
-                    <div class="logo-wrapper"><a href="<?= base_url('Acuario') ?>"><img class="img-fluid" src="<?= base_url() ?>assets/images/logo/logo.png" alt></a></div>
+                    <div class="logo-wrapper"><a href="<?= base_url('Acuario/Dashboard-Temperatura') ?>"><img class="img-fluid" src="<?= base_url() ?>assets/images/logo/logo.png" alt></a></div>
                     <div class="toggle-sidebar"><i class="status_toggle middle sidebar-toggle" data-feather="align-center"></i></div>
                 </div>
 

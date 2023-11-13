@@ -4,16 +4,16 @@
         <div class="page-title">
             <div class="row">
                 <div class="col-6">
-                    <h4>Default </h4>
+                    <h4>Metrica Especies </h4>
                 </div>
                 <div class="col-6">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">
+                        <li class="breadcrumb-item"><a href="Acuario/Dashboard-Temperatura">
                                 <svg class="stroke-icon">
                                     <use href="<?= base_url() ?>assets/svg/icon-sprite.svg#stroke-home"></use>
                                 </svg></a></li>
                         <li class="breadcrumb-item">Dashboard</li>
-                        <li class="breadcrumb-item active">Default </li>
+                        <li class="breadcrumb-item active">Metrica Especies</li>
                     </ol>
                 </div>
             </div>

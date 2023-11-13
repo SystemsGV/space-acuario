@@ -78,3 +78,25 @@ if (!function_exists('getMinMax')) {
         return 3;
     }
 }
+
+if (!function_exists('getNameFish')) {
+    function getNameFish($ids)
+    {
+        $CI = get_instance();
+        $CI->load->model('SpeciesModel');
+        $result = $CI->SpeciesModel->get_species();
+
+        // Convertir la cadena a un array de números
+        $idArray = array_map('intval', explode(',', $ids));
+        // Array para almacenar los nombres comunes encontrados
+
+        $commonSpecies = [];
+        // Buscar nombres comunes para los IDs dados
+        foreach ($result as $fish) {
+            if (in_array($fish->id_specie, $idArray)) {
+                $commonSpecies[] = $fish->common_specie;
+            }
+        }
+        return implode(', ', $commonSpecies);
+    }
+}

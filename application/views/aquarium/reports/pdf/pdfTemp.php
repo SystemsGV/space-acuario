@@ -82,6 +82,7 @@
     ?>
     <img src="<?php echo $imagenBase64 ?>" alt="">
 
+
     <?php
     // Agrupar los registros por fecha
     foreach ($result as $registro) {
@@ -129,7 +130,7 @@
                 ?>
                     <tr>
                         <td class="td-min"><?= $registro->type_bowl . " " . $registro->name_bowl ?></td>
-                        <td class="td-min"><?= $registro->species ?></td>
+                        <td class="td-min"><?= getNameFish($registro->species) ?></td>
                         <td class="td-min"><?= verifyLimited($registro->tmp_min, $registro->tmp_max, $registro->hour_12_am); ?></td>
                         <td class="td-min"><?= verifyLimited($registro->tmp_min, $registro->tmp_max, $registro->hour_4_am); ?></td>
                         <td class="td-min"><?= verifyLimited($registro->tmp_min, $registro->tmp_max, $registro->hour_8_am); ?></td>

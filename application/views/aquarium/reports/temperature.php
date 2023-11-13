@@ -7,12 +7,12 @@
                 </div>
                 <div class="col-6">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="<?= base_url("Acuario") ?>">
+                        <li class="breadcrumb-item"><a href="Acuario/Dashboard-Temperatura">
                                 <svg class="stroke-icon">
                                     <use href="<?= base_url() ?>assets/svg/icon-sprite.svg#stroke-home"></use>
                                 </svg></a></li>
                         <li class="breadcrumb-item active">Reportes Control Temperatura</li>
-                    </ol>
+                    </ol>p
                 </div>
             </div>
         </div>

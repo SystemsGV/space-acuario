@@ -12,7 +12,7 @@ class Site extends CI_Controller
     public function index()
     {
         if ($this->session->userdata('is_user_login')) {
-            redirect('Dashboard-Temperatura');
+            redirect('Acuario/Dashboard-Temperatura');
         } else {
             redirect('Iniciar-Sesion');
         }

@@ -153,7 +153,7 @@ $(($) => {
 			//Cuando esta en tamaño responsivo
 			var item = t.row(this).data();
 		}
-		$("#title_modal").html("Editar Especie");
+		$("#title_modal").html("Editar " + item.type_bowl);
 		$("#btn_send").addClass("hidden");
 		$("#btn_update").removeClass("hidden");
 		$("#name_bowl").val(item.name_bowl);
@@ -825,8 +825,8 @@ const checkStatus = (i) => {
 		: '<span class="badge rounded-pill badge-danger">INACTIVO</span>';
 };
 const addActions = (i) => {
-	return `<button class="btn btn-pill btn-warning btn-air-warning btn_edit btn-animation" type="submit" title="Editar especie"><i class="icofont icofont-edit f-18"></i></button> 
-		<button class="btn_delete btn btn-pill btn-danger btn-air-danger btn-animation" type="button" title="Eliminar especie"><i class="icofont  icofont-trash f-18"></i></button>`;
+	return `<button class="btn btn-pill btn-warning btn-air-warning btn_edit btn-animation" type="submit" title="Editar Acuario"><i class="icofont icofont-edit f-18"></i></button> 
+		<button class="btn_delete btn btn-pill btn-danger btn-air-danger btn-animation" type="button" title="Eliminar Acuario"><i class="icofont  icofont-trash f-18"></i></button>`;
 };
 const clearForm = () => {
 	$("#frm_fishbowl")[0].reset();
