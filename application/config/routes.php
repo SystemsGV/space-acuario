@@ -110,6 +110,7 @@ $route['Acuario/Reporte-Temperatura'] = 'aquarium/reports';
 $route['Acuario/API-REPORT-TEMPERATURE'] = 'aquarium/reports/getTableData';
 $route['Acuario/Reporte-PDF'] = 'aquarium/reports/reportPDFTemperature';
 $route['Acuario/Ver-Reporte-PDF'] = 'aquarium/reports/ViewPDF';
+$route['Acuario/Reporte-Especies'] = 'aquarium/reports/viewDataSpecies';
 
 
 /*  USER ROUTES */

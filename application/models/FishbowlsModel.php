@@ -72,4 +72,5 @@ class FishbowlsModel extends CI_Model
             ->get()
             ->result_array();
     }
+
 }

@@ -61,4 +61,11 @@ class Reports extends CI_Controller
         // Genera el PDF
         $this->dompdf_lib->generar_pdf($html, 'Reprote temperatura de ' . $dateIn . ' hasta ' . $dateOut . '.pdf');
     }
+    public function viewDataSpecies()
+    {
+        $this->load->library('dompdf_lib');
+        $data['result'] = $this->ReportModel->reportSpecie();
+        $html = $this->load->view('aquarium/reports/pdf/pdfSpecies', $data, true);
+        $this->dompdf_lib->generar_pdf($html, 'Reporte Des. poblacional Hasta:' . date('d/m/Y'));
+    }
 }

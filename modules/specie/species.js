@@ -9,7 +9,14 @@ $(($) => {
 				extend: "colvis",
 				text: '<i class="fa fa-eye-slash"></i> Columnas Visibles',
 			},
+			{
+				text: '<i class="fa fa-file-pdf-o f-18"></i> Exportar PDF',
+				action: function (e, dt, node, config) {
+					window.open("Reporte-Especies", "_blank");
+				},
+			},
 		],
+
 		language: {
 			url: "../assets/json/Spanish.json",
 		},

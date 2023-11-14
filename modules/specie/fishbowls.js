@@ -70,7 +70,7 @@ $(($) => {
 			},
 			{
 				data: "install_bowl",
-				visible:false,
+				visible: false,
 			},
 			{
 				data: "type_bowl",
@@ -452,6 +452,7 @@ $(($) => {
 					session.total = data.total_f;
 					sessionStorage.setItem("jsonData", JSON.stringify(session));
 					InitFormAdd();
+					InitFormAmmon();
 					Toast.fire({
 						icon: "success",
 						title: "Nueva especie agregado",
@@ -501,6 +502,7 @@ $(($) => {
 						text: "La cantidad que vas a agregar debe ser mayor a 0",
 					});
 				} else {
+					InitFormAdd();
 					InitFormAmmon();
 					session.total = data.total_f;
 					sessionStorage.setItem("jsonData", JSON.stringify(session));

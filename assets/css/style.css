@@ -53417,3 +53417,6 @@ html[dir="rtl"]
     .highlight-column {
         background-color: rgba(169, 169, 169, 0.5); /* Plomo opaco para columnas */
     }
+	#pdfExportButton{
+		color:red;
+	}
