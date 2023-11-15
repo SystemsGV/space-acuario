@@ -52,7 +52,7 @@ if (!function_exists('viewRol')) {
     function viewRol($rol)
     {
         $rolesNumericos = [
-            1 => 'Administrador',
+            1 => 'Jefe Area',
             2 => 'Control'
             // Puedes agregar más roles según sea necesario
         ];
