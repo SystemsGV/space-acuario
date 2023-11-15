@@ -33,7 +33,7 @@ class Dashboard extends CI_Controller
 
         // Iterate over the tanks and classify them
         foreach ($tanks as $tank) {
-            if ($tank->status_bowl = 1) {
+            if ($tank->status_bowl == 1) {
                 $activeTanks[] = $tank;
             } else {
                 $inactiveTanks[] = $tank;
