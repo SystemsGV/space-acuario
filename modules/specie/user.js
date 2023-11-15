@@ -183,7 +183,7 @@ const clearForm = () => {
 };
 const viewRol = (i) => {
 	const rolesText = {
-		1: "Administrador",
+		1: "Jefe Acuario",
 		2: "Control",
 		// Puedes agregar más roles según sea necesario
 	};

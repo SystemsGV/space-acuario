@@ -93,7 +93,7 @@
                                     <label class="form-label" for="type_water">Rol</label>
                                     <select class="form-select input-air-primary fnRow" id="type_role" name="type_role">
                                         <option value="0" selected disabled>Selecciona rol</option>
-                                        <option value="1">Administrador</option>
+                                        <option value="1">Jefe Acuario</option>
                                         <option value="2">Control</option>
                                     </select>
                                 </div>
