@@ -39,7 +39,7 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <h4><?= $type_species ?></h4><span class="f-light">Total tipos especies</span>
+                                        <h4><?= $type_species ?></h4><span class="f-light">Total Individuos</span>
                                     </div>
                                 </div>
                             </div>

@@ -103,8 +103,6 @@ function LoadReports(date) {
 					annotations: {
 						yaxis: [
 							{
-								min: 0,
-								max: 50,
 								y: pecera.tmp_min,
 								y2: pecera.tmp_max,
 								borderColor: "#f8d62b",
@@ -122,6 +120,11 @@ function LoadReports(date) {
 								},
 							},
 						],
+					},
+					yaxis: {
+						min: 15,
+						max: 37,
+						tickAmount: 11,
 					},
 					dataLabels: {
 						enabled: true,
