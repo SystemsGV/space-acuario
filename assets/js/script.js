@@ -253,7 +253,7 @@
 		this.value = this.value.replace(/[^0-9.]/g, "");
 	});
 })(jQuery);
-
+setInterval(loadNotifications, 60000);
 function loadNotifications() {
 	fetch("Load-Notifications")
 		.then((response) => response.json())
