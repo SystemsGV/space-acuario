@@ -214,6 +214,7 @@ class Fishbowls extends CI_Controller
             $amount_s = $this->input->post('amount-s');
             $total_species = $this->input->post('total-s');
             $ammon = $this->input->post('ammon-s');
+            $fishs = $this->input->post('fishs');
 
             $total_bowl = $total_species - $amount; // Obtengo la nueva cantidad de especies en el bowl
             $restart_fish = $amount_s + $amount; // aumento a la especie la cantidad que se quitara de pecera
@@ -228,12 +229,33 @@ class Fishbowls extends CI_Controller
                 "hourM" => $dateTime["time"],
                 "movementM" => "dissmis"
             );
+
+            /* <--- added method remove species if remaining quantity is 0 ---> */
+            if ($this->input->post('rest-s') == '0') {
+                // Convertir la cadena a un array
+                $fishsArray = explode(",", $fishs);
+
+                // Buscar el valor en el array
+                $key = array_search($specie, $fishsArray);
+
+                // Si se encuentra el valor, eliminarlo
+                if ($key !== false) {
+                    unset($fishsArray[$key]);
+                }
+                $fishs = implode(",", $fishsArray);
+
+                $this->FishbowlsModel->update(array("total_species" => $total_bowl, "species" => $fishs), array("id_bowl" => $this->input->post('idBowl')), "tbl_fishbowls");
+                $this->FishbowlsModel->delete(array("specie" => $specie, "tank" => $bowl), "tbl_speciebowls");
+            } else {
+                $this->FishbowlsModel->update(array("total_species" => $total_bowl), array("id_bowl" => $this->input->post('idBowl')), "tbl_fishbowls");
+                $this->FishbowlsModel->update(array("amount" => $total_fish), array("specie" => $specie, "tank" => $bowl), "tbl_speciebowls");
+            }
+            /* <--- added method remove species if remaining quantity is 0 ---> */
+
             $this->FishbowlsModel->insert($data_movement, "tbl_movementstank");
             $this->FishbowlsModel->update(array("amount_fish" => $restart_fish), array("id_specie" => $specie), "tbl_species");
 
-            $this->FishbowlsModel->update(array("total_species" => $total_bowl), array("id_bowl" => $this->input->post('idBowl')), "tbl_fishbowls");
 
-            $this->FishbowlsModel->update(array("amount" => $total_fish), array("specie" => $specie, "tank" => $bowl), "tbl_speciebowls");
             $jsonSpecie['total_f'] = $total_bowl;
             $jsonSpecie['rsp'] = 200;
             echo json_encode($jsonSpecie);

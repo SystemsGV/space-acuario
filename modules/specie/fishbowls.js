@@ -535,6 +535,7 @@ $(($) => {
 		const ammon = selectedOption.data("quantity");
 		sessionStorage.setItem("am_species", amount);
 		sessionStorage.setItem("ammon_species", ammon);
+		sessionStorage.setItem("rest_species", "");
 		$("#actuality_fish").text(ammon);
 		$("#minus-restart").removeAttr("disabled");
 		$("#reason-minus").removeAttr("disabled");
@@ -543,8 +544,10 @@ $(($) => {
 		const add = parseInt($("#minus-restart").val());
 		const ammon = parseInt(sessionStorage.getItem("ammon_species"));
 		if (add <= ammon) {
+			const rest = ammon - add;
 			$(this).removeClass("is-invalid");
-			$("#restart_fish").text(ammon - add);
+			$("#restart_fish").text(rest);
+			sessionStorage.setItem("rest_species", rest);
 		} else {
 			$(this).addClass("is-invalid");
 			$("#btn-send-ammon-specie").attr("disabled");
@@ -568,8 +571,10 @@ $(($) => {
 		const formData = new FormData(this);
 		formData.append("idBowl", session.tank);
 		formData.append("total-s", session.total);
+		formData.append("fishs", session.fishs);
 		formData.append("amount-s", sessionStorage.getItem("am_species"));
 		formData.append("ammon-s", sessionStorage.getItem("ammon_species"));
+		formData.append("rest-s", sessionStorage.getItem("rest_species"));
 		$.ajax({
 			url: "dissmis-specie-fisbowl",
 			method: "post",
