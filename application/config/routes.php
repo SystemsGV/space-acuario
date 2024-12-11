@@ -112,6 +112,7 @@ $route['Acuario/Reporte-PDF'] = 'aquarium/reports/reportPDFTemperature';
 $route['Acuario/Ver-Reporte-PDF'] = 'aquarium/reports/ViewPDF';
 $route['Acuario/Reporte-Especies'] = 'aquarium/reports/viewDataSpecies';
 
+$route['Acuario/reportee'] = 'aquarium/reports/pdfEmpresa';
 
 /*  USER ROUTES */
 $route['Acuario/Usuarios'] = 'aquarium/User';

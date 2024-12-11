@@ -68,4 +68,28 @@ class Reports extends CI_Controller
         $html = $this->load->view('aquarium/reports/pdf/pdfSpecies', $data, true);
         $this->dompdf_lib->generar_pdf($html, 'Reporte Des. poblacional Hasta:' . date('d/m/Y'));
     }
+    public function pdfEmpresa()
+    {
+        $this->load->library('dompdf_lib');
+        $outputDirectory = 'pdfs/';
+
+        // Verifica si el directorio existe, si no, créalo
+        if (!is_dir($outputDirectory)) {
+            mkdir($outputDirectory, 0755, true);
+        }
+        for ($i = 1; $i <= 102; $i++) {
+            // Generar el contenido HTML (puedes personalizarlo según tus necesidades)
+            $data['codigo'] = $i;
+            $html = $this->load->view('aquarium/reports/pdf/cuponPdf', $data, true);
+
+            // Generar un nombre de archivo único
+            $filename = '06122024860-' . $i . '.pdf';
+
+            // Generar el PDF y obtener la ruta del archivo guardado
+            $filePath = $this->dompdf_lib->generar_pdf($html, $filename);
+
+            // Mostrar la ruta del archivo guardado (puedes quitar esta línea si no la necesitas)
+            echo 'Archivo guardado en: ' . $filePath . '<br>';
+        }
+    }
 }

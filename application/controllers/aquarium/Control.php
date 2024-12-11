@@ -8,7 +8,6 @@ class Control extends CI_Controller
         parent::__construct();
         $this->load->model('TemperatureModel');
         check_login_user();
-
     }
 
     public function index()
@@ -119,9 +118,9 @@ class Control extends CI_Controller
         $content = $data['nameBowl'] . ": " . $data['value'];
 
         if ($status == 2) {
-            $content .= " (entre " . $data['min'] . " y " . $data['max'].")";
+            $content .= " (entre " . $data['min'] . " y " . $data['max'] . ")";
         } elseif ($status == 3) {
-            $content .= " (Fuera del Limite de " . $data['min'] . " y " . $data['max'].")";
+            $content .= " (Fuera del Limite de " . $data['min'] . " y " . $data['max'] . ")";
         }
 
         return $content;

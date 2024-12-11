@@ -31,10 +31,18 @@ class Dompdf_lib
         // Renderiza el PDF
         $dompdf->render();
 
-        // Configura el encabezado de la respuesta
-        header('Content-Type: application/pdf');
+        // Define el directorio donde se guardarán los archivos PDF
+        $outputDirectory = APPPATH . 'pdfs/';
 
-        // Devuelve el contenido del PDF
-        echo $dompdf->output();
+        // Verifica si el directorio existe, si no, créalo
+        if (!is_dir($outputDirectory)) {
+            mkdir($outputDirectory, 0755, true);
+        }
+
+        // Construye la ruta completa del archivo PDF
+        $filePath = $outputDirectory . $filename;
+
+        // Guarda el archivo PDF en el directorio especificado
+        file_put_contents($filePath, $dompdf->output());
     }
 }
